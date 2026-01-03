@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mrohitgupta9</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body class="flex flex-col min-h-screen font-sans bg-gray-900 text-gray-200 transition-colors duration-500">
+
+  <!-- Navbar -->
+  <nav class="bg-gray-800 sticky top-0 shadow z-50 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- <a href="#" class="text-4xl font-bold text-orange-500">mrohitgupta9</a> -->
+       <a href="#" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
+        <i class="fa-solid fa-laptop-code text-orange-400 text-3xl"></i>
+          mrohitgupta9
+        </a>
+      <ul class="hidden md:flex space-x-6 text-orange-500 font-medium">
+        <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+        <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
+        <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
+        <li><a href="blogs.html" class="hover:text-blue-400 transition">Blogs</a></li>
+        <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
+        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
+      </ul>
+      <div class="flex items-center space-x-4">
+        <a href="registration.html" class="hidden md:inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2 rounded-lg font-medium hover:from-indigo-600 hover:to-orange-500 transition">Get Started</a>
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" class="text-gray-200 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-900 shadow-lg transition-colors duration-500">
+      <ul class="flex flex-col space-y-4 px-6 py-4">
+        <li><a href="index.html" class="text-gray-200 hover:text-blue-400 transition">Home</a></li>
+        <li><a href="about.html" class="text-gray-200 hover:text-blue-400 transition">About</a></li>
+        <li><a href="projects.html" class="text-gray-200 hover:text-blue-400 transition">Projects</a></li>
+        <li><a href="blogs.html" class="text-gray-200 hover:text-blue-400 transition">Blogs</a></li>
+        <li><a href="contact.html" class="text-gray-200 hover:text-blue-400 transition">Services</a></li>
+        <li><a href="contact.html" class="text-gray-200 hover:text-blue-400 transition">Contact</a></li>
+        <li><a href="#" class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2 rounded-lg font-medium text-center hover:from-indigo-600 hover:to-blue-500 transition">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<!-- Hero Section -->
+  <section class="relative max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-10" data-aos="fade-up">
+    <div class="md:w-1/2 text-center md:text-left">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">Hi, I'm <span class="text-orange-500">Rohit Gupta</span></h1>
+      <p class="text-gray-300 mb-6 sm:text-lg">A freelance Web Developer & UI Engineer creating modern, responsive, and professional digital experiences for businesses and individuals worldwide.</p>
+      <a href="contact.html" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-600 transition">Hire Me</a>
+    </div>
+    <div class="md:w-1/2 flex justify-center md:justify-end">
+      <img src="images/desktop-image.jpg" alt="Rohit Gupta" class="rounded-full w-64 h-64 object-cover border-4 border-orange-500 shadow-lg">
+    </div>
+  </section>
+
+  <!-- Stats Cards -->
+  <section class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+    <div class="bg-gray-800 rounded-xl p-6 hover:border-blue-500 border border-gray-700 transition">
+      <h3 class="text-2xl font-bold text-white">2+</h3>
+      <p class="text-gray-400 mt-2">Years of Experience</p>
+    </div>
+    <div class="bg-gray-800 rounded-xl p-6 hover:border-blue-500 border border-gray-700 transition">
+      <h3 class="text-2xl font-bold text-white">20+</h3>
+      <p class="text-gray-400 mt-2">Projects Completed</p>
+    </div>
+    <div class="bg-gray-800 rounded-xl p-6 hover:border-blue-500 border border-gray-700 transition">
+      <h3 class="text-2xl font-bold text-white">Freelance</h3>
+      <p class="text-gray-400 mt-2">Available for Projects</p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="max-w-7xl mx-auto px-6 py-12">
+    <h2 class="text-3xl font-bold mb-8 text-center text-orange-500" data-aos="fade-up">My Skills</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- Skill Card -->
+      <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="font-semibold mb-2">HTML5</h3>
+        <div class="bg-gray-700 rounded-full h-3">
+          <div class="bg-orange-500 h-3 rounded-full w-90 transition-all duration-1000"></div>
+        </div>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="font-semibold mb-2">CSS3</h3>
+        <div class="bg-gray-700 rounded-full h-3">
+          <div class="bg-blue-500 h-3 rounded-full w-90 transition-all duration-1000"></div>
+        </div>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="300">
+        <h3 class="font-semibold mb-2">JavaScript</h3>
+        <div class="bg-gray-700 rounded-full h-3">
+          <div class="bg-yellow-400 h-3 rounded-full w-80 transition-all duration-1000"></div>
+        </div>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="400">
+        <h3 class="font-semibold mb-2">Tailwind CSS</h3>
+        <div class="bg-gray-700 rounded-full h-3">
+          <div class="bg-sky-400 h-3 rounded-full w-85 transition-all duration-1000"></div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+<section class="max-w-7xl mx-auto px-6 py-12" data-aos="fade-up">
+  <h2 class="text-3xl font-bold mb-10 text-center text-orange-500">My Journey</h2>
+  <div class="relative">
+    <!-- Vertical line -->
+    <div class="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-gray-700 hidden md:block"></div>
+
+    <div class="space-y-12">
+      <!-- Timeline Item -->
+      <div class="md:flex md:items-center md:justify-between">
+        <div class="md:w-5/12 md:text-right md:pr-8">
+          <h3 class="text-xl font-semibold mb-2 text-white">Started Freelancing</h3>
+          <p class="text-gray-400 text-sm sm:text-base">December 2025</p>
+        </div>
+        <div class="flex justify-center items-center md:w-2/12 relative">
+          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
+          <div class="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 h-full border-l-2 border-gray-700"></div>
+        </div>
+        <div class="md:w-5/12 md:pl-8 mt-6 md:mt-0">
+          <p class="text-gray-300">Started my journey as a freelance web developer, building small projects for clients and gaining practical experience.</p>
+        </div>
+      </div>
+
+      <div class="md:flex md:flex-row-reverse md:items-center md:justify-between">
+        <div class="md:w-5/12 md:text-left md:pl-8">
+          <h3 class="text-xl font-semibold mb-2 text-white">First Major Project</h3>
+          <p class="text-gray-400 text-sm sm:text-base">June 2025</p>
+        </div>
+        <div class="flex justify-center items-center md:w-2/12 relative">
+          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
+        </div>
+        <div class="md:w-5/12 md:pr-8 mt-6 md:mt-0">
+          <p class="text-gray-300">Completed my first major project, developing a responsive e-commerce website, which boosted my confidence and portfolio.</p>
+        </div>
+      </div>
+
+      <div class="md:flex md:items-center md:justify-between">
+        <div class="md:w-5/12 md:text-right md:pr-8">
+          <h3 class="text-xl font-semibold mb-2 text-white">Expanded Skills</h3>
+          <p class="text-gray-400 text-sm sm:text-base">May 2025</p>
+        </div>
+        <div class="flex justify-center items-center md:w-2/12 relative">
+          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
+        </div>
+        <div class="md:w-5/12 md:pl-8 mt-6 md:mt-0">
+          <p class="text-gray-300">Learned advanced JavaScript frameworks like React and Node.js, improving the quality and scalability of my projects.</p>
+        </div>
+      </div>
+
+      <div class="md:flex md:flex-row-reverse md:items-center md:justify-between">
+        <div class="md:w-5/12 md:text-left md:pl-8">
+          <h3 class="text-xl font-semibold mb-2 text-white">20+ Projects Completed</h3>
+          <p class="text-gray-400 text-sm sm:text-base">August 2025</p>
+        </div>
+        <div class="flex justify-center items-center md:w-2/12 relative">
+          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
+        </div>
+        <div class="md:w-5/12 md:pr-8 mt-6 md:mt-0">
+          <p class="text-gray-300">Delivered more than 20 professional projects for various clients, gaining extensive experience and building a solid portfolio.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA -->
+  <section id="contact" class="bg-gray-800 py-12 px-6 mt-12 mb-6 text-center rounded-xl max-w-4xl mx-auto" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">Interested in working together?</h2>
+    <p class="text-gray-400 mb-6">Let's build something amazing together! Contact me for freelance or project opportunities.</p>
+    <a href="contact.html" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-600 transition">Contact Me</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 border-t border-gray-700">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <!-- <h3 class="font-bold mb-4 text-orange-500 text-4xl">mrohitgupta9</h3> -->
+         <a href="#" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
+        <i class="fa-solid fa-laptop-code text-orange-400 text-3xl"></i>
+          mrohitgupta9
+        </a>
+        <p class="text-gray-400">Delivering professional web solutions that blend creativity, performance,
+        and modern design to help individuals and businesses grow online.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-orange-500">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+          <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
+          <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
+          <li><a href="blogs.html" class="hover:text-blue-400 transition">Blogs</a></li>
+          <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
+          <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-orange-500">Services</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-blue-400 transition">Web Development</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition">UI/UX Design</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition">SEO Optimization</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition">E-commerce</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-orange-500">Contact</h4>
+        <p class="text-sm mb-1">
+        <i class="fa-solid fa-envelope mr-2 text-blue-400"></i>mrohitgupta9@gmail.com</p>
+        <p class="text-sm"><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+91 15095844</p>
+        <h4 class="font-semibold mb-4 mt-4 text-white">Follow Me</h4>
+        <div class="flex space-x-4 mt-5 text-lg">
+  <a href="https://www.facebook.com/mrohitgupta9" target="_blank" class="hover:text-blue-400 transition text-orange-500">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://www.instagram.com/mrohitgupta9" target="_blank" class="hover:text-pink-400 transition text-orange-500">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="https://www.twitter.com/mrohitgupta9" target="_blank" class="hover:text-sky-400 transition text-orange-500">
+    <i class="fab fa-twitter"></i>
+  </a>
+  <a href="https://www.linkedin.com/in/mrohitgupta9" target="_blank" class="hover:text-blue-500 transition text-orange-500">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+  <a href="https://github.com/mrohitgupta9" target="_blank" class="hover:text-gray-100 transition text-orange-500">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+      </div>
+    </div>
+    <div class="border-t border-gray-700 py-4 text-center text-sm text-gray-400">© 2025 mrohitgupta9. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  </script>
+
+  <style>
+    @keyframes bounce-slow {
+      0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}
+    }
+    .animate-bounce-slow{animation:bounce-slow 6s infinite;}
+  </style>
+</body>
+</html>
