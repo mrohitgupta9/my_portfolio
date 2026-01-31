@@ -13,44 +13,56 @@
 </head>
 <body class="flex flex-col min-h-screen font-sans bg-gray-900 text-gray-200 transition-colors duration-500">
 
-  <!-- Navbar -->
-  <nav class="bg-gray-800 sticky top-0 shadow z-50 transition-colors duration-500">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <!-- <a href="#" class="text-4xl font-bold text-orange-500">mrohitgupta9</a> -->
-       <a href="index.html" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
-        <i class="fa-solid fa-laptop-code text-orange-400 text-3xl"></i>
-          mrohitgupta9
-        </a>
-      <ul class="hidden md:flex space-x-6 text-orange-500 font-medium">
-        <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
-        <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
-        <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
-        <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
-        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
-      </ul>
-      <div class="flex items-center space-x-4">
-        <a href="#" class="hidden md:inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2 rounded-lg font-medium hover:from-indigo-600 hover:to-orange-500 transition">Get Started</a>
-        <div class="md:hidden">
-          <button id="mobile-menu-btn" class="text-gray-200 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
+<!-- Navbar -->
+<nav class="bg-gray-800 sticky top-0 shadow z-50 transition-colors duration-500">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
+      <i class="fa-solid fa-laptop-code text-orange-400 text-3xl"></i>
+      mrohitgupta9
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex space-x-6 text-orange-500 font-medium">
+      <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+      <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
+      <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
+      <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
+      <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
+    </ul>
+
+    <!-- Action & Mobile Menu Button -->
+    <div class="flex items-center space-x-4">
+      <a href="#" class="hidden md:inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2 rounded-lg font-medium hover:from-indigo-600 hover:to-orange-500 transition">Get Started</a>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-btn" class="text-gray-200 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-gray-900 shadow-lg transition-colors duration-500">
-      <ul class="flex flex-col space-y-4 px-6 py-4">
-        <li><a href="index.html" class="text-gray-200 hover:text-blue-400 transition">Home</a></li>
-        <li><a href="about.html" class="text-gray-200 hover:text-blue-400 transition">About</a></li>
-        <li><a href="projects.html" class="text-gray-200 hover:text-blue-400 transition">Projects</a></li>
-        <li><a href="contact.html" class="text-gray-200 hover:text-blue-400 transition">Services</a></li>
-        <li><a href="contact.html" class="text-gray-200 hover:text-blue-400 transition">Contact</a></li>
-        <li><a href="#" class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2 rounded-lg font-medium text-center hover:from-indigo-600 hover:to-blue-500 transition">Get Started</a></li>
-      </ul>
-    </div>
-  </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-900 shadow-lg transition-all duration-300">
+    <ul class="flex flex-col space-y-3 px-6 py-6 text-center">
+      <li><a href="index.html" class="block text-gray-200 hover:text-blue-400 transition py-2 ">Home</a></li>
+      <li><a href="about.html" class="block text-gray-200 hover:text-blue-400 transition py-2">About</a></li>
+      <li><a href="projects.html" class="block text-gray-200 hover:text-blue-400 transition py-2">Projects</a></li>
+      <li><a href="services.html" class="block text-gray-200 hover:text-blue-400 transition py-2">Services</a></li>
+      <li><a href="contact.html" class="block text-gray-200 hover:text-blue-400 transition py-2">Contact</a></li>
+      <li>
+        <a href="#" class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-3 rounded-lg font-medium hover:from-indigo-600 hover:to-orange-500 transition">
+          Get Started
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <!-- Hero Section -->
   <section class="relative max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-10" data-aos="fade-up">
@@ -67,8 +79,8 @@
   <!-- Stats Cards -->
   <section class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
     <div class="bg-gray-800 rounded-xl p-6 hover:border-blue-500 border border-gray-700 transition">
-      <h3 class="text-2xl font-bold text-white">2+</h3>
-      <p class="text-gray-400 mt-2">Years of Experience</p>
+      <h3 class="text-2xl font-bold text-white">6+ </h3>
+      <p class="text-gray-400 mt-2">Months of Experience</p>
     </div>
     <div class="bg-gray-800 rounded-xl p-6 hover:border-blue-500 border border-gray-700 transition">
       <h3 class="text-2xl font-bold text-white">20+</h3>
@@ -80,38 +92,57 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section class="max-w-7xl mx-auto px-6 py-12">
-    <h2 class="text-3xl font-bold mb-8 text-center text-orange-500" data-aos="fade-up">My Skills</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <!-- Skill Card -->
-      <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="100">
-        <h3 class="font-semibold mb-2">HTML5</h3>
-        <div class="bg-gray-700 rounded-full h-3">
-          <div class="bg-orange-500 h-3 rounded-full w-90 transition-all duration-1000"></div>
-        </div>
-      </div>
-      <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="200">
-        <h3 class="font-semibold mb-2">CSS3</h3>
-        <div class="bg-gray-700 rounded-full h-3">
-          <div class="bg-blue-500 h-3 rounded-full w-90 transition-all duration-1000"></div>
-        </div>
-      </div>
-      <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="300">
-        <h3 class="font-semibold mb-2">JavaScript</h3>
-        <div class="bg-gray-700 rounded-full h-3">
-          <div class="bg-yellow-400 h-3 rounded-full w-80 transition-all duration-1000"></div>
-        </div>
-      </div>
-      <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="400">
-        <h3 class="font-semibold mb-2">Tailwind CSS</h3>
-        <div class="bg-gray-700 rounded-full h-3">
-          <div class="bg-sky-400 h-3 rounded-full w-85 transition-all duration-1000"></div>
-        </div>
-      </div>
+ <!-- Skills Section -->
+<section class="max-w-7xl mx-auto px-6 py-12">
+  <h2 class="text-3xl font-bold mb-8 text-center text-orange-500" data-aos="fade-up">My Skills</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    
+    <!-- Skill Card -->
+    <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="100">
+      <h3 class="font-semibold mb-2 text-white">HTML5</h3>
+      <div class="bg-gray-700 rounded-full h-3">
+        <div class="bg-orange-500 h-3 rounded-full w-[95%] transition-all duration-1000"></div>
       </div>
     </div>
-  </section>
+
+    <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="200">
+      <h3 class="font-semibold mb-2 text-white">CSS3</h3>
+      <div class="bg-gray-700 rounded-full h-3">
+        <div class="bg-blue-500 h-3 rounded-full w-[70%] transition-all duration-1000"></div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="300">
+      <h3 class="font-semibold mb-2 text-white">JavaScript</h3>
+      <div class="bg-gray-700 rounded-full h-3">
+        <div class="bg-yellow-400 h-3 rounded-full w-[80%] transition-all duration-1000"></div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="400">
+      <h3 class="font-semibold mb-2 text-white">Tailwind CSS</h3>
+      <div class="bg-gray-700 rounded-full h-3">
+        <div class="bg-sky-400 h-3 rounded-full w-[85%] transition-all duration-1000"></div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="500">
+      <h3 class="font-semibold mb-2 text-white">Bootstrap</h3>
+      <div class="bg-gray-700 rounded-full h-3">
+        <div class="bg-purple-500 h-3 rounded-full w-[65%] transition-all duration-1000"></div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="600">
+      <h3 class="font-semibold mb-2 text-white">Git & GitHub</h3>
+      <div class="bg-gray-700 rounded-full h-3">
+        <div class="bg-green-500 h-3 rounded-full w-[90%] transition-all duration-1000"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
   <!-- Timeline Section -->
 <section class="max-w-7xl mx-auto px-6 py-12" data-aos="fade-up">
@@ -122,61 +153,49 @@
 
     <div class="space-y-12">
       <!-- Timeline Item -->
-      <div class="md:flex md:items-center md:justify-between">
-        <div class="md:w-5/12 md:text-right md:pr-8">
-          <h3 class="text-xl font-semibold mb-2 text-white">Started Freelancing</h3>
-          <p class="text-gray-400 text-sm sm:text-base">December 2025</p>
-        </div>
-        <div class="flex justify-center items-center md:w-2/12 relative">
-          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
-          <div class="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 h-full border-l-2 border-gray-700"></div>
-        </div>
-        <div class="md:w-5/12 md:pl-8 mt-6 md:mt-0">
-          <p class="text-gray-300">Started my journey as a freelance web developer, building small projects for clients and gaining practical experience.</p>
+      <div class="md:flex md:items-start md:justify-between">
+        <div class="md:w-5/12 md:text-right md:pr-8 relative">
+          <!-- Dot above heading -->
+          <div class="absolute -top-6 left-0 md:right-auto md:left-full md:-translate-x-1/2 md:transform w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
+          <h3 class="text-xl font-semibold mb-2 text-white">Started Coding Journey</h3>
+          <p class="text-gray-400 text-sm sm:text-base">September 2024</p>
+          <p class="text-gray-300 mt-2">Started my journey as a freelance web developer, building small projects for clients and gaining practical experience.</p>
         </div>
       </div>
 
-      <div class="md:flex md:flex-row-reverse md:items-center md:justify-between">
-        <div class="md:w-5/12 md:text-left md:pl-8">
+      <div class="md:flex md:flex-row-reverse md:items-start md:justify-between">
+        <div class="md:w-5/12 md:text-left md:pl-8 relative">
+          <!-- Dot above heading -->
+          <div class="absolute -top-6 left-0 md:right-auto md:right-full md:translate-x-1/2 md:transform w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
           <h3 class="text-xl font-semibold mb-2 text-white">First Major Project</h3>
-          <p class="text-gray-400 text-sm sm:text-base">June 2025</p>
-        </div>
-        <div class="flex justify-center items-center md:w-2/12 relative">
-          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
-        </div>
-        <div class="md:w-5/12 md:pr-8 mt-6 md:mt-0">
-          <p class="text-gray-300">Completed my first major project, developing a responsive e-commerce website, which boosted my confidence and portfolio.</p>
+          <p class="text-gray-400 text-sm sm:text-base">December 2024</p>
+          <p class="text-gray-300 mt-2">Completed my first major project, developing a responsive e-commerce website, which boosted my confidence and portfolio.</p>
         </div>
       </div>
 
-      <div class="md:flex md:items-center md:justify-between">
-        <div class="md:w-5/12 md:text-right md:pr-8">
+      <div class="md:flex md:items-start md:justify-between">
+        <div class="md:w-5/12 md:text-right md:pr-8 relative">
+          <!-- Dot above heading -->
+          <div class="absolute -top-6 left-0 md:right-auto md:left-full md:-translate-x-1/2 md:transform w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
           <h3 class="text-xl font-semibold mb-2 text-white">Expanded Skills</h3>
-          <p class="text-gray-400 text-sm sm:text-base">May 2025</p>
-        </div>
-        <div class="flex justify-center items-center md:w-2/12 relative">
-          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
-        </div>
-        <div class="md:w-5/12 md:pl-8 mt-6 md:mt-0">
-          <p class="text-gray-300">Learned advanced JavaScript frameworks like React and Node.js, improving the quality and scalability of my projects.</p>
+          <p class="text-gray-400 text-sm sm:text-base">January 2025</p>
+          <p class="text-gray-300 mt-2">Learned advanced JavaScript frameworks like React and Node.js, improving the quality and scalability of my projects.</p>
         </div>
       </div>
 
-      <div class="md:flex md:flex-row-reverse md:items-center md:justify-between">
-        <div class="md:w-5/12 md:text-left md:pl-8">
+      <div class="md:flex md:flex-row-reverse md:items-start md:justify-between">
+        <div class="md:w-5/12 md:text-left md:pl-8 relative">
+          <!-- Dot above heading -->
+          <div class="absolute -top-6 left-0 md:right-auto md:right-full md:translate-x-1/2 md:transform w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
           <h3 class="text-xl font-semibold mb-2 text-white">20+ Projects Completed</h3>
-          <p class="text-gray-400 text-sm sm:text-base">August 2025</p>
-        </div>
-        <div class="flex justify-center items-center md:w-2/12 relative">
-          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
-        </div>
-        <div class="md:w-5/12 md:pr-8 mt-6 md:mt-0">
-          <p class="text-gray-300">Delivered more than 20 professional projects for various clients, gaining extensive experience and building a solid portfolio.</p>
+          <p class="text-gray-400 text-sm sm:text-base">November 2025</p>
+          <p class="text-gray-300 mt-2">Delivered more than 20 professional projects for various clients, gaining extensive experience and building a solid portfolio.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- Contact CTA -->
   <section id="contact" class="bg-gray-800 py-12 px-6 mt-12 mb-6 text-center rounded-xl max-w-4xl mx-auto" data-aos="fade-up">
