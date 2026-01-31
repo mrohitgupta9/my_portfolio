@@ -4,8 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>mrohitgupta9</title>
-  <!-- Tailwind CDN -->
+  <!-- Tailwind + DaisyUI CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {},
+      },
+      plugins: [require('daisyui')],
+      daisyui: {
+        themes: ["dark"], // dark mode
+      },
+    }
+  </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -14,13 +25,12 @@
 <body class="flex flex-col min-h-screen font-sans bg-gray-900 text-gray-200 transition-colors duration-500">
 
   <!-- Navbar -->
-  <nav class="bg-gray-800 sticky top-0 shadow z-50 transition-colors duration-500">
+  <nav class="bg-gray-800 sticky top-0 shadow-md z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <!-- <a href="#" class="text-4xl font-bold text-orange-500">mrohitgupta9</a> -->
-       <a href="index.html" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
+      <a href="index.html" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
         <i class="fa-solid fa-laptop-code text-orange-400 text-3xl"></i>
-          mrohitgupta9
-        </a>
+        mrohitgupta9
+      </a>
       <ul class="hidden md:flex space-x-6 text-orange-500 font-medium">
         <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
         <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
@@ -29,7 +39,7 @@
         <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
       </ul>
       <div class="flex items-center space-x-4">
-        <a href="#" class="hidden md:inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2 rounded-lg font-medium hover:from-indigo-600 hover:to-orange-500 transition">Get Started</a>
+        <a href="#" class="btn btn-primary hidden md:inline-block">Get Started</a>
         <div class="md:hidden">
           <button id="mobile-menu-btn" class="text-gray-200 focus:outline-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,43 +50,49 @@
         </div>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-gray-900 shadow-lg transition-colors duration-500">
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-900 shadow-lg">
       <ul class="flex flex-col space-y-4 px-6 py-4">
-        <li><a href="index.html" class="text-gray-200 hover:text-blue-400 transition">Home</a></li>
-        <li><a href="about.html" class="text-gray-200 hover:text-blue-400 transition">About</a></li>
-        <li><a href="projects.html" class="text-gray-200 hover:text-blue-400 transition">Projects</a></li>
-        <li><a href="contact.html" class="text-gray-200 hover:text-blue-400 transition">Services</a></li>
-        <li><a href="contact.html" class="text-gray-200 hover:text-blue-400 transition">Contact</a></li>
-        <li><a href="#" class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2 rounded-lg font-medium text-center hover:from-indigo-600 hover:to-blue-500 transition">Get Started</a></li>
+        <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+        <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
+        <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
+        <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
+        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
+        <li><a href="#" class="btn btn-primary w-full text-center">Get Started</a></li>
       </ul>
     </div>
   </nav>
 
-<!-- Hero Section -->
+  <!-- Hero Section -->
   <section class="relative max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-10" data-aos="fade-up">
     <div class="md:w-1/2 text-center md:text-left">
       <h1 class="text-4xl sm:text-5xl font-bold mb-4">Hi, I'm <span class="text-orange-500">Rohit Gupta</span></h1>
-      <p class="text-gray-300 mb-6 sm:text-lg">A freelance Web Developer & UI Engineer creating modern, responsive, and professional digital experiences for businesses and individuals worldwide.</p>
-      <a href="contact.html" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-600 transition">Hire Me</a>
+      <p class="text-gray-300 mb-6 sm:text-lg">Freelance Web Developer & UI Engineer creating modern, responsive, and professional digital experiences for businesses and individuals worldwide.</p>
+      <a href="contact.html" class="btn btn-primary btn-lg">Hire Me</a>
     </div>
     <div class="md:w-1/2 flex justify-center md:justify-end">
-      <img src="images/desktop-image.jpg" alt="Rohit Gupta" class="rounded-full w-64 h-64 object-cover border-4 border-orange-500 shadow-lg">
+      <img src="images/mrohitgupta9.jpg" alt="Rohit Gupta" class="rounded-full w-64 h-64 object-cover border-4 border-orange-500 shadow-lg">
     </div>
   </section>
 
   <!-- Stats Cards -->
-  <section class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-    <div class="bg-gray-800 rounded-xl p-6 hover:border-blue-500 border border-gray-700 transition">
-      <h3 class="text-2xl font-bold text-white">2+</h3>
-      <p class="text-gray-400 mt-2">Years of Experience</p>
+  <section class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <div class="card bg-gray-800 shadow-md hover:shadow-lg transition">
+      <div class="card-body text-center">
+        <h3 class="text-3xl font-bold text-white">2+</h3>
+        <p class="text-gray-400 mt-2">Years of Experience</p>
+      </div>
     </div>
-    <div class="bg-gray-800 rounded-xl p-6 hover:border-blue-500 border border-gray-700 transition">
-      <h3 class="text-2xl font-bold text-white">20+</h3>
-      <p class="text-gray-400 mt-2">Projects Completed</p>
+    <div class="card bg-gray-800 shadow-md hover:shadow-lg transition">
+      <div class="card-body text-center">
+        <h3 class="text-3xl font-bold text-white">20+</h3>
+        <p class="text-gray-400 mt-2">Projects Completed</p>
+      </div>
     </div>
-    <div class="bg-gray-800 rounded-xl p-6 hover:border-blue-500 border border-gray-700 transition">
-      <h3 class="text-2xl font-bold text-white">Freelance</h3>
-      <p class="text-gray-400 mt-2">Available for Projects</p>
+    <div class="card bg-gray-800 shadow-md hover:shadow-lg transition">
+      <div class="card-body text-center">
+        <h3 class="text-3xl font-bold text-white">Freelance</h3>
+        <p class="text-gray-400 mt-2">Available for Projects</p>
+      </div>
     </div>
   </section>
 
@@ -84,269 +100,144 @@
   <section class="max-w-7xl mx-auto px-6 py-12">
     <h2 class="text-3xl font-bold mb-8 text-center text-orange-500" data-aos="fade-up">My Skills</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <!-- Skill Card -->
       <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="100">
         <h3 class="font-semibold mb-2">HTML5</h3>
-        <div class="bg-gray-700 rounded-full h-3">
-          <div class="bg-orange-500 h-3 rounded-full w-90 transition-all duration-1000"></div>
-        </div>
+        <progress class="progress progress-warning w-full" value="90" max="100"></progress>
       </div>
       <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="200">
         <h3 class="font-semibold mb-2">CSS3</h3>
-        <div class="bg-gray-700 rounded-full h-3">
-          <div class="bg-blue-500 h-3 rounded-full w-90 transition-all duration-1000"></div>
-        </div>
+        <progress class="progress progress-info w-full" value="90" max="100"></progress>
       </div>
       <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="300">
         <h3 class="font-semibold mb-2">JavaScript</h3>
-        <div class="bg-gray-700 rounded-full h-3">
-          <div class="bg-yellow-400 h-3 rounded-full w-80 transition-all duration-1000"></div>
-        </div>
+        <progress class="progress progress-warning w-full" value="80" max="100"></progress>
       </div>
       <div class="bg-gray-800 rounded-xl p-6" data-aos="fade-up" data-aos-delay="400">
         <h3 class="font-semibold mb-2">Tailwind CSS</h3>
-        <div class="bg-gray-700 rounded-full h-3">
-          <div class="bg-sky-400 h-3 rounded-full w-85 transition-all duration-1000"></div>
-        </div>
-      </div>
+        <progress class="progress progress-info w-full" value="85" max="100"></progress>
       </div>
     </div>
   </section>
 
-  <!-- Timeline Section -->
-<section class="max-w-7xl mx-auto px-6 py-12" data-aos="fade-up">
-  <h2 class="text-3xl font-bold mb-10 text-center text-orange-500">My Journey</h2>
-  <div class="relative">
-    <!-- Vertical line -->
-    <div class="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-gray-700 hidden md:block"></div>
-
-    <div class="space-y-12">
-      <!-- Timeline Item -->
-      <div class="md:flex md:items-center md:justify-between">
-        <div class="md:w-5/12 md:text-right md:pr-8">
-          <h3 class="text-xl font-semibold mb-2 text-white">Started Freelancing</h3>
-          <p class="text-gray-400 text-sm sm:text-base">December 2025</p>
-        </div>
-        <div class="flex justify-center items-center md:w-2/12 relative">
-          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
-          <div class="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 h-full border-l-2 border-gray-700"></div>
-        </div>
-        <div class="md:w-5/12 md:pl-8 mt-6 md:mt-0">
-          <p class="text-gray-300">Started my journey as a freelance web developer, building small projects for clients and gaining practical experience.</p>
+  <!-- Services Section -->
+  <section class="max-w-7xl mx-auto px-6 py-12">
+    <h2 class="text-3xl font-bold mb-8 text-center text-orange-500" data-aos="fade-up">Services</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="card bg-gray-800 shadow-md hover:shadow-lg transition cursor-pointer" onclick="showService('Web Development')">
+        <div class="card-body text-center">
+          <i class="fa-solid fa-code text-4xl text-orange-500 mb-4"></i>
+          <h3 class="font-bold text-lg">Web Development</h3>
         </div>
       </div>
-
-      <div class="md:flex md:flex-row-reverse md:items-center md:justify-between">
-        <div class="md:w-5/12 md:text-left md:pl-8">
-          <h3 class="text-xl font-semibold mb-2 text-white">First Major Project</h3>
-          <p class="text-gray-400 text-sm sm:text-base">June 2025</p>
-        </div>
-        <div class="flex justify-center items-center md:w-2/12 relative">
-          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
-        </div>
-        <div class="md:w-5/12 md:pr-8 mt-6 md:mt-0">
-          <p class="text-gray-300">Completed my first major project, developing a responsive e-commerce website, which boosted my confidence and portfolio.</p>
+      <div class="card bg-gray-800 shadow-md hover:shadow-lg transition cursor-pointer" onclick="showService('UI/UX Design')">
+        <div class="card-body text-center">
+          <i class="fa-solid fa-paintbrush text-4xl text-orange-500 mb-4"></i>
+          <h3 class="font-bold text-lg">UI/UX Design</h3>
         </div>
       </div>
-
-      <div class="md:flex md:items-center md:justify-between">
-        <div class="md:w-5/12 md:text-right md:pr-8">
-          <h3 class="text-xl font-semibold mb-2 text-white">Expanded Skills</h3>
-          <p class="text-gray-400 text-sm sm:text-base">May 2025</p>
-        </div>
-        <div class="flex justify-center items-center md:w-2/12 relative">
-          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
-        </div>
-        <div class="md:w-5/12 md:pl-8 mt-6 md:mt-0">
-          <p class="text-gray-300">Learned advanced JavaScript frameworks like React and Node.js, improving the quality and scalability of my projects.</p>
+      <div class="card bg-gray-800 shadow-md hover:shadow-lg transition cursor-pointer" onclick="showService('SEO Optimization')">
+        <div class="card-body text-center">
+          <i class="fa-solid fa-chart-line text-4xl text-orange-500 mb-4"></i>
+          <h3 class="font-bold text-lg">SEO Optimization</h3>
         </div>
       </div>
-
-      <div class="md:flex md:flex-row-reverse md:items-center md:justify-between">
-        <div class="md:w-5/12 md:text-left md:pl-8">
-          <h3 class="text-xl font-semibold mb-2 text-white">20+ Projects Completed</h3>
-          <p class="text-gray-400 text-sm sm:text-base">August 2025</p>
-        </div>
-        <div class="flex justify-center items-center md:w-2/12 relative">
-          <div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-gray-700 z-10"></div>
-        </div>
-        <div class="md:w-5/12 md:pr-8 mt-6 md:mt-0">
-          <p class="text-gray-300">Delivered more than 20 professional projects for various clients, gaining extensive experience and building a solid portfolio.</p>
+      <div class="card bg-gray-800 shadow-md hover:shadow-lg transition cursor-pointer" onclick="showService('E-commerce')">
+        <div class="card-body text-center">
+          <i class="fa-solid fa-cart-shopping text-4xl text-orange-500 mb-4"></i>
+          <h3 class="font-bold text-lg">E-commerce</h3>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Contact CTA -->
-  <section id="contact" class="bg-gray-800 py-12 px-6 mt-12 mb-6 text-center rounded-xl max-w-4xl mx-auto" data-aos="fade-up">
+  <!-- Contact CTA -->
+  <section id="contact" class="bg-gray-800 py-12 px-6 mt-12 mb-6 text-center rounded-xl max-w-4xl mx-auto">
     <h2 class="text-3xl font-bold mb-4">Interested in working together?</h2>
     <p class="text-gray-400 mb-6">Let's build something amazing together! Contact me for freelance or project opportunities.</p>
-    <a href="contact.html" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-600 transition">Contact Me</a>
+    <a href="contact.html" class="btn btn-primary btn-lg">Contact Me</a>
   </section>
 
- <!-- Footer -->
-<footer class="bg-gray-800 text-gray-300 border-t border-gray-700 relative z-10">
-  <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-    
-    <!-- About -->
-    <div>
-      <a href="index.html" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
-        <i class="fa-solid fa-laptop-code text-orange-400 text-2xl"></i>
-        mrohitgupta9
-      </a>
-      <p class="text-gray-400 mt-2">Delivering professional web solutions that blend creativity, performance, and modern design to help individuals and businesses grow online.</p>
-    </div>
-
-    <!-- Quick Links -->
-    <div>
-      <h4 class="font-semibold mb-4 text-orange-500">Quick Links</h4>
-      <ul class="space-y-2">
-        <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
-        <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
-        <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
-        <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
-        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
-      </ul>
-    </div>
-
-    <!-- Services with Modal -->
-    <div>
-      <h4 class="font-semibold mb-4 text-orange-500">Services</h4>
-      <ul class="space-y-2">
-        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('Web Development')">Web Development</a></li>
-        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('UI/UX Design')">UI/UX Design</a></li>
-        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('SEO Optimization')">SEO Optimization</a></li>
-        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('E-commerce')">E-commerce</a></li>
-      </ul>
-    </div>
-
-    <!-- Contact & Socials -->
-    <div>
-      <h4 class="font-semibold mb-4 text-orange-500">Contact</h4>
-      <p class="text-sm mb-1"><i class="fa-solid fa-envelope mr-2 text-blue-400"></i>mrohitgupta9@gmail.com</p>
-      <p class="text-sm"><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+91 9115095844</p>
-
-      <h4 class="font-semibold mb-4 mt-4 text-white">Follow Me</h4>
-      <div class="flex space-x-4 mt-5 text-lg">
-        <a href="https://www.facebook.com/mrohitgupta9" target="_blank" class="hover:text-blue-400 transition text-orange-500"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/mrohitgupta9" target="_blank" class="hover:text-pink-400 transition text-orange-500"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.twitter.com/mrohitgupta9" target="_blank" class="hover:text-sky-400 transition text-orange-500"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/mrohitgupta9" target="_blank" class="hover:text-blue-500 transition text-orange-500"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://github.com/mrohitgupta9" target="_blank" class="hover:text-gray-100 transition text-orange-500"><i class="fab fa-github"></i></a>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 border-t border-gray-700 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <a href="index.html" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
+          <i class="fa-solid fa-laptop-code text-orange-400 text-2xl"></i> mrohitgupta9
+        </a>
+        <p class="text-gray-400 mt-2">Professional web solutions for individuals & businesses.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-orange-500">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+          <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
+          <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
+          <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
+          <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-orange-500">Services</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('Web Development')">Web Development</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('UI/UX Design')">UI/UX Design</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('SEO Optimization')">SEO Optimization</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('E-commerce')">E-commerce</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-orange-500">Contact</h4>
+        <p class="text-sm mb-1"><i class="fa-solid fa-envelope mr-2 text-blue-400"></i>mrohitgupta9@gmail.com</p>
+        <p class="text-sm"><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+91 9115095844</p>
+        <div class="flex space-x-4 mt-4 text-lg">
+          <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-pink-400"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-sky-400"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-blue-500"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="hover:text-gray-100"><i class="fab fa-github"></i></a>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="border-t border-gray-700 py-4 text-center text-sm">© 2025 mrohitgupta9. All rights reserved.</div>
 
-  <!-- Copyright -->
-  <div class="border-t border-gray-700 py-4 text-center text-sm">© 2025 mrohitgupta9. All rights reserved.</div>
-
-  <!-- Modal -->
-  <div id="serviceModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300">
-    <div class="bg-gray-900 text-gray-200 p-6 rounded-lg max-w-lg w-full relative shadow-lg transform scale-95 opacity-0 transition-all duration-300">
-      <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white text-lg font-bold">&times;</button>
-      <h3 id="serviceTitle" class="text-2xl font-bold mb-3 text-orange-500">Service Title</h3>
-      <div id="serviceDesc" class="text-gray-300 leading-relaxed max-h-72 overflow-y-auto pr-2"></div>
-      <button onclick="closeModal()" class="mt-5 px-4 py-2 bg-orange-500 hover:bg-orange-600 rounded text-white font-medium w-full">Close</button>
+    <!-- Service Modal -->
+    <div id="serviceModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+      <div class="bg-gray-900 text-gray-200 p-6 rounded-lg max-w-lg w-full relative shadow-lg overflow-y-auto max-h-[80vh]">
+        <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white text-lg font-bold">&times;</button>
+        <h3 id="serviceTitle" class="text-2xl font-bold mb-3 text-orange-500">Service Title</h3>
+        <div id="serviceDesc" class="text-gray-300 leading-relaxed space-y-2"></div>
+        <button onclick="closeModal()" class="mt-5 btn btn-warning w-full">Close</button>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-   <!-- Modal JS -->
-  <script>
-    const descriptions = {
-      "Web Development": `We build responsive, modern websites using the latest technologies to boost your online presence. 
-      <br><br>
-      <strong>Features Include:</strong>
-      <ul class="list-disc pl-5">
-        <li>Responsive & Mobile-Friendly Design</li>
-        <li>SEO-optimized Code</li>
-        <li>Performance & Speed Optimization</li>
-        <li>Custom CMS Integration</li>
-        <li>E-commerce Capability</li>
-      </ul>
-      <br>
-      Our goal is to make your website not just beautiful, but fast, secure, and scalable.`,
-      
-      "UI/UX Design": `Designing intuitive and engaging user interfaces for web and mobile applications. 
-      <br><br>
-      <strong>Our Approach:</strong>
-      <ul class="list-disc pl-5">
-        <li>User-Centered Design</li>
-        <li>Wireframing & Prototyping</li>
-        <li>High-Fidelity Mockups</li>
-        <li>Accessibility & Usability Standards</li>
-      </ul>
-      <br>
-      We ensure your users have a seamless and enjoyable experience.`,
-
-      "SEO Optimization": `Enhancing your website to rank higher on search engines and attract organic traffic.
-      <br><br>
-      <strong>What We Do:</strong>
-      <ul class="list-disc pl-5">
-        <li>Keyword Research & Strategy</li>
-        <li>On-page & Off-page SEO</li>
-        <li>Content Optimization</li>
-        <li>Performance & Mobile SEO</li>
-        <li>Analytics & Reporting</li>
-      </ul>
-      <br>
-      Our aim is to drive quality traffic and improve your online visibility.`,
-
-      "E-commerce": `Custom online stores with secure payment gateways and user-friendly shopping experiences.
-      <br><br>
-      <strong>Capabilities:</strong>
-      <ul class="list-disc pl-5">
-        <li>Product Catalog & Inventory Management</li>
-        <li>Secure Checkout & Payment Integration</li>
-        <li>Order Management & Analytics</li>
-        <li>Responsive Mobile Shopping</li>
-        <li>Promotions & Discounts Setup</li>
-      </ul>
-      <br>
-      We make online shopping smooth for your customers.`
-    };
-
-    function showService(title) {
-      const modal = document.getElementById('serviceModal');
-      document.getElementById('serviceTitle').innerText = title;
-      document.getElementById('serviceDesc').innerHTML = descriptions[title];
-      modal.classList.remove('hidden');
-      // Fade-in + scale animation
-      setTimeout(() => {
-        modal.querySelector('div').classList.remove('opacity-0','scale-95');
-        modal.querySelector('div').classList.add('opacity-100','scale-100');
-      }, 10);
-    }
-
-    function closeModal() {
-      const modalContent = document.getElementById('serviceModal').querySelector('div');
-      modalContent.classList.remove('opacity-100','scale-100');
-      modalContent.classList.add('opacity-0','scale-95');
-      setTimeout(() => {
-        document.getElementById('serviceModal').classList.add('hidden');
-      }, 300);
-    }
-  </script>
-</body>
-</html>
-
-
-  <!-- Scripts -->
+  <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
 
+    // Mobile Menu
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-  </script>
 
-  <style>
-    @keyframes bounce-slow {
-      0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}
+    // Modal Functions
+    const descriptions = {
+      "Web Development": `We build responsive, modern websites using the latest technologies...`,
+      "UI/UX Design": `Designing intuitive and engaging interfaces...`,
+      "SEO Optimization": `Enhancing your website to rank higher on search engines...`,
+      "E-commerce": `Custom online stores with secure payment gateways...`
+    };
+
+    function showService(title){
+      document.getElementById('serviceTitle').innerText = title;
+      document.getElementById('serviceDesc').innerHTML = descriptions[title];
+      document.getElementById('serviceModal').classList.remove('hidden');
     }
-    .animate-bounce-slow{animation:bounce-slow 6s infinite;}
-  </style>
+
+    function closeModal(){
+      document.getElementById('serviceModal').classList.add('hidden');
+    }
+  </script>
 </body>
 </html>
