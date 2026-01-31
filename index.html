@@ -324,64 +324,72 @@
 </section>
 
   <!-- Footer -->
-<footer class="bg-gray-800 text-gray-300 border-t border-gray-700">
+<footer class="bg-gray-800 text-gray-300 border-t border-gray-700 relative z-10">
   <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+    
+    <!-- About -->
     <div>
-      <!-- <h3 class="font-bold mb-4 text-orange-500 text-4xl">mrohitgupta9</h3> -->
-       <a href="index.html" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
+      <a href="index.html" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
         <i class="fa-solid fa-laptop-code text-orange-400 text-2xl"></i>
-          mrohitgupta9
-        </a>
-      <p class="text-gray-400">Delivering professional web solutions that blend creativity, performance,
-      and modern design to help individuals and businesses grow online.</p>
+        mrohitgupta9
+      </a>
+      <p class="text-gray-400 mt-2">Delivering professional web solutions that blend creativity, performance, and modern design to help individuals and businesses grow online.</p>
     </div>
-      <div>
-        <h4 class="font-semibold mb-4 text-orange-500">Quick Links</h4>
-        <ul class="space-y-2">
-          <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
-          <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
-          <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
-          <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
-          <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4 text-orange-500">Services</h4>
-        <ul class="space-y-2 ">
-          <li><a href="#" class="hover:text-blue-400 transition">Web Development</a></li>
-          <li><a href="#" class="hover:text-blue-400 transition">UI/UX Design</a></li>
-          <li><a href="#" class="hover:text-blue-400 transition">SEO Optimization</a></li>
-          <li><a href="#" class="hover:text-blue-400 transition">E-commerce</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4 text-orange-500 l">Contact</h4>
-        <p class="text-sm mb-1">
-        <i class="fa-solid fa-envelope mr-2 text-blue-400"></i>mrohitgupta9@gmail.com</p>
-        <p class="text-sm"><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+91 9115095844</p>
-        <h4 class="font-semibold mb-4 mt-4 text-white">Follow Me</h4>
-        <div class="flex space-x-4 mt-5 text-lg">
-        <a href="https://www.facebook.com/mrohitgupta9" target="_blank" class="hover:text-blue-400 transition text-orange-500">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/mrohitgupta9" target="_blank" class="hover:text-pink-400 transition text-orange-500">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.twitter.com/mrohitgupta9" target="_blank" class="hover:text-sky-400 transition text-orange-500">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/mrohitgupta9" target="_blank" class="hover:text-blue-500 transition text-orange-500">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="https://github.com/mrohitgupta9" target="_blank" class="hover:text-gray-100 transition text-orange-500">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
 
+    <!-- Quick Links -->
+    <div>
+      <h4 class="font-semibold mb-4 text-orange-500">Quick Links</h4>
+      <ul class="space-y-2">
+        <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+        <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
+        <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
+        <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
+        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Services with Modal -->
+    <div>
+      <h4 class="font-semibold mb-4 text-orange-500">Services</h4>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('Web Development')">Web Development</a></li>
+        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('UI/UX Design')">UI/UX Design</a></li>
+        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('SEO Optimization')">SEO Optimization</a></li>
+        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('E-commerce')">E-commerce</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact & Socials -->
+    <div>
+      <h4 class="font-semibold mb-4 text-orange-500">Contact</h4>
+      <p class="text-sm mb-1"><i class="fa-solid fa-envelope mr-2 text-blue-400"></i>mrohitgupta9@gmail.com</p>
+      <p class="text-sm"><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+91 9115095844</p>
+
+      <h4 class="font-semibold mb-4 mt-4 text-white">Follow Me</h4>
+      <div class="flex space-x-4 mt-5 text-lg">
+        <a href="https://www.facebook.com/mrohitgupta9" target="_blank" class="hover:text-blue-400 transition text-orange-500"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/mrohitgupta9" target="_blank" class="hover:text-pink-400 transition text-orange-500"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.twitter.com/mrohitgupta9" target="_blank" class="hover:text-sky-400 transition text-orange-500"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/mrohitgupta9" target="_blank" class="hover:text-blue-500 transition text-orange-500"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/mrohitgupta9" target="_blank" class="hover:text-gray-100 transition text-orange-500"><i class="fab fa-github"></i></a>
       </div>
     </div>
-  <div class="border-t border-gray-700 py-4 text-center text-sm ">© 2025 mrohitgupta9. All rights reserved.</div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="border-t border-gray-700 py-4 text-center text-sm">© 2025 mrohitgupta9. All rights reserved.</div>
+
+  <!-- Modal -->
+  <div id="serviceModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300">
+    <div class="bg-gray-900 text-gray-200 p-6 rounded-lg max-w-lg w-full relative shadow-lg transform scale-95 opacity-0 transition-all duration-300">
+      <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white text-lg font-bold">&times;</button>
+      <h3 id="serviceTitle" class="text-2xl font-bold mb-3 text-orange-500">Service Title</h3>
+      <div id="serviceDesc" class="text-gray-300 leading-relaxed max-h-72 overflow-y-auto pr-2"></div>
+      <button onclick="closeModal()" class="mt-5 px-4 py-2 bg-orange-500 hover:bg-orange-600 rounded text-white font-medium w-full">Close</button>
+    </div>
+  </div>
 </footer>
+
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -399,5 +407,82 @@
     }
     .animate-bounce-slow{animation:bounce-slow 6s infinite;}
   </style>
+
+   <!-- Modal JS -->
+  <script>
+    const descriptions = {
+      "Web Development": `We build responsive, modern websites using the latest technologies to boost your online presence. 
+      <br><br>
+      <strong>Features Include:</strong>
+      <ul class="list-disc pl-5">
+        <li>Responsive & Mobile-Friendly Design</li>
+        <li>SEO-optimized Code</li>
+        <li>Performance & Speed Optimization</li>
+        <li>Custom CMS Integration</li>
+        <li>E-commerce Capability</li>
+      </ul>
+      <br>
+      Our goal is to make your website not just beautiful, but fast, secure, and scalable.`,
+      
+      "UI/UX Design": `Designing intuitive and engaging user interfaces for web and mobile applications. 
+      <br><br>
+      <strong>Our Approach:</strong>
+      <ul class="list-disc pl-5">
+        <li>User-Centered Design</li>
+        <li>Wireframing & Prototyping</li>
+        <li>High-Fidelity Mockups</li>
+        <li>Accessibility & Usability Standards</li>
+      </ul>
+      <br>
+      We ensure your users have a seamless and enjoyable experience.`,
+
+      "SEO Optimization": `Enhancing your website to rank higher on search engines and attract organic traffic.
+      <br><br>
+      <strong>What We Do:</strong>
+      <ul class="list-disc pl-5">
+        <li>Keyword Research & Strategy</li>
+        <li>On-page & Off-page SEO</li>
+        <li>Content Optimization</li>
+        <li>Performance & Mobile SEO</li>
+        <li>Analytics & Reporting</li>
+      </ul>
+      <br>
+      Our aim is to drive quality traffic and improve your online visibility.`,
+
+      "E-commerce": `Custom online stores with secure payment gateways and user-friendly shopping experiences.
+      <br><br>
+      <strong>Capabilities:</strong>
+      <ul class="list-disc pl-5">
+        <li>Product Catalog & Inventory Management</li>
+        <li>Secure Checkout & Payment Integration</li>
+        <li>Order Management & Analytics</li>
+        <li>Responsive Mobile Shopping</li>
+        <li>Promotions & Discounts Setup</li>
+      </ul>
+      <br>
+      We make online shopping smooth for your customers.`
+    };
+
+    function showService(title) {
+      const modal = document.getElementById('serviceModal');
+      document.getElementById('serviceTitle').innerText = title;
+      document.getElementById('serviceDesc').innerHTML = descriptions[title];
+      modal.classList.remove('hidden');
+      // Fade-in + scale animation
+      setTimeout(() => {
+        modal.querySelector('div').classList.remove('opacity-0','scale-95');
+        modal.querySelector('div').classList.add('opacity-100','scale-100');
+      }, 10);
+    }
+
+    function closeModal() {
+      const modalContent = document.getElementById('serviceModal').querySelector('div');
+      modalContent.classList.remove('opacity-100','scale-100');
+      modalContent.classList.add('opacity-0','scale-95');
+      setTimeout(() => {
+        document.getElementById('serviceModal').classList.add('hidden');
+      }, 300);
+    }
+  </script>
 </body>
 </html>
