@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cart | FoodieX</title>
-
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Font Awesome -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
-
 <body class="bg-gray-100 text-gray-800">
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <nav class="bg-white shadow sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold text-orange-500">FoodieX</h1>
@@ -25,104 +20,53 @@
   </div>
 </nav>
 
-<!-- ================= CART SECTION ================= -->
+<!-- CART SECTION -->
 <section class="max-w-7xl mx-auto px-6 py-12">
   <h2 class="text-3xl font-bold mb-8">Your Cart</h2>
 
   <div class="grid lg:grid-cols-3 gap-10">
+    <!-- CART ITEMS -->
+    <div class="lg:col-span-2 space-y-6" id="cart-items">
 
-    <!-- ========== CART ITEMS ========== -->
-    <div class="lg:col-span-2 space-y-6">
-
-      <!-- Item 1 -->
-      <div class="bg-white rounded-xl shadow p-4 flex gap-4">
-        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-             class="w-24 h-24 rounded-lg object-cover">
-
-        <div class="flex-1">
-          <h4 class="font-semibold text-lg">Italian Pizza</h4>
-          <p class="text-sm text-gray-500">Extra cheese</p>
-
-          <div class="flex justify-between items-center mt-4">
-            <div class="flex items-center gap-3">
-              <button class="px-3 py-1 border rounded">−</button>
-              <span class="font-semibold">1</span>
-              <button class="px-3 py-1 border rounded">+</button>
-            </div>
-            <span class="font-bold">₹299</span>
-          </div>
-        </div>
-
-        <button class="text-red-500 text-lg">
-          <i class="fa-solid fa-trash"></i>
-        </button>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="bg-white rounded-xl shadow p-4 flex gap-4">
-        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349"
-             class="w-24 h-24 rounded-lg object-cover">
-
-        <div class="flex-1">
-          <h4 class="font-semibold text-lg">Cheese Burger</h4>
-          <p class="text-sm text-gray-500">With fries</p>
-
-          <div class="flex justify-between items-center mt-4">
-            <div class="flex items-center gap-3">
-              <button class="px-3 py-1 border rounded">−</button>
-              <span class="font-semibold">2</span>
-              <button class="px-3 py-1 border rounded">+</button>
-            </div>
-            <span class="font-bold">₹198</span>
-          </div>
-        </div>
-
-        <button class="text-red-500 text-lg">
-          <i class="fa-solid fa-trash"></i>
-        </button>
-      </div>
+      <!-- JS will populate items here -->
 
     </div>
 
-    <!-- ========== BILL SUMMARY ========== -->
-    <div class="bg-white rounded-xl shadow p-6 h-fit">
+    <!-- BILL SUMMARY -->
+    <div class="bg-white rounded-xl shadow p-6 h-fit" id="bill-summary">
       <h3 class="text-xl font-bold mb-6">Bill Details</h3>
-
       <div class="space-y-3 text-sm">
         <div class="flex justify-between">
           <span>Item Total</span>
-          <span>₹497</span>
+          <span id="item-total">₹0</span>
         </div>
         <div class="flex justify-between">
           <span>Delivery Fee</span>
-          <span>₹40</span>
+          <span id="delivery-fee">₹40</span>
         </div>
         <div class="flex justify-between">
           <span>Taxes</span>
-          <span>₹23</span>
+          <span id="taxes">₹0</span>
         </div>
-
         <hr>
-
         <div class="flex justify-between font-bold text-lg">
           <span>Total Payable</span>
-          <span>₹560</span>
+          <span id="total-payable">₹0</span>
         </div>
       </div>
 
       <!-- Promo Code -->
       <div class="mt-6">
-        <input type="text"
+        <input type="text" id="promo-code"
                placeholder="Apply promo code"
                class="w-full border rounded-lg px-4 py-2 mb-3">
-        <button class="w-full bg-gray-200 py-2 rounded-lg font-semibold">
-          Apply
-        </button>
+        <button class="w-full bg-gray-200 py-2 rounded-lg font-semibold"
+                onclick="applyPromo()">Apply</button>
       </div>
 
       <!-- Checkout -->
-      <button
-        class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg mt-6 font-semibold">
+      <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg mt-6 font-semibold"
+              onclick="checkout()">
         Proceed to Checkout
       </button>
 
@@ -130,14 +74,122 @@
         100% secure payments
       </p>
     </div>
-
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 <footer class="bg-gray-900 text-gray-400 py-6 text-center text-sm">
   © 2026 FoodieX. All rights reserved.
 </footer>
+
+<!-- ================== SCRIPT ================== -->
+<script>
+  // ===== Sample Cart Items =====
+  let cart = [
+    {
+      id: 1,
+      name: "Italian Pizza",
+      desc: "Extra cheese",
+      price: 299,
+      qty: 1,
+      img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+    },
+    {
+      id: 2,
+      name: "Cheese Burger",
+      desc: "With fries",
+      price: 99,
+      qty: 2,
+      img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+    }
+  ];
+
+  // ===== Render Cart Items =====
+  function renderCart() {
+    const cartContainer = document.getElementById('cart-items');
+    cartContainer.innerHTML = '';
+    cart.forEach(item => {
+      const div = document.createElement('div');
+      div.className = "bg-white rounded-xl shadow p-4 flex gap-4";
+      div.innerHTML = `
+        <img src="${item.img}" class="w-24 h-24 rounded-lg object-cover">
+        <div class="flex-1">
+          <h4 class="font-semibold text-lg">${item.name}</h4>
+          <p class="text-sm text-gray-500">${item.desc}</p>
+          <div class="flex justify-between items-center mt-4">
+            <div class="flex items-center gap-3">
+              <button class="px-3 py-1 border rounded" onclick="changeQty(${item.id}, -1)">−</button>
+              <span class="font-semibold">${item.qty}</span>
+              <button class="px-3 py-1 border rounded" onclick="changeQty(${item.id}, 1)">+</button>
+            </div>
+            <span class="font-bold">₹${item.price * item.qty}</span>
+          </div>
+        </div>
+        <button class="text-red-500 text-lg" onclick="removeItem(${item.id})">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      `;
+      cartContainer.appendChild(div);
+    });
+
+    updateBill();
+  }
+
+  // ===== Change Quantity =====
+  function changeQty(id, delta) {
+    cart = cart.map(item => {
+      if(item.id === id) {
+        item.qty = Math.max(1, item.qty + delta);
+      }
+      return item;
+    });
+    renderCart();
+  }
+
+  // ===== Remove Item =====
+  function removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
+    renderCart();
+  }
+
+  // ===== Update Bill =====
+  function updateBill() {
+    const itemTotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const deliveryFee = 40;
+    const taxes = Math.round(itemTotal * 0.05); // 5% tax
+    const total = itemTotal + deliveryFee + taxes;
+
+    document.getElementById('item-total').innerText = `₹${itemTotal}`;
+    document.getElementById('taxes').innerText = `₹${taxes}`;
+    document.getElementById('total-payable').innerText = `₹${total}`;
+  }
+
+  // ===== Apply Promo Code =====
+  function applyPromo() {
+    const promo = document.getElementById('promo-code').value.trim();
+    if(promo === "FOODIE10") {
+      const discount = 50;
+      let total = parseInt(document.getElementById('total-payable').innerText.replace("₹",""));
+      total -= discount;
+      document.getElementById('total-payable').innerText = `₹${total}`;
+      alert(`Promo applied! ₹${discount} discount.`);
+    } else {
+      alert("Invalid promo code!");
+    }
+  }
+
+  // ===== Checkout =====
+  function checkout() {
+    if(cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+    alert("Checkout successful! Payment will be processed.");
+  }
+
+  // Initial render
+  renderCart();
+</script>
 
 </body>
 </html>
