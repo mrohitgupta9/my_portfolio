@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart | FoodieX</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="bg-white shadow sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-orange-500">FoodieX</h1>
+    <a href="restaurants.html" class="text-sm font-medium hover:text-orange-500">
+      ← Back to Restaurants
+    </a>
+  </div>
+</nav>
+
+<!-- ================= CART SECTION ================= -->
+<section class="max-w-7xl mx-auto px-6 py-12">
+  <h2 class="text-3xl font-bold mb-8">Your Cart</h2>
+
+  <div class="grid lg:grid-cols-3 gap-10">
+
+    <!-- ========== CART ITEMS ========== -->
+    <div class="lg:col-span-2 space-y-6">
+
+      <!-- Item 1 -->
+      <div class="bg-white rounded-xl shadow p-4 flex gap-4">
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+             class="w-24 h-24 rounded-lg object-cover">
+
+        <div class="flex-1">
+          <h4 class="font-semibold text-lg">Italian Pizza</h4>
+          <p class="text-sm text-gray-500">Extra cheese</p>
+
+          <div class="flex justify-between items-center mt-4">
+            <div class="flex items-center gap-3">
+              <button class="px-3 py-1 border rounded">−</button>
+              <span class="font-semibold">1</span>
+              <button class="px-3 py-1 border rounded">+</button>
+            </div>
+            <span class="font-bold">₹299</span>
+          </div>
+        </div>
+
+        <button class="text-red-500 text-lg">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="bg-white rounded-xl shadow p-4 flex gap-4">
+        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349"
+             class="w-24 h-24 rounded-lg object-cover">
+
+        <div class="flex-1">
+          <h4 class="font-semibold text-lg">Cheese Burger</h4>
+          <p class="text-sm text-gray-500">With fries</p>
+
+          <div class="flex justify-between items-center mt-4">
+            <div class="flex items-center gap-3">
+              <button class="px-3 py-1 border rounded">−</button>
+              <span class="font-semibold">2</span>
+              <button class="px-3 py-1 border rounded">+</button>
+            </div>
+            <span class="font-bold">₹198</span>
+          </div>
+        </div>
+
+        <button class="text-red-500 text-lg">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ========== BILL SUMMARY ========== -->
+    <div class="bg-white rounded-xl shadow p-6 h-fit">
+      <h3 class="text-xl font-bold mb-6">Bill Details</h3>
+
+      <div class="space-y-3 text-sm">
+        <div class="flex justify-between">
+          <span>Item Total</span>
+          <span>₹497</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Delivery Fee</span>
+          <span>₹40</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Taxes</span>
+          <span>₹23</span>
+        </div>
+
+        <hr>
+
+        <div class="flex justify-between font-bold text-lg">
+          <span>Total Payable</span>
+          <span>₹560</span>
+        </div>
+      </div>
+
+      <!-- Promo Code -->
+      <div class="mt-6">
+        <input type="text"
+               placeholder="Apply promo code"
+               class="w-full border rounded-lg px-4 py-2 mb-3">
+        <button class="w-full bg-gray-200 py-2 rounded-lg font-semibold">
+          Apply
+        </button>
+      </div>
+
+      <!-- Checkout -->
+      <button
+        class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg mt-6 font-semibold">
+        Proceed to Checkout
+      </button>
+
+      <p class="text-xs text-gray-500 mt-4 text-center">
+        100% secure payments
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-gray-900 text-gray-400 py-6 text-center text-sm">
+  © 2026 FoodieX. All rights reserved.
+</footer>
+
+</body>
+</html>
