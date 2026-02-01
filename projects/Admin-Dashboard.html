@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modern Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            panel: '#0f172a',
+            sidebar: '#020617',
+            card: '#020617',
+            borderc: '#1e293b',
+            accent: '#2563eb'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-panel text-slate-200">
+
+  <!-- ================= LOGIN ================= -->
+  <section id="loginPage" class="min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-sm bg-card border border-borderc rounded-xl p-8">
+      <h2 class="text-2xl font-bold text-center mb-6">Admin Login</h2>
+      <input id="loginUser" class="input mb-3" placeholder="Username">
+      <input id="loginPass" type="password" class="input mb-4" placeholder="Password">
+      <button onclick="login()" class="btn w-full">Login</button>
+      <p id="loginError" class="text-red-400 text-sm mt-3 hidden">Invalid credentials</p>
+    </div>
+  </section>
+
+  <!-- ================= DASHBOARD ================= -->
+  <section id="dashboardPage" class="hidden min-h-screen flex">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-sidebar border-r border-borderc p-6 flex flex-col">
+      <div>
+        <h1 class="text-xl font-bold mb-8 flex items-center gap-2">
+          <i class="fa-solid fa-layer-group text-accent"></i> Admin Panel
+        </h1>
+
+        <nav class="space-y-1">
+          <button onclick="showSection('dashboard')" class="nav">
+            <i class="fa-solid fa-chart-pie"></i> Dashboard
+          </button>
+          <button onclick="showSection('projects')" class="nav">
+            <i class="fa-solid fa-folder-open"></i> Projects
+          </button>
+          <button onclick="showSection('users')" class="nav">
+            <i class="fa-solid fa-users"></i> Users
+          </button>
+          <button onclick="showSection('messages')" class="nav">
+            <i class="fa-solid fa-envelope"></i> Messages
+          </button>
+          <button onclick="showSection('analytics')" class="nav">
+            <i class="fa-solid fa-chart-line"></i> Analytics
+          </button>
+          <button onclick="showSection('settings')" class="nav">
+            <i class="fa-solid fa-gear"></i> Settings
+          </button>
+        </nav>
+      </div>
+
+      <button onclick="logout()" class="mt-auto text-red-400 text-sm flex items-center gap-2">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 p-8 space-y-8 overflow-y-auto">
+
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="section">
+        <h2 class="title">Dashboard</h2>
+        <div class="grid md:grid-cols-4 gap-6">
+          <div class="stat">
+            <i class="fa-solid fa-folder"></i>
+            <span>Projects</span>
+            <strong id="statProjects">0</strong>
+          </div>
+          <div class="stat">
+            <i class="fa-solid fa-users"></i>
+            <span>Users</span>
+            <strong id="statUsers">0</strong>
+          </div>
+          <div class="stat">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Messages</span>
+            <strong id="statMessages">0</strong>
+          </div>
+          <div class="stat">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Revenue</span>
+            <strong>₹1.32m</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section hidden">
+        <h2 class="title">Projects</h2>
+
+        <div class="flex flex-wrap gap-3 mb-4">
+          <input id="searchInput" oninput="renderProjects()" class="input w-64" placeholder="Search project">
+          <select id="statusFilter" onchange="renderProjects()" class="input w-48">
+            <option value="">All Status</option>
+            <option>Completed</option>
+            <option>In Progress</option>
+            <option>Pending</option>
+          </select>
+          <button onclick="openProjectModal()" class="btn ml-auto">
+            <i class="fa-solid fa-plus"></i> Add Project
+          </button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Client</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="projectTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- USERS -->
+      <section id="users" class="section hidden">
+        <h2 class="title">Users</h2>
+        <div class="card max-w-xl">
+          <div class="flex gap-3 mb-4 pl-4">
+            <input id="userName" class="input" placeholder="User Name">
+            <input id="userRole" class="input" placeholder="Role">
+            <button onclick="addUser()" class="btn">Add</button>
+          </div>
+          <ul id="userList" class="space-y-2"></ul>
+        </div>
+      </section>
+
+      <!-- MESSAGES -->
+      <section id="messages" class="section hidden">
+        <h2 class="title">Messages</h2>
+        <div class="card max-w-xl">
+          <div class="flex gap-3 mb-4">
+            <input id="msgFrom" class="input" placeholder="From">
+            <input id="msgText" class="input" placeholder="Message">
+            <button onclick="addMessage()" class="btn">Add</button>
+          </div>
+          <ul id="messageList" class="space-y-2"></ul>
+        </div>
+      </section>
+
+      <!-- ANALYTICS -->
+      <section id="analytics" class="section hidden">
+        <h2 class="title">Analytics</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="stat">Visitors<strong>12,450</strong></div>
+          <div class="stat">Conversion<strong>3.4%</strong></div>
+          <div class="stat">Bounce Rate<strong>41%</strong></div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section id="settings" class="section hidden">
+        <h2 class="title">Settings</h2>
+        <div class="card max-w-md space-y-3">
+          <input class="input" value="admin@gmail.com">
+          <input class="input" type="password" placeholder="New Password">
+          <button class="btn">Save Changes</button>
+        </div>
+      </section>
+
+    </main>
+  </section>
+
+  <!-- PROJECT MODAL -->
+  <div id="projectModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center">
+    <div class="modal">
+      <h3 id="modalTitle" class="text-xl mb-4">Add Project</h3>
+      <input id="pName" class="input mb-2" placeholder="Project Name">
+      <input id="pClient" class="input mb-2" placeholder="Client">
+      <select id="pStatus" class="input mb-4">
+        <option>Completed</option>
+        <option>In Progress</option>
+        <option>Pending</option>
+      </select>
+      <div class="flex justify-end gap-3">
+        <button onclick="closeProjectModal()">Cancel</button>
+        <button onclick="saveProject()" class="btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SCRIPT ================= -->
+  <script>
+    const ADMIN_USER = "mrohitgupta9",
+          ADMIN_PASS = "rohitgupta9";
+
+    function login() {
+      if (loginUser.value === ADMIN_USER && loginPass.value === ADMIN_PASS) {
+        localStorage.setItem("admin_session", "1");
+        location.reload();
+      } else {
+        loginError.classList.remove("hidden");
+      }
+    }
+
+    function logout() {
+      localStorage.clear();
+      location.reload();
+    }
+
+    if (localStorage.getItem("admin_session")) {
+      loginPage.classList.add("hidden");
+      dashboardPage.classList.remove("hidden");
+    }
+
+    const sections = document.querySelectorAll(".section");
+
+    function showSection(id) {
+      sections.forEach(s => s.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    let projects = JSON.parse(localStorage.getItem("projects")) || [];
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    let editId = null;
+
+    // PROJECTS
+    function renderProjects() {
+      projectTable.innerHTML = "";
+      const s = searchInput.value.toLowerCase(),
+            f = statusFilter.value;
+
+      projects.filter(p =>
+        (p.name.toLowerCase().includes(s) || p.client.toLowerCase().includes(s)) &&
+        (!f || p.status === f)
+      ).forEach(p => {
+        projectTable.innerHTML += `
+        <tr>
+          <td>${p.name}</td>
+          <td>${p.client}</td>
+          <td><span class="badge">${p.status}</span></td>
+          <td>
+            <button onclick="editProject(${p.id})" class="text-blue-400">Edit</button>
+            <button onclick="deleteProject(${p.id})" class="text-red-400 ml-3">Delete</button>
+          </td>
+        </tr>`;
+      });
+      statProjects.innerText = projects.length;
+    }
+
+    function openProjectModal() {
+      editId = null;
+      projectModal.classList.remove("hidden");
+      projectModal.classList.add("flex");
+    }
+
+    function closeProjectModal() {
+      projectModal.classList.add("hidden");
+    }
+
+    function saveProject() {
+      if (editId) {
+        const p = projects.find(x => x.id === editId);
+        p.name = pName.value;
+        p.client = pClient.value;
+        p.status = pStatus.value;
+      } else {
+        projects.push({id: Date.now(), name: pName.value, client: pClient.value, status: pStatus.value});
+      }
+      localStorage.setItem("projects", JSON.stringify(projects));
+      closeProjectModal();
+      renderProjects();
+    }
+
+    function editProject(id) {
+      const p = projects.find(x => x.id === id);
+      editId = id;
+      pName.value = p.name;
+      pClient.value = p.client;
+      pStatus.value = p.status;
+      projectModal.classList.remove("hidden");
+      projectModal.classList.add("flex");
+    }
+
+    function deleteProject(id) {
+      projects = projects.filter(p => p.id !== id);
+      localStorage.setItem("projects", JSON.stringify(projects));
+      renderProjects();
+    }
+
+    // USERS
+    function addUser() {
+      users.push({id: Date.now(), name: userName.value, role: userRole.value});
+      localStorage.setItem("users", JSON.stringify(users));
+      renderUsers();
+    }
+
+    function renderUsers() {
+      userList.innerHTML = "";
+      users.forEach(u => userList.innerHTML += `<li class="card">${u.name} — ${u.role}</li>`);
+      statUsers.innerText = users.length;
+    }
+
+    // MESSAGES
+    function addMessage() {
+      messages.push({id: Date.now(), from: msgFrom.value, text: msgText.value});
+      localStorage.setItem("messages", JSON.stringify(messages));
+      renderMessages();
+    }
+
+    function renderMessages() {
+      messageList.innerHTML = "";
+      messages.forEach(m => messageList.innerHTML += `<li class="card">${m.from}: ${m.text}</li>`);
+      statMessages.innerText = messages.length;
+    }
+
+    // Initial Render
+    renderProjects();
+    renderUsers();
+    renderMessages();
+  </script>
+
+  <!-- ================= STYLES ================= -->
+  <style>
+    .nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      color: #cbd5f5;
+    }
+    .nav:hover {
+      background: #1e293b;
+    }
+    .title {
+      font-size: 26px;
+      font-weight: 700;
+    }
+    .input {
+      background: #020617;
+      border: 1px solid #1e293b;
+      padding: 10px;
+      border-radius: 8px;
+      width: 100%;
+    }
+    .btn {
+      background: #2563eb;
+      padding: 10px 16px;
+      border-radius: 8px;
+    }
+    .card {
+      background: #020617;
+      border: 1px solid #1e293b;
+      padding: 16px;
+      border-radius: 12px;
+    }
+    .stat {
+      background: #020617;
+      border: 1px solid #1e293b;
+      padding: 18px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .stat i {
+      color: #2563eb;
+    }
+    .table-wrap {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .table {
+      width: 100%;
+    }
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .badge {
+      background: #1e293b;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+    .modal {
+      background: #020617;
+      border: 1px solid #1e293b;
+      padding: 24px;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 420px;
+    }
+  </style>
+
+</body>
+</html>

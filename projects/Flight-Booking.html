@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkyBook – Flight Booking</title>
+
+  <!-- Tailwind + DaisyUI -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet"/>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+
+<body class="bg-base-300 text-base-content">
+
+<!-- ================= NAVBAR ================= -->
+<div class="navbar bg-base-200 sticky top-0 z-50 shadow-lg px-6">
+  <div class="flex-1">
+    <a class="text-2xl font-bold text-primary">✈ SkyBook</a>
+  </div>
+
+  <div class="hidden md:flex gap-6">
+    <a href="#home" class="link link-hover">Home</a>
+    <a href="#flights" class="link link-hover">Flights</a>
+    <a href="#offers" class="link link-hover">Offers</a>
+    <a href="#bookings" class="link link-hover">My Bookings</a>
+    <a href="#contact" class="link link-hover">Contact</a>
+  </div>
+
+  <div class="ml-6">
+    <button id="loginBtn" class="btn btn-primary btn-sm">Login</button>
+    <button id="logoutBtn" class="btn btn-error btn-sm hidden">Logout</button>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section id="home" class="relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 py-20">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      
+      <div>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+          Book Flights <span class="text-primary">Smart & Fast</span>
+        </h1>
+        <p class="mt-4 text-gray-400">
+          Search flights, compare airlines, and book instantly with SkyBook.
+        </p>
+      </div>
+
+      <!-- SEARCH CARD -->
+      <div class="card bg-base-200 shadow-xl p-6">
+        <h3 class="text-xl font-semibold mb-4">Search Flights</h3>
+
+        <div class="grid gap-4">
+          <input id="fromCity" list="cities" placeholder="From City" class="input input-bordered"/>
+          <input id="toCity" list="cities" placeholder="To City" class="input input-bordered"/>
+          <input type="date" class="input input-bordered"/>
+          <button id="searchBtn" class="btn btn-primary w-full">Search Flights</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- City Suggestions -->
+<datalist id="cities">
+  <option>Delhi</option>
+  <option>Mumbai</option>
+  <option>Bangalore</option>
+  <option>Chennai</option>
+  <option>Kolkata</option>
+  <option>Hyderabad</option>
+  <option>Pune</option>
+</datalist>
+
+<!-- ================= FLIGHTS ================= -->
+<section id="flights" class="py-20 bg-gray-900">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+      <h2 class="text-3xl font-bold text-blue-400">
+        Available Flights
+      </h2>
+      <p class="text-gray-400 mt-2 md:mt-0">
+        Showing best flights for your route
+      </p>
+    </div>
+
+    <!-- Flight Cards -->
+    <div id="flightResults"
+         class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= BOOKINGS ================= -->
+<section id="bookings" class="py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-6">My Bookings</h2>
+    <div id="bookingList" class="grid md:grid-cols-2 gap-4"></div>
+  </div>
+</section>
+
+<!-- ================= OFFERS ================= -->
+<section id="offers" class="py-16 bg-base-200">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-6">Special Offers</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card bg-base-100 p-6 shadow">
+        <h3 class="font-semibold">🎉 Flat 20% OFF</h3>
+        <p class="text-gray-400">On domestic flights</p>
+      </div>
+      <div class="card bg-base-100 p-6 shadow">
+        <h3 class="font-semibold">🌍 International Deals</h3>
+        <p class="text-gray-400">Save up to ₹5000</p>
+      </div>
+      <div class="card bg-base-100 p-6 shadow">
+        <h3 class="font-semibold">💳 Bank Offers</h3>
+        <p class="text-gray-400">Extra cashback</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-16">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold">Contact Us</h2>
+    <p class="text-gray-400 mt-2">support@skybook.com</p>
+  </div>
+</section>
+
+<!-- ================= LOGIN MODAL ================= -->
+<dialog id="loginModal" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Login</h3>
+    <input id="username" placeholder="Enter name" class="input input-bordered w-full mt-4"/>
+    <div class="modal-action">
+      <button id="doLogin" class="btn btn-primary">Login</button>
+      <button onclick="loginModal.close()" class="btn">Cancel</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer footer-center p-6 bg-base-200">
+  <p>© 2026 SkyBook. All rights reserved.</p>
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+const searchBtn = document.getElementById("searchBtn");
+const flightResults = document.getElementById("flightResults");
+const bookingList = document.getElementById("bookingList");
+
+let user = localStorage.getItem("user");
+
+function updateAuthUI(){
+  document.getElementById("loginBtn").classList.toggle("hidden", !!user);
+  document.getElementById("logoutBtn").classList.toggle("hidden", !user);
+}
+updateAuthUI();
+
+searchBtn.onclick = () => {
+  const from = fromCity.value;
+  const to = toCity.value;
+  flightResults.innerHTML = "";
+
+  flights.filter(f=>f.from===from && f.to===to).forEach(f=>{
+    flightResults.innerHTML += `
+      <div class="card bg-base-100 shadow p-6">
+        <h3 class="font-bold">${f.airline}</h3>
+        <p>${f.from} → ${f.to}</p>
+        <p class="text-primary font-semibold">₹${f.price}</p>
+        <button class="btn btn-sm btn-primary mt-4" onclick="bookFlight('${f.airline}', '${f.from}', '${f.to}', ${f.price})">Book Now</button>
+      </div>
+    `;
+  });
+};
+
+function bookFlight(a,f,t,p){
+  if(!user){
+    loginModal.showModal();
+    return;
+  }
+  const bookings = JSON.parse(localStorage.getItem("bookings")||"[]");
+  bookings.push({a,f,t,p});
+  localStorage.setItem("bookings", JSON.stringify(bookings));
+  renderBookings();
+}
+
+function renderBookings(){
+  bookingList.innerHTML="";
+  const bookings = JSON.parse(localStorage.getItem("bookings")||"[]");
+  bookings.forEach(b=>{
+    bookingList.innerHTML+=`
+      <div class="card bg-base-200 p-4">
+        ${b.a} – ${b.f} → ${b.t} – ₹${b.p}
+      </div>`;
+  });
+}
+renderBookings();
+
+loginBtn.onclick = ()=>loginModal.showModal();
+doLogin.onclick = ()=>{
+  user = username.value;
+  localStorage.setItem("user", user);
+  loginModal.close();
+  updateAuthUI();
+};
+
+logoutBtn.onclick = ()=>{
+  localStorage.clear();
+  location.reload();
+};
+</script>
+
+<script>
+/* ---------- DUMMY FLIGHT DATA ---------- */
+const flights = [
+  {
+    airline: "IndiGo",
+    flightNo: "6E-203",
+    time: "06:30 – 08:45",
+    duration: "2h 15m",
+    price: 4200,
+    type: "Non Stop"
+  },
+  {
+    airline: "Air India",
+    flightNo: "AI-441",
+    time: "09:00 – 11:20",
+    duration: "2h 20m",
+    price: 5200,
+    type: "Non Stop"
+  },
+  {
+    airline: "Vistara",
+    flightNo: "UK-981",
+    time: "14:10 – 16:30",
+    duration: "2h 20m",
+    price: 6100,
+    type: "Premium"
+  },
+  {
+    airline: "Akasa Air",
+    flightNo: "QP-112",
+    time: "18:30 – 20:40",
+    duration: "2h 10m",
+    price: 3900,
+    type: "Non Stop"
+  },
+  {
+    airline: "SpiceJet",
+    flightNo: "SG-822",
+    time: "21:00 – 23:15",
+    duration: "2h 15m",
+    price: 4500,
+    type: "Non Stop"
+  }
+];
+
+/* ---------- LOGIN CHECK ---------- */
+let currentUser = JSON.parse(localStorage.getItem("user")) || null;
+
+
+
+function renderFlights(){
+  flightResults.innerHTML = "";
+
+  flights.forEach(f => {
+    flightResults.innerHTML += `
+      <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-blue-500/20 transition duration-300">
+
+        <!-- Airline -->
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-lg font-semibold text-white">
+            ${f.airline}
+          </h3>
+          <span class="text-xs px-3 py-1 rounded-full bg-blue-600/20 text-blue-400">
+            ${f.type}
+          </span>
+        </div>
+
+        <!-- Route -->
+        <p class="text-gray-400 text-sm mb-1">
+          Delhi → Mumbai
+        </p>
+
+        <!-- Time -->
+        <p class="text-sm text-gray-300">
+          ${f.time}
+          <span class="text-gray-500 ml-2">(${f.duration})</span>
+        </p>
+
+        <!-- Flight No -->
+        <p class="text-xs text-gray-500 mt-1">
+          Flight No: ${f.flightNo}
+        </p>
+
+        <!-- Price + Button -->
+        <div class="flex justify-between items-center mt-6">
+          <p class="text-xl font-bold text-blue-400">
+            ₹${f.price}
+          </p>
+
+          <button
+            onclick="bookFlight('${f.airline}', '${f.flightNo}', ${f.price})"
+            class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full text-sm font-semibold transition">
+            Book Now
+          </button>
+        </div>
+
+      </div>
+    `;
+  });
+}
+
+/* ---------- BOOK FLIGHT ---------- */
+function bookFlight(airline, flightNo, price){
+  if(!currentUser){
+    alert("Please login to continue booking ✈️");
+    document.getElementById("loginModal")?.classList.remove("hidden");
+    return;
+  }
+
+  const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+  bookings.push({
+    id: "SKY" + Math.floor(Math.random()*100000),
+    airline,
+    flightNo,
+    price,
+    user: currentUser.email
+  });
+
+  localStorage.setItem("bookings", JSON.stringify(bookings));
+  alert("Flight booked successfully ✅");
+}
+
+/* ---------- INIT ---------- */
+renderFlights();
+</script>
+
+
+</body>
+</html>
