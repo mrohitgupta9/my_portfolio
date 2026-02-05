@@ -1,438 +1,852 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mrohitgupta9</title>
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"/>
-</head>
-<body class="flex flex-col min-h-screen font-sans bg-gray-900 text-gray-200 transition-colors duration-500">
-
-<!-- Navbar -->
-<nav class="bg-gray-800 sticky top-0 shadow z-50 transition-colors duration-500">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <!-- Logo -->
-    <a href="index.html" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
-      <i class="fa-solid fa-laptop-code text-orange-400 text-3xl"></i>
-      mrohitgupta9
-    </a>
-
-    <!-- Desktop Menu -->
-    <ul class="hidden md:flex space-x-6 text-orange-500 font-medium">
-      <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
-      <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
-      <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
-      <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
-      <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
-    </ul>
-
-    <!-- Action & Mobile Menu Button -->
-    <div class="flex items-center space-x-4">
-      <a href="#" class="hidden md:inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2 rounded-lg font-medium hover:from-indigo-600 hover:to-orange-500 transition">Get Started</a>
-
-      <!-- Mobile Menu Button -->
-      <div class="md:hidden">
-        <button id="mobile-menu-btn" class="text-gray-200 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-gray-900 shadow-lg transition-all duration-300">
-    <ul class="flex flex-col space-y-3 px-6 py-6 text-center">
-      <li><a href="index.html" class="block text-gray-200 hover:text-blue-400 transition py-2">Home</a></li>
-      <li><a href="about.html" class="block text-gray-200 hover:text-blue-400 transition py-2">About</a></li>
-      <li><a href="projects.html" class="block text-gray-200 hover:text-blue-400 transition py-2">Projects</a></li>
-      <li><a href="services.html" class="block text-gray-200 hover:text-blue-400 transition py-2">Services</a></li>
-      <li><a href="contact.html" class="block text-gray-200 hover:text-blue-400 transition py-2">Contact</a></li>
-      <li>
-        <a href="contact.html" class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-3 rounded-lg font-medium hover:from-indigo-600 hover:to-orange-500 transition">
-          Get Started
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mrohitgupta9</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  </head>
+  <body
+    class="flex flex-col min-h-screen font-sans bg-gray-900 text-gray-200 transition-colors duration-500">
+    <!-- Navbar -->
+    <nav
+      class="bg-gray-800 sticky top-0 shadow z-50 transition-colors duration-500">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Logo -->
+        <a
+          href="index.html"
+          class="flex items-center gap-2 text-4xl font-bold text-orange-500">
+          <i class="fa-solid fa-laptop-code text-orange-400 text-3xl"></i>
+          mrohitgupta9
         </a>
-      </li>
-    </ul>
-  </div>
-</nav>
 
-<!-- Mobile Menu Toggle Script -->
-<script>
-  btn.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-  });
-</script>
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex space-x-6 text-orange-500 font-medium">
+          <li>
+            <a href="index.html" class="hover:text-blue-400 transition">Home</a>
+          </li>
+          <li>
+            <a href="about.html" class="hover:text-blue-400 transition"
+              >About</a
+            >
+          </li>
+          <li>
+            <a href="projects.html" class="hover:text-blue-400 transition"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a href="services.html" class="hover:text-blue-400 transition"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a href="contact.html" class="hover:text-blue-400 transition"
+              >Contact</a
+            >
+          </li>
+        </ul>
 
+        <!-- Action & Mobile Menu Button -->
+        <div class="flex items-center space-x-4">
+          <a
+            href="contact.html"
+            class="hidden md:inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2 rounded-lg font-medium hover:from-indigo-600 hover:to-orange-500 transition"
+            >Get Started</a
+          >
 
-  <!-- Hero Section -->
-  <section class="relative bg-gray-900 overflow-hidden py-20">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col-reverse lg:flex-row items-center lg:justify-between">
-      <div class="lg:w-1/2 text-center lg:text-left" data-aos="fade-right">
-        <h1 class="text-4xl sm:text-5xl font-bold mb-4">Hi, I'm <span class="text-orange-500">Rohit Gupta</span></h1>
-        <p class="text-gray-300 text-base sm:text-lg mb-6">Freelance Web Developer & UI Engineer focused on building modern, responsive, and user-centric digital experiences.</p>
-        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-          <a href="#" class="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-semibold hover:from-orange-600 hover:to-orange-600 transition">Hire Me</a>
-          <a href="projects.html" class="px-6 py-3 bg-gray-800 border border-gray-700 rounded-lg hover:border-blue-500 transition border-orange-500">View Projects</a>
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-btn"
+              class="text-gray-200 focus:outline-none">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-      <div class="lg:w-1/2 mb-10 lg:mb-0" data-aos="fade-left">
-        <img src="images/mrohitgupta9.jpg" class="mx-auto rounded-full border-4 border-orange-500 w-64 h-64 object-cover" alt="Rohit Gupta">
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-gray-900 shadow-lg transition-all duration-300">
+        <ul class="flex flex-col space-y-3 px-6 py-6 text-center">
+          <li>
+            <a
+              href="index.html"
+              class="block text-gray-200 hover:text-blue-400 transition py-2"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="about.html"
+              class="block text-gray-200 hover:text-blue-400 transition py-2"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="projects.html"
+              class="block text-gray-200 hover:text-blue-400 transition py-2"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a
+              href="services.html"
+              class="block text-gray-200 hover:text-blue-400 transition py-2"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="contact.html"
+              class="block text-gray-200 hover:text-blue-400 transition py-2"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a
+              href="contact.html"
+              class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-3 rounded-lg font-medium hover:from-indigo-600 hover:to-orange-500 transition">
+              Get Started
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gray-900 overflow-hidden py-20">
+      <div
+        class="max-w-7xl mx-auto px-6 flex flex-col-reverse lg:flex-row items-center lg:justify-between">
+        <div class="lg:w-1/2 text-center lg:text-left" data-aos="fade-right">
+          <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+            Hi, I'm <span class="text-orange-500">Rohit Gupta</span>
+          </h1>
+          <p class="text-gray-300 text-base sm:text-lg mb-6">
+            Freelance Web Developer & UI Engineer focused on building modern,
+            responsive, and user-centric digital experiences.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+            <button
+              onclick="openHireModal()"
+              class="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-semibold hover:from-orange-600 hover:to-orange-600 transition">
+              Hire Me
+            </button>
+            <a
+              href="projects.html"
+              class="px-6 py-3 bg-gray-800 border border-gray-700 rounded-lg hover:border-blue-500 transition border-orange-500"
+              >View Projects</a
+            >
+          </div>
+        </div>
+        <div class="lg:w-1/2 mb-10 lg:mb-0" data-aos="fade-left">
+          <img
+            src="images/mrohitgupta9.jpg"
+            class="mx-auto rounded-full border-4 border-orange-500 w-64 h-64 object-cover"
+            alt="Rohit Gupta" />
+        </div>
+      </div>
+    </section>
+
+    <div
+      id="hireModal"
+      class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
+      <!-- Overlay click close -->
+      <div onclick="closeHireModal()" class="absolute inset-0"></div>
+
+      <!-- Modal Box -->
+      <div
+        id="modalBox"
+        class="relative bg-gray-900 text-white w-[90%] max-w-2xl rounded-xl shadow-2xl p-6 border border-gray-800 transform scale-95 opacity-0 transition-all duration-300">
+        <!-- Close Button -->
+        <button
+          onclick="closeHireModal()"
+          class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">
+          &times;
+        </button>
+
+        <h2 class="text-2xl font-bold text-orange-500 mb-3">Hire Me</h2>
+
+        <p class="text-gray-300 mb-4">
+          Hi, I'm <span class="font-semibold">Rohit Gupta</span>, a Freelance
+          Web Developer & UI Engineer focused on building modern, responsive and
+          scalable web interfaces.
+        </p>
+
+        <!-- Services -->
+        <h3 class="text-lg font-semibold mt-4">What I Can Do</h3>
+        <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+          <li>Modern Responsive Websites</li>
+          <li>React.js Frontend Development</li>
+          <li>UI/UX Improvements</li>
+          <li>Bug Fixing & Performance Optimization</li>
+          <li>Dark Mode & Animations</li>
+        </ul>
+
+        <!-- Availability -->
+        <h3 class="text-lg font-semibold mt-5">Availability</h3>
+        <p class="text-gray-300 mt-2">
+          💼 Open for Freelance / Internship / Full-Time <br />
+          ⏰ Available Immediately <br />
+          🌍 Remote / On-site
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-3 mt-6">
+          <a
+            href="mailto:mrohitgupta9@gmail.com"
+            class="px-5 py-2 bg-orange-500 rounded-md hover:bg-orange-600 transition">
+            Email Me
+          </a>
+
+          <a
+            href="https://wa.me/9115095844"
+            target="_blank"
+            class="px-5 py-2 bg-green-500 rounded-md hover:bg-green-600 transition">
+            WhatsApp
+          </a>
+
+          <a
+            href="resume.pdf"
+            download
+            class="px-5 py-2 bg-gray-800 border border-gray-700 rounded-md hover:border-orange-500 transition">
+            Download Resume
+          </a>
+        </div>
       </div>
     </div>
-  </section>
 
-<section id="projects" class="max-w-7xl mx-auto px-6 py-20">
-  <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-orange-500" data-aos="fade-up">
-    Our Projects
-  </h2>
-  <p class="max-w-3xl mx-auto text-center text-gray-400 mb-14" data-aos="fade-up">
-    A collection of modern, scalable, and business-ready web solutions built with
-    performance, usability, and clean design in mind.
-  </p>
-
-  <div class="grid gap-8 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-
-    <!-- CARD 1 -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="100">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-chart-line text-yellow-400 text-2xl mr-3"></i>
-        <h3 class="text-xl font-semibold">Admin Dashboard</h3>
-      </div>
-      <p class="text-gray-400 mb-4">Analytics dashboard with role-based access.</p>
-      <a href="projects/Admin-Dashboard.html" class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
-        View Project <span class="group-hover:translate-x-1 transition-transform">→</span>
-      </a>
-    </div>
-
-    <!-- card 2 -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="750">
-    <div class="flex items-center mb-4">
-      <i class="fa-solid fa-utensils text-red-500 text-2xl mr-3"></i>
-      <h3 class="text-xl font-semibold">Food Delivery App</h3>
-    </div>
-    <p class="text-gray-400 mb-4">App for ordering food from restaurants with real-time tracking.</p>
-    <a href="projects/food-app/index.html" class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
-      View Project <span class="group-hover:translate-x-1 transition-transform">→</span>
-    </a>
-  </div>
-
-<!-- CARD 3 -->
-  <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="800">
-    <div class="flex items-center mb-4">
-      <i class="fa-solid fa-car text-green-500 text-2xl mr-3"></i>
-      <h3 class="text-xl font-semibold">Car Rental Platform</h3>
-    </div>
-    <p class="text-gray-400 mb-4">Platform to book and manage car rentals online.</p>
-    <a href="#" class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
-      View Project <span class="group-hover:translate-x-1 transition-transform">→</span>
-    </a>
-  </div>
-
-  <!-- CARD 4 -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="150">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-cart-shopping text-red-400 text-2xl mr-3"></i>
-        <h3 class="text-xl font-semibold">E-commerce Platform</h3>
-      </div>
-      <p class="text-gray-400 mb-4">Online store with secure checkout system.</p>
-      <a href="#" class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
-        View Project <span class="group-hover:translate-x-1 transition-transform">→</span>
-      </a>
-    </div>
-
-    <!-- CARD 5 -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="250">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-people-group text-pink-400 text-2xl mr-3"></i>
-        <h3 class="text-xl font-semibold">Freelance Marketplace</h3>
-      </div>
-      <p class="text-gray-400 mb-4">Platform connecting freelancers and clients.</p>
-      <a href="#" class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
-        View Project <span class="group-hover:translate-x-1 transition-transform">→</span>
-      </a>
-    </div>
-
-    <!-- CARD 6 -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="300">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-pen-nib text-blue-500 text-2xl mr-3"></i>
-        <h3 class="text-xl font-semibold">Blog Management System</h3>
-      </div>
-      <p class="text-gray-400 mb-4">
-        Content publishing platform with admin controls and SEO optimization.
+    <section id="projects" class="max-w-7xl mx-auto px-6 py-20">
+      <h2
+        class="text-3xl sm:text-4xl font-bold text-center mb-6 text-orange-500"
+        data-aos="fade-up">
+        Our Projects
+      </h2>
+      <p
+        class="max-w-3xl mx-auto text-center text-gray-400 mb-14"
+        data-aos="fade-up">
+        A collection of modern, scalable, and business-ready web solutions built
+        with performance, usability, and clean design in mind.
       </p>
-      <a href="#" class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
-        View Project <span class="group-hover:translate-x-1 transition-transform">→</span>
-      </a>
-    </div>
 
-    <!-- CARD 7 -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="350">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-briefcase text-green-500 text-2xl mr-3"></i>
-        <h3 class="text-xl font-semibold">Job Portal Website</h3>
+      <div class="grid gap-8 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+        <!-- CARD 1 -->
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group"
+          data-aos="fade-up"
+          data-aos-delay="100">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-chart-line text-yellow-400 text-2xl mr-3"></i>
+            <h3 class="text-xl font-semibold">Admin Dashboard</h3>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Analytics dashboard with role-based access.
+          </p>
+          <a
+            href="projects/Admin-Dashboard.html"
+            class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
+            View Project
+            <span class="group-hover:translate-x-1 transition-transform"
+              >→</span
+            >
+          </a>
+        </div>
+
+        <!-- card 2 -->
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group"
+          data-aos="fade-up"
+          data-aos-delay="750">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-utensils text-red-500 text-2xl mr-3"></i>
+            <h3 class="text-xl font-semibold">Food Delivery App</h3>
+          </div>
+          <p class="text-gray-400 mb-4">
+            App for ordering food from restaurants with real-time tracking.
+          </p>
+          <a
+            href="projects/food-app/index.html"
+            class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
+            View Project
+            <span class="group-hover:translate-x-1 transition-transform"
+              >→</span
+            >
+          </a>
+        </div>
+
+        <!-- CARD 3 -->
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group"
+          data-aos="fade-up"
+          data-aos-delay="800">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-car text-green-500 text-2xl mr-3"></i>
+            <h3 class="text-xl font-semibold">Car Rental Platform</h3>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Platform to book and manage car rentals online.
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
+            View Project
+            <span class="group-hover:translate-x-1 transition-transform"
+              >→</span
+            >
+          </a>
+        </div>
+
+        <!-- CARD 4 -->
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group"
+          data-aos="fade-up"
+          data-aos-delay="150">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-cart-shopping text-red-400 text-2xl mr-3"></i>
+            <h3 class="text-xl font-semibold">E-commerce Platform</h3>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Online store with secure checkout system.
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
+            View Project
+            <span class="group-hover:translate-x-1 transition-transform"
+              >→</span
+            >
+          </a>
+        </div>
+
+        <!-- CARD 5 -->
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group"
+          data-aos="fade-up"
+          data-aos-delay="250">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-people-group text-pink-400 text-2xl mr-3"></i>
+            <h3 class="text-xl font-semibold">Freelance Marketplace</h3>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Platform connecting freelancers and clients.
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
+            View Project
+            <span class="group-hover:translate-x-1 transition-transform"
+              >→</span
+            >
+          </a>
+        </div>
+
+        <!-- CARD 6 -->
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group"
+          data-aos="fade-up"
+          data-aos-delay="300">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-pen-nib text-blue-500 text-2xl mr-3"></i>
+            <h3 class="text-xl font-semibold">Blog Management System</h3>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Content publishing platform with admin controls and SEO
+            optimization.
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
+            View Project
+            <span class="group-hover:translate-x-1 transition-transform"
+              >→</span
+            >
+          </a>
+        </div>
+
+        <!-- CARD 7 -->
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group"
+          data-aos="fade-up"
+          data-aos-delay="350">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-briefcase text-green-500 text-2xl mr-3"></i>
+            <h3 class="text-xl font-semibold">Job Portal Website</h3>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Job listing and candidate application system for recruiters.
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
+            View Project
+            <span class="group-hover:translate-x-1 transition-transform"
+              >→</span
+            >
+          </a>
+        </div>
+
+        <!-- CARD 8 -->
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group"
+          data-aos="fade-up"
+          data-aos-delay="400">
+          <div class="flex items-center mb-4">
+            <i
+              class="fa-solid fa-graduation-cap text-yellow-400 text-2xl mr-3"></i>
+            <h3 class="text-xl font-semibold">Online Learning Platform</h3>
+          </div>
+          <p class="text-gray-400 mb-4">
+            E-learning system with courses, videos, and progress tracking.
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
+            View Project
+            <span class="group-hover:translate-x-1 transition-transform"
+              >→</span
+            >
+          </a>
+        </div>
+
+        <!-- CARD 9 -->
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group"
+          data-aos="fade-up"
+          data-aos-delay="50">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-building text-green-400 text-2xl mr-3"></i>
+            <h3 class="text-xl font-semibold">Business Website</h3>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Corporate website focused on branding and conversions.
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
+            View Project
+            <span class="group-hover:translate-x-1 transition-transform"
+              >→</span
+            >
+          </a>
+        </div>
       </div>
-      <p class="text-gray-400 mb-4">
-        Job listing and candidate application system for recruiters.
-      </p>
-      <a href="#" class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
-        View Project <span class="group-hover:translate-x-1 transition-transform">→</span>
-      </a>
-    </div>
+    </section>
 
-    <!-- CARD 8 -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="400">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-graduation-cap text-yellow-400 text-2xl mr-3"></i>
-        <h3 class="text-xl font-semibold">Online Learning Platform</h3>
+    <!-- Services Section -->
+    <section id="services" class="max-w-7xl mx-auto px-6 py-20">
+      <h2
+        class="text-3xl sm:text-4xl font-bold text-center text-orange-500 mb-12"
+        data-aos="fade-up">
+        Our Services
+      </h2>
+      <div class="grid gap-8 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+        <!-- Service 1 -->
+        <div
+          class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+          data-aos="fade-up"
+          data-aos-delay="100">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-code text-blue-500 text-2xl mr-3"></i>
+            <h3
+              class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              Web Development
+            </h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            We build responsive, modern websites using the latest technologies
+            to boost your online presence.
+          </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div
+          class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+          data-aos="fade-up"
+          data-aos-delay="200">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-paintbrush text-pink-500 text-2xl mr-3"></i>
+            <h3
+              class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              UI / UX Design
+            </h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Designing intuitive and engaging user interfaces for web and mobile
+            applications.
+          </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div
+          class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+          data-aos="fade-up"
+          data-aos-delay="300">
+          <div class="flex items-center mb-4">
+            <i
+              class="fa-solid fa-magnifying-glass text-green-500 text-2xl mr-3"></i>
+            <h3
+              class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              SEO Optimization
+            </h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Enhancing your website to rank higher on search engines and attract
+            organic traffic.
+          </p>
+        </div>
+
+        <!-- Service 4 -->
+        <div
+          class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+          data-aos="fade-up"
+          data-aos-delay="400">
+          <div class="flex items-center mb-4">
+            <i
+              class="fa-solid fa-cart-shopping text-yellow-500 text-2xl mr-3"></i>
+            <h3
+              class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              E-commerce Solutions
+            </h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Custom online stores with secure payment gateways and user-friendly
+            shopping experiences.
+          </p>
+        </div>
+
+        <!-- Service 5 -->
+        <div
+          class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+          data-aos="fade-up"
+          data-aos-delay="500">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-bullhorn text-purple-500 text-2xl mr-3"></i>
+            <h3
+              class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              Branding & Identity
+            </h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Creating a strong brand identity with logos, colors, and digital
+            assets that stand out.
+          </p>
+        </div>
+
+        <!-- Service 6 -->
+        <div
+          class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+          data-aos="fade-up"
+          data-aos-delay="600">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-lightbulb text-orange-500 text-2xl mr-3"></i>
+            <h3
+              class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              Consulting
+            </h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Expert advice to help grow your digital presence and streamline your
+            development workflow.
+          </p>
+        </div>
+
+        <!-- Service 7 -->
+        <div
+          class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+          data-aos="fade-up"
+          data-aos-delay="700">
+          <div class="flex items-center mb-4">
+            <i
+              class="fa-solid fa-mobile-screen-button text-blue-400 text-2xl mr-3"></i>
+            <h3
+              class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              Mobile App Development
+            </h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Building high-performance mobile applications for iOS and Android
+            platforms.
+          </p>
+        </div>
+
+        <!-- Service 8 -->
+        <div
+          class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+          data-aos="fade-up"
+          data-aos-delay="800">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-cloud text-indigo-500 text-2xl mr-3"></i>
+            <h3
+              class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              Cloud Solutions
+            </h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Scalable cloud infrastructure and hosting solutions for businesses
+            of all sizes.
+          </p>
+        </div>
+
+        <!-- Service 9 -->
+        <div
+          class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+          data-aos="fade-up"
+          data-aos-delay="900">
+          <div class="flex items-center mb-4">
+            <i class="fa-solid fa-shield text-red-500 text-2xl mr-3"></i>
+            <h3
+              class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              Cybersecurity
+            </h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Protecting websites and applications from security threats and
+            vulnerabilities.
+          </p>
+        </div>
       </div>
-      <p class="text-gray-400 mb-4">
-        E-learning system with courses, videos, and progress tracking.
-      </p>
-      <a href="#" class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
-        View Project <span class="group-hover:translate-x-1 transition-transform">→</span>
-      </a>
-    </div>
+      <!-- ✅ GRID END -->
+    </section>
 
+    <!-- Footer -->
+    <footer
+      class="bg-gray-800 text-gray-300 border-t border-gray-700 relative z-10">
+      <div
+        class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- About -->
+        <div>
+          <a
+            href="index.html"
+            class="flex items-center gap-2 text-4xl font-bold text-orange-500">
+            <i class="fa-solid fa-laptop-code text-orange-400 text-2xl"></i>
+            mrohitgupta9
+          </a>
+          <p class="text-gray-400 mt-2">
+            Delivering professional web solutions that blend creativity,
+            performance, and modern design to help individuals and businesses
+            grow online.
+          </p>
+        </div>
 
-    <!-- CARD 9 -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="50">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-building text-green-400 text-2xl mr-3"></i>
-        <h3 class="text-xl font-semibold">Business Website</h3>
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-semibold mb-4 text-orange-500">Quick Links</h4>
+          <ul class="space-y-2">
+            <li>
+              <a href="index.html" class="hover:text-blue-400 transition"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a href="about.html" class="hover:text-blue-400 transition"
+                >About</a
+              >
+            </li>
+            <li>
+              <a href="projects.html" class="hover:text-blue-400 transition"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a href="services.html" class="hover:text-blue-400 transition"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a href="contact.html" class="hover:text-blue-400 transition"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Services with Modal -->
+        <div>
+          <h4 class="font-semibold mb-4 text-orange-500">Services</h4>
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="#"
+                class="hover:text-blue-400 transition cursor-pointer"
+                onclick="showService('Web Development')"
+                >Web Development</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="hover:text-blue-400 transition cursor-pointer"
+                onclick="showService('UI/UX Design')"
+                >UI/UX Design</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="hover:text-blue-400 transition cursor-pointer"
+                onclick="showService('SEO Optimization')"
+                >SEO Optimization</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="hover:text-blue-400 transition cursor-pointer"
+                onclick="showService('E-commerce')"
+                >E-commerce</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="hover:text-blue-400 transition cursor-pointer"
+                onclick="showService('E-commerce')"
+                >Cybersecurity</a
+              >
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- Contact & Socials -->
+        <div>
+          <h4 class="font-semibold mb-4 text-orange-500">Contact</h4>
+          <p class="text-sm mb-1">
+            <i class="fa-solid fa-envelope mr-2 text-blue-400"></i
+            >mrohitgupta9@gmail.com
+          </p>
+          <p class="text-sm">
+            <i class="fa-solid fa-phone mr-2 text-blue-400"></i>+91 9115095844
+          </p>
+
+          <h4 class="font-semibold mb-4 mt-4 text-white">Follow Me</h4>
+          <div class="flex space-x-4 mt-5 text-lg">
+            <a
+              href="https://www.facebook.com/mrohitgupta9"
+              target="_blank"
+              class="hover:text-blue-400 transition text-orange-500"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/mrohitgupta9"
+              target="_blank"
+              class="hover:text-pink-400 transition text-orange-500"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.twitter.com/mrohitgupta9"
+              target="_blank"
+              class="hover:text-sky-400 transition text-orange-500"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/mrohitgupta9"
+              target="_blank"
+              class="hover:text-blue-500 transition text-orange-500"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://github.com/mrohitgupta9"
+              target="_blank"
+              class="hover:text-gray-100 transition text-orange-500"
+              ><i class="fab fa-github"></i
+            ></a>
+          </div>
+        </div>
       </div>
-      <p class="text-gray-400 mb-4">Corporate website focused on branding and conversions.</p>
-      <a href="#" class="inline-flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all">
-        View Project <span class="group-hover:translate-x-1 transition-transform">→</span>
-      </a>
-    </div>
-</div>
-</section>
 
-<!-- Services Section -->
-<section id="services" class="max-w-7xl mx-auto px-6 py-20">
-  <h2 class="text-3xl sm:text-4xl font-bold text-center text-orange-500 mb-12" data-aos="fade-up">
-    Our Services
-  </h2>
-  <div class="grid gap-8 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-
-    <!-- Service 1 -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="100">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-code text-blue-500 text-2xl mr-3"></i>
-        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Web Development
-        </h3>
+      <!-- Copyright -->
+      <div class="border-t border-gray-700 py-4 text-center text-sm">
+        © 2025 mrohitgupta9. All rights reserved.
       </div>
-      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-        We build responsive, modern websites using the latest technologies to boost your online presence.
-      </p>
-    </div>
 
-    <!-- Service 2 -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="200">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-paintbrush text-pink-500 text-2xl mr-3"></i>
-        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          UI / UX Design
-        </h3>
+      <!-- Modal -->
+      <div
+        id="serviceModal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300">
+        <div
+          class="bg-gray-900 text-gray-200 p-6 rounded-lg max-w-lg w-full relative shadow-lg transform scale-95 opacity-0 transition-all duration-300">
+          <button
+            onclick="closeModal()"
+            class="absolute top-3 right-3 text-gray-400 hover:text-white text-lg font-bold">
+            &times;
+          </button>
+          <h3 id="serviceTitle" class="text-2xl font-bold mb-3 text-orange-500">
+            Service Title
+          </h3>
+          <div
+            id="serviceDesc"
+            class="text-gray-300 leading-relaxed max-h-72 overflow-y-auto pr-2"></div>
+          <button
+            onclick="closeModal()"
+            class="mt-5 px-4 py-2 bg-orange-500 hover:bg-orange-600 rounded text-white font-medium w-full">
+            Close
+          </button>
+        </div>
       </div>
-      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-        Designing intuitive and engaging user interfaces for web and mobile applications.
-      </p>
-    </div>
+    </footer>
 
-    <!-- Service 3 -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="300">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-magnifying-glass text-green-500 text-2xl mr-3"></i>
-        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          SEO Optimization
-        </h3>
-      </div>
-      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-        Enhancing your website to rank higher on search engines and attract organic traffic.
-      </p>
-    </div>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1000, once: true });
 
-    <!-- Service 4 -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="400">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-cart-shopping text-yellow-500 text-2xl mr-3"></i>
-        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          E-commerce Solutions
-        </h3>
-      </div>
-      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-        Custom online stores with secure payment gateways and user-friendly shopping experiences.
-      </p>
-    </div>
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      btn.addEventListener("click", () => menu.classList.toggle("hidden"));
+    </script>
 
-    <!-- Service 5 -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="500">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-bullhorn text-purple-500 text-2xl mr-3"></i>
-        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Branding & Identity
-        </h3>
-      </div>
-      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-        Creating a strong brand identity with logos, colors, and digital assets that stand out.
-      </p>
-    </div>
+    <style>
+      @keyframes bounce-slow {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      .animate-bounce-slow {
+        animation: bounce-slow 6s infinite;
+      }
+    </style>
 
-    <!-- Service 6 -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="600">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-lightbulb text-orange-500 text-2xl mr-3"></i>
-        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Consulting
-        </h3>
-      </div>
-      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-        Expert advice to help grow your digital presence and streamline your development workflow.
-      </p>
-    </div>
-
-    <!-- Service 7 -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="700">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-mobile-screen-button text-blue-400 text-2xl mr-3"></i>
-        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Mobile App Development
-        </h3>
-      </div>
-      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-        Building high-performance mobile applications for iOS and Android platforms.
-      </p>
-    </div>
-
-    <!-- Service 8 -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="800">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-cloud text-indigo-500 text-2xl mr-3"></i>
-        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Cloud Solutions
-        </h3>
-      </div>
-      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-        Scalable cloud infrastructure and hosting solutions for businesses of all sizes.
-      </p>
-    </div>
-
-    <!-- Service 9 -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="900">
-      <div class="flex items-center mb-4">
-        <i class="fa-solid fa-shield text-red-500 text-2xl mr-3"></i>
-        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          Cybersecurity
-        </h3>
-      </div>
-      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-        Protecting websites and applications from security threats and vulnerabilities.
-      </p>
-    </div>
-
-  </div> <!-- ✅ GRID END -->
-</section>
-
-  <!-- Footer -->
-<footer class="bg-gray-800 text-gray-300 border-t border-gray-700 relative z-10">
-  <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-    
-    <!-- About -->
-    <div>
-      <a href="index.html" class="flex items-center gap-2 text-4xl font-bold text-orange-500">
-        <i class="fa-solid fa-laptop-code text-orange-400 text-2xl"></i>
-        mrohitgupta9
-      </a>
-      <p class="text-gray-400 mt-2">Delivering professional web solutions that blend creativity, performance, and modern design to help individuals and businesses grow online.</p>
-    </div>
-
-    <!-- Quick Links -->
-    <div>
-      <h4 class="font-semibold mb-4 text-orange-500">Quick Links</h4>
-      <ul class="space-y-2">
-        <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
-        <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
-        <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
-        <li><a href="services.html" class="hover:text-blue-400 transition">Services</a></li>
-        <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
-      </ul>
-    </div>
-
-    <!-- Services with Modal -->
-    <div>
-      <h4 class="font-semibold mb-4 text-orange-500">Services</h4>
-      <ul class="space-y-2">
-        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('Web Development')">Web Development</a></li>
-        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('UI/UX Design')">UI/UX Design</a></li>
-        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('SEO Optimization')">SEO Optimization</a></li>
-        <li><a href="#" class="hover:text-blue-400 transition cursor-pointer" onclick="showService('E-commerce')">E-commerce</a></li>
-      </ul>
-    </div>
-
-    <!-- Contact & Socials -->
-    <div>
-      <h4 class="font-semibold mb-4 text-orange-500">Contact</h4>
-      <p class="text-sm mb-1"><i class="fa-solid fa-envelope mr-2 text-blue-400"></i>mrohitgupta9@gmail.com</p>
-      <p class="text-sm"><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+91 9115095844</p>
-
-      <h4 class="font-semibold mb-4 mt-4 text-white">Follow Me</h4>
-      <div class="flex space-x-4 mt-5 text-lg">
-        <a href="https://www.facebook.com/mrohitgupta9" target="_blank" class="hover:text-blue-400 transition text-orange-500"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/mrohitgupta9" target="_blank" class="hover:text-pink-400 transition text-orange-500"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.twitter.com/mrohitgupta9" target="_blank" class="hover:text-sky-400 transition text-orange-500"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/mrohitgupta9" target="_blank" class="hover:text-blue-500 transition text-orange-500"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://github.com/mrohitgupta9" target="_blank" class="hover:text-gray-100 transition text-orange-500"><i class="fab fa-github"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Copyright -->
-  <div class="border-t border-gray-700 py-4 text-center text-sm">© 2025 mrohitgupta9. All rights reserved.</div>
-
-  <!-- Modal -->
-  <div id="serviceModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300">
-    <div class="bg-gray-900 text-gray-200 p-6 rounded-lg max-w-lg w-full relative shadow-lg transform scale-95 opacity-0 transition-all duration-300">
-      <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white text-lg font-bold">&times;</button>
-      <h3 id="serviceTitle" class="text-2xl font-bold mb-3 text-orange-500">Service Title</h3>
-      <div id="serviceDesc" class="text-gray-300 leading-relaxed max-h-72 overflow-y-auto pr-2"></div>
-      <button onclick="closeModal()" class="mt-5 px-4 py-2 bg-orange-500 hover:bg-orange-600 rounded text-white font-medium w-full">Close</button>
-    </div>
-  </div>
-</footer>
-
-
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-
-    const btn = document.getElementById('mobile-menu-btn');
-    const menu = document.getElementById('mobile-menu');
-    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-  </script>
-
-  <style>
-    @keyframes bounce-slow {
-      0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}
-    }
-    .animate-bounce-slow{animation:bounce-slow 6s infinite;}
-  </style>
-
-   <!-- Modal JS -->
-  <script>
-    const descriptions = {
-      "Web Development": `We build responsive, modern websites using the latest technologies to boost your online presence. 
+    <!-- Modal JS -->
+    <script>
+      const descriptions = {
+        "Web Development": `We build responsive, modern websites using the latest technologies to boost your online presence. 
       <br><br>
       <strong>Features Include:</strong>
       <ul class="list-disc pl-5">
@@ -444,8 +858,8 @@
       </ul>
       <br>
       Our goal is to make your website not just beautiful, but fast, secure, and scalable.`,
-      
-      "UI/UX Design": `Designing intuitive and engaging user interfaces for web and mobile applications. 
+
+        "UI/UX Design": `Designing intuitive and engaging user interfaces for web and mobile applications. 
       <br><br>
       <strong>Our Approach:</strong>
       <ul class="list-disc pl-5">
@@ -457,7 +871,7 @@
       <br>
       We ensure your users have a seamless and enjoyable experience.`,
 
-      "SEO Optimization": `Enhancing your website to rank higher on search engines and attract organic traffic.
+        "SEO Optimization": `Enhancing your website to rank higher on search engines and attract organic traffic.
       <br><br>
       <strong>What We Do:</strong>
       <ul class="list-disc pl-5">
@@ -470,7 +884,7 @@
       <br>
       Our aim is to drive quality traffic and improve your online visibility.`,
 
-      "E-commerce": `Custom online stores with secure payment gateways and user-friendly shopping experiences.
+        "E-commerce": `Custom online stores with secure payment gateways and user-friendly shopping experiences.
       <br><br>
       <strong>Capabilities:</strong>
       <ul class="list-disc pl-5">
@@ -481,29 +895,64 @@
         <li>Promotions & Discounts Setup</li>
       </ul>
       <br>
-      We make online shopping smooth for your customers.`
-    };
+      We make online shopping smooth for your customers.`,
+      };
 
-    function showService(title) {
-      const modal = document.getElementById('serviceModal');
-      document.getElementById('serviceTitle').innerText = title;
-      document.getElementById('serviceDesc').innerHTML = descriptions[title];
-      modal.classList.remove('hidden');
-      // Fade-in + scale animation
-      setTimeout(() => {
-        modal.querySelector('div').classList.remove('opacity-0','scale-95');
-        modal.querySelector('div').classList.add('opacity-100','scale-100');
-      }, 10);
-    }
+      function showService(title) {
+        const modal = document.getElementById("serviceModal");
+        document.getElementById("serviceTitle").innerText = title;
+        document.getElementById("serviceDesc").innerHTML = descriptions[title];
+        modal.classList.remove("hidden");
+        // Fade-in + scale animation
+        setTimeout(() => {
+          modal.querySelector("div").classList.remove("opacity-0", "scale-95");
+          modal.querySelector("div").classList.add("opacity-100", "scale-100");
+        }, 10);
+      }
 
-    function closeModal() {
-      const modalContent = document.getElementById('serviceModal').querySelector('div');
-      modalContent.classList.remove('opacity-100','scale-100');
-      modalContent.classList.add('opacity-0','scale-95');
-      setTimeout(() => {
-        document.getElementById('serviceModal').classList.add('hidden');
-      }, 300);
-    }
-  </script>
-</body>
+      function closeModal() {
+        const modalContent = document
+          .getElementById("serviceModal")
+          .querySelector("div");
+        modalContent.classList.remove("opacity-100", "scale-100");
+        modalContent.classList.add("opacity-0", "scale-95");
+        setTimeout(() => {
+          document.getElementById("serviceModal").classList.add("hidden");
+        }, 300);
+      }
+    </script>
+    <script>
+      const modal = document.getElementById("hireModal");
+      const modalBox = document.getElementById("modalBox");
+
+      function openHireModal() {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        document.body.style.overflow = "hidden";
+
+        setTimeout(() => {
+          modalBox.classList.remove("scale-95", "opacity-0");
+          modalBox.classList.add("scale-100", "opacity-100");
+        }, 50);
+      }
+
+      function closeHireModal() {
+        modalBox.classList.add("scale-95", "opacity-0");
+        modalBox.classList.remove("scale-100", "opacity-100");
+
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+          document.body.style.overflow = "auto";
+        }, 200);
+      }
+
+      // ESC key close
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeHireModal();
+        }
+      });
+    </script>
+  </body>
 </html>
