@@ -5,48 +5,172 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FoodieX | Food Delivery</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <style>
+    /* Smooth horizontal scroll */
+    #restaurantGrid {
+      scroll-behavior: smooth;
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 font-sans">
 
-<!-- Navbar -->
+<!-- ================= NAVBAR ================= -->
 <nav class="bg-white shadow sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-orange-500">FoodieX</h1>
+    <h1 class="text-3xl font-bold text-orange-500">FoodieX</h1>
     <div class="hidden md:flex gap-6 font-medium">
-      <a href="index.html">Home</a>
-      <a href="restaurants.html">Restaurants</a>
-      <a href="cart.html">Cart</a>
-      <a href="auth.html">Login</a>
+      <a href="index.html" class="hover:text-orange-500 transition">Home</a>
+      <a href="restaurants.html" class="hover:text-orange-500 transition">Restaurants</a>
+      <a href="cart.html" class="hover:text-orange-500 transition">Cart</a>
+      <a href="auth.html" class="hover:text-orange-500 transition">Login</a>
     </div>
   </div>
 </nav>
 
-<!-- Hero -->
-<section class="bg-orange-500 text-white py-20 text-center">
-  <h2 class="text-4xl font-bold mb-4">Order Food Anytime</h2>
-  <p class="mb-6">Fast delivery from nearby restaurants</p>
-  <a href="restaurants.html"
-     class="bg-white text-orange-500 px-6 py-3 rounded-lg font-semibold">
-     Explore Restaurants
-  </a>
-</section>
-
-<!-- Categories -->
-<section class="max-w-7xl mx-auto px-6 py-16">
-  <h3 class="text-2xl font-bold mb-6">Popular Categories</h3>
-  <div class="grid grid-cols-2 md:grid-cols-6 gap-6">
-    <div class="bg-white p-4 shadow rounded text-center">🍕 Pizza</div>
-    <div class="bg-white p-4 shadow rounded text-center">🍔 Burger</div>
-    <div class="bg-white p-4 shadow rounded text-center">🍜 Noodles</div>
-    <div class="bg-white p-4 shadow rounded text-center">🍗 Chicken</div>
-    <div class="bg-white p-4 shadow rounded text-center">🥗 Healthy</div>
-    <div class="bg-white p-4 shadow rounded text-center">🍰 Dessert</div>
+<!-- ================= HERO ================= -->
+<section class="relative bg-orange-500 h-[500px] flex items-center justify-center text-center text-white">
+  <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1400&q=80"
+       class="absolute inset-0 w-full h-full object-cover brightness-50">
+  <div class="relative z-10 space-y-6">
+    <h2 class="text-5xl font-bold drop-shadow-lg">Order Food Anytime</h2>
+    <p class="text-lg drop-shadow-md">Fast delivery from nearby restaurants</p>
+    <a href="#restaurantGrid"
+       class="bg-white text-orange-500 px-8 py-3 rounded-full font-semibold shadow hover:shadow-lg transition mt-6 inline-block">
+       Explore Restaurants
+    </a>
   </div>
 </section>
 
-<footer class="bg-gray-900 text-gray-400 text-center py-6">
-  © 2026 FoodieX
+<!-- ================= SEARCH ================= -->
+<section class="max-w-7xl mx-auto px-6 py-8">
+  <input type="text" id="searchInput"
+         placeholder="Search restaurants..."
+         class="w-full md:w-1/2 p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+<section class="max-w-7xl mx-auto px-6 py-6">
+  <h3 class="text-3xl font-bold mb-6 text-center">Popular Categories</h3>
+  <div class="flex flex-wrap justify-center gap-3" id="categoryFilter">
+    <button data-category="All" class="px-4 py-2 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition">All</button>
+    <button data-category="Pizza" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Pizza</button>
+    <button data-category="Burger" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Burger</button>
+    <button data-category="Noodles" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Noodles</button>
+    <button data-category="Healthy" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Healthy</button>
+    <button data-category="Dessert" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Dessert</button>
+    <button data-category="Mexican" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Mexican</button>
+    <button data-category="Chicken" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Chicken</button>
+    <button data-category="Salads" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Salads</button>
+    <button data-category="Italian" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Italian</button>
+    <button data-category="Indian" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Indian</button>
+    <button data-category="Chinese" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Chinese</button>
+    <button data-category="Japanese" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Japanese</button>
+    <button data-category="BBQ" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">BBQ</button>
+    <button data-category="Bakery" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Bakery</button>
+  </div>
+</section>
+
+<!-- ================= RESTAURANTS ================= -->
+<section class="max-w-7xl mx-auto px-6 py-10">
+  <h3 class="text-3xl font-bold mb-10 text-center">Top Restaurants Near You</h3>
+  <div id="restaurantGrid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-x-auto pb-4"></div>
+</section>
+
+<!-- ================= OUR ELEMENTS ================= -->
+<section class="bg-gray-50 py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <h3 class="text-3xl font-bold mb-10 text-center">Why Choose Us</h3>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition duration-300">
+        <div class="text-orange-500 text-5xl mb-4">🚀</div>
+        <h4 class="font-semibold text-xl mb-2">Fast Delivery</h4>
+        <p class="text-gray-500">Get your food delivered in less than 30 minutes anywhere in your city.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition duration-300">
+        <div class="text-orange-500 text-5xl mb-4">🍽️</div>
+        <h4 class="font-semibold text-xl mb-2">Quality Food</h4>
+        <p class="text-gray-500">We partner only with verified restaurants to ensure high quality and hygiene.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition duration-300">
+        <div class="text-orange-500 text-5xl mb-4">💳</div>
+        <h4 class="font-semibold text-xl mb-2">Secure Payment</h4>
+        <p class="text-gray-500">Multiple payment options including card, UPI, and cash on delivery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-gray-900 text-gray-400 py-10">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+    <h1 class="text-orange-500 text-2xl font-bold mb-4 md:mb-0">FoodieX</h1>
+    <div class="flex gap-6 mb-4 md:mb-0">
+      <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p class="text-sm text-gray-400">© 2026 FoodieX. All rights reserved.</p>
+  </div>
 </footer>
+
+<!-- ================= JS ================= -->
+<script>
+const restaurants = [
+  {name: "Italiano Pizza", category: "Pizza", rating: 4.5, img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
+  {name: "Burger Hub", category: "Burger", rating: 4.3, img: "https://images.unsplash.com/photo-1550547660-d9450f859349"},
+  {name: "Noodle House", category: "Noodles", rating: 4.4, img: "https://images.unsplash.com/photo-1603070307481-2c64e30c9fc1"},
+  {name: "Sushi Point", category: "Japanese", rating: 4.6, img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
+  {name: "Taco Fiesta", category: "Mexican", rating: 4.2, img: "https://images.unsplash.com/photo-1601924638867-3d0f0b7ed5d1"},
+  {name: "Veggie Delight", category: "Healthy", rating: 4.7, img: "https://images.unsplash.com/photo-1598514982447-02f0e1712dfb"},
+  {name: "Grill House", category: "BBQ", rating: 4.4, img: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90"},
+  {name: "Sweet Tooth", category: "Dessert", rating: 4.8, img: "https://images.unsplash.com/photo-1599785209707-9f3d0f95c8e5"},
+  // Add more unique restaurants as needed for 8+ cards per category
+];
+
+// Render restaurants
+function renderRestaurants(category = "All", search = "") {
+  const grid = document.getElementById("restaurantGrid");
+  grid.innerHTML = "";
+  let filtered = restaurants.filter(r => (category === "All" || r.category === category) &&
+                                        r.name.toLowerCase().includes(search.toLowerCase()));
+  filtered.slice(0, 60).forEach(r => {
+    const div = document.createElement("div");
+    div.className = "bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col card-hover";
+    div.innerHTML = `
+      <img src="${r.img}" class="w-full h-48 object-cover">
+      <div class="p-6 flex flex-col flex-1">
+        <h4 class="font-semibold text-lg mb-1 text-gray-800">${r.name}</h4>
+        <p class="text-sm text-gray-500 mb-2">${r.category}</p>
+        <span class="text-green-600 font-semibold mb-4">⭐ ${r.rating}</span>
+        <a href="restaurant.html" class="mt-auto bg-orange-500 text-white py-2 rounded-lg text-center font-semibold hover:bg-orange-600 transition">Order Now</a>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+// Initial render
+renderRestaurants();
+
+// Filter buttons
+document.querySelectorAll("#categoryFilter button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#categoryFilter button").forEach(b => b.classList.remove("bg-orange-500","text-white"));
+    btn.classList.add("bg-orange-500","text-white");
+    renderRestaurants(btn.dataset.category, document.getElementById("searchInput").value);
+  });
+});
+
+// Search input
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  const activeCategoryBtn = document.querySelector("#categoryFilter button.bg-orange-500")?.dataset.category || "All";
+  renderRestaurants(activeCategoryBtn, e.target.value);
+});
+</script>
 
 </body>
 </html>
