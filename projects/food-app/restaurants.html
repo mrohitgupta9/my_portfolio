@@ -113,9 +113,81 @@ tailwind.config = {
 </section>
 
 <!-- ================= FOOTER ================= -->
+<!-- ================= ENTERPRISE FOOTER ================= -->
 <footer class="border-t border-borderDark bg-darkBg">
-  <div class="max-w-7xl mx-auto px-6 py-10 text-center text-sm text-gray-500">
-    © 2026 FoodieX Technologies Pvt. Ltd. All rights reserved.
+  <div class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+
+    <!-- Brand -->
+    <div class="lg:col-span-2 space-y-4">
+      <h2 class="text-2xl font-bold text-primary tracking-wide">FoodieX</h2>
+      <p class="text-sm text-gray-400 leading-relaxed max-w-md">
+        FoodieX is a modern food-delivery platform built for speed, reliability,
+        and seamless customer experience. Discover restaurants, order instantly,
+        and enjoy fresh food delivered fast.
+      </p>
+
+      <!-- Social -->
+      <div class="flex gap-4 text-lg">
+        <a href="#" aria-label="Facebook" class="hover:text-primary transition">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" aria-label="Instagram" class="hover:text-primary transition">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" aria-label="Twitter" class="hover:text-primary transition">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn" class="hover:text-primary transition">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Product -->
+    <div>
+      <h3 class="font-semibold text-white mb-4">Product</h3>
+      <ul class="space-y-3 text-sm text-gray-400">
+        <li><a class="hover:text-primary">Restaurants</a></li>
+        <li><a class="hover:text-primary">Pricing</a></li>
+        <li><a class="hover:text-primary">Offers</a></li>
+        <li><a class="hover:text-primary">Mobile App</a></li>
+      </ul>
+    </div>
+
+    <!-- Company -->
+    <div>
+      <h3 class="font-semibold text-white mb-4">Company</h3>
+      <ul class="space-y-3 text-sm text-gray-400">
+        <li><a class="hover:text-primary">About Us</a></li>
+        <li><a class="hover:text-primary">Careers</a></li>
+        <li><a class="hover:text-primary">Press</a></li>
+        <li><a class="hover:text-primary">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Legal -->
+    <div>
+      <h3 class="font-semibold text-white mb-4">Legal</h3>
+      <ul class="space-y-3 text-sm text-gray-400">
+        <li><a class="hover:text-primary">Privacy Policy</a></li>
+        <li><a class="hover:text-primary">Terms of Service</a></li>
+        <li><a class="hover:text-primary">Refund Policy</a></li>
+        <li><a class="hover:text-primary">Security</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-borderDark">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-gray-500">
+        © 2026 FoodieX Technologies Pvt. Ltd. All rights reserved.
+      </p>
+
+      <p class="text-xs text-gray-500">
+        Built with performance, scalability & security in mind.
+      </p>
+    </div>
   </div>
 </footer>
 
@@ -123,6 +195,38 @@ tailwind.config = {
 <script>
 /* ================= DATA ================= */
 const data = [
+  { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+  { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+  { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+  { name: "Smash House", category: "Burger", rating: "4.3", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+  { name: "Delhi Tadka", category: "Indian", rating: "4.7", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" },
+  { name: "Punjabi Dhaba", category: "Indian", rating: "4.6", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0" },
+  { name: "Dragon Wok", category: "Chinese", rating: "4.4", img: "https://images.unsplash.com/photo-1544025162-d76694265947" },
+  { name: "Sweet Treats", category: "Dessert", rating: "4.8", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+  { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+  { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+  { name: "Smash House", category: "Burger", rating: "4.3", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+  { name: "Delhi Tadka", category: "Indian", rating: "4.7", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" },
+  { name: "Punjabi Dhaba", category: "Indian", rating: "4.6", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0" },
+  { name: "Dragon Wok", category: "Chinese", rating: "4.4", img: "https://images.unsplash.com/photo-1544025162-d76694265947" },
+  { name: "Sweet Treats", category: "Dessert", rating: "4.8", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+  { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+  { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+  { name: "Smash House", category: "Burger", rating: "4.3", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+  { name: "Delhi Tadka", category: "Indian", rating: "4.7", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" },
+  { name: "Punjabi Dhaba", category: "Indian", rating: "4.6", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0" },
+  { name: "Dragon Wok", category: "Chinese", rating: "4.4", img: "https://images.unsplash.com/photo-1544025162-d76694265947" },
+  { name: "Sweet Treats", category: "Dessert", rating: "4.8", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+  { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+  { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+  { name: "Smash House", category: "Burger", rating: "4.3", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+  { name: "Delhi Tadka", category: "Indian", rating: "4.7", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" },
+  { name: "Punjabi Dhaba", category: "Indian", rating: "4.6", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0" },
+  { name: "Dragon Wok", category: "Chinese", rating: "4.4", img: "https://images.unsplash.com/photo-1544025162-d76694265947" },
+  { name: "Sweet Treats", category: "Dessert", rating: "4.8", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
   { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
   { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
   { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },

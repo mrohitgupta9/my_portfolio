@@ -48,6 +48,7 @@ tailwind.config = {
 <section class="max-w-6xl mx-auto px-4 py-10">
 
   <h1 class="text-3xl font-extrabold mb-8">My Orders</h1>
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum deleniti perferendis unde temporibus libero reiciendis modi, harum neque assumenda molestiae commodi beatae ipsum? Nam repellendus aliquid commodi illum alias, veritatis asperiores veniam nesciunt soluta omnis quo similique modi culpa nisi non nostrum dolor, reiciendis sit sapiente, consequuntur aspernatur eligendi deserunt! Culpa nisi necessitatibus ipsum? Amet aliquid quis eveniet. Assumenda tenetur velit amet ratione non dignissimos, accusantium magni mollitia saepe reprehenderit minus, numquam unde aut excepturi voluptatum qui? Eveniet temporibus at sint, asperiores sunt quisquam inventore, quam corrupti minus distinctio tempore nulla possimus illo commodi eaque laborum sapiente incidunt adipisci earum. Quod modi numquam praesentium nostrum dicta id! Nulla expedita recusandae dolores! Ad exercitationem cum velit, pariatur magnam eaque atque eos quisquam doloremque ipsam natus ipsum repudiandae obcaecati dignissimos facere sed voluptates quia expedita! Neque animi ipsam totam delectus ea itaque accusantium minima, omnis dolorem pariatur labore maxime, possimus error ab iure porro magnam quos amet earum fugiat nesciunt. Hic, amet magnam quos earum dolores reiciendis laborum repellendus nulla corporis non perferendis cupiditate delectus error quae ratione soluta, dignissimos enim excepturi impedit eius quod itaque in nostrum deleniti. Quae laboriosam incidunt dignissimos molestiae ab nisi, assumenda quasi ratione odio facere laudantium.</p>
 
   <!-- EMPTY STATE -->
   <div id="emptyOrders"
@@ -63,6 +64,83 @@ tailwind.config = {
   <div id="ordersList" class="space-y-6"></div>
 
 </section>
+<!-- ================= ENTERPRISE FOOTER ================= -->
+<footer class="border-t border-borderDark bg-darkBg">
+  <div class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+
+    <!-- Brand -->
+    <div class="lg:col-span-2 space-y-4">
+      <h2 class="text-2xl font-bold text-primary tracking-wide">FoodieX</h2>
+      <p class="text-sm text-gray-400 leading-relaxed max-w-md">
+        FoodieX is a modern food-delivery platform built for speed, reliability,
+        and seamless customer experience. Discover restaurants, order instantly,
+        and enjoy fresh food delivered fast.
+      </p>
+
+      <!-- Social -->
+      <div class="flex gap-4 text-lg">
+        <a href="#" aria-label="Facebook" class="hover:text-primary transition">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" aria-label="Instagram" class="hover:text-primary transition">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" aria-label="Twitter" class="hover:text-primary transition">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn" class="hover:text-primary transition">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Product -->
+    <div>
+      <h3 class="font-semibold text-white mb-4">Product</h3>
+      <ul class="space-y-3 text-sm text-gray-400">
+        <li><a class="hover:text-primary">Restaurants</a></li>
+        <li><a class="hover:text-primary">Pricing</a></li>
+        <li><a class="hover:text-primary">Offers</a></li>
+        <li><a class="hover:text-primary">Mobile App</a></li>
+      </ul>
+    </div>
+
+    <!-- Company -->
+    <div>
+      <h3 class="font-semibold text-white mb-4">Company</h3>
+      <ul class="space-y-3 text-sm text-gray-400">
+        <li><a class="hover:text-primary">About Us</a></li>
+        <li><a class="hover:text-primary">Careers</a></li>
+        <li><a class="hover:text-primary">Press</a></li>
+        <li><a class="hover:text-primary">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Legal -->
+    <div>
+      <h3 class="font-semibold text-white mb-4">Legal</h3>
+      <ul class="space-y-3 text-sm text-gray-400">
+        <li><a class="hover:text-primary">Privacy Policy</a></li>
+        <li><a class="hover:text-primary">Terms of Service</a></li>
+        <li><a class="hover:text-primary">Refund Policy</a></li>
+        <li><a class="hover:text-primary">Security</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-borderDark">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-gray-500">
+        © 2026 FoodieX Technologies Pvt. Ltd. All rights reserved.
+      </p>
+
+      <p class="text-xs text-gray-500">
+        Built with performance, scalability & security in mind.
+      </p>
+    </div>
+  </div>
+</footer>
 
 <!-- ================= SCRIPTS ================= -->
 <script src="js/storage.js"></script>
