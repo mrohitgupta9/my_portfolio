@@ -4,149 +4,140 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Restaurants | FoodieX</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
 <style>
-  /* Smooth fade-in animation */
   .fade-slide {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: all .5s ease;
   }
   .fade-slide.show {
     opacity: 1;
     transform: translateY(0);
   }
-
-  /* Card hover effect with gradient */
-  .card-hover:hover {
-    transform: translateY(-5px);
-    background: linear-gradient(135deg, #FFEDD5, #FEE2E2);
-  }
-  .card-hover img {
-    transition: transform 0.3s ease;
-  }
-  .card-hover:hover img {
-    transform: scale(1.05);
-  }
 </style>
 </head>
-<body class="bg-gray-50 font-sans">
+
+<body class="bg-gray-50 text-gray-800 font-sans">
 
 <!-- ================= HERO ================= -->
-<section class="relative bg-orange-500 h-[300px] flex items-center justify-center text-center text-white mb-12">
-  <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1400&q=80"
+<section class="relative h-[320px] flex items-center justify-center text-center mb-14">
+  <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
        class="absolute inset-0 w-full h-full object-cover brightness-50">
-  <div class="relative z-10 space-y-4">
-    <h1 class="text-4xl md:text-5xl font-bold drop-shadow-lg">Restaurants Near You</h1>
-    <p class="text-lg drop-shadow-md">Choose your favorite food and order instantly</p>
-    <a href="#restaurantGrid" class="mt-4 inline-block bg-white text-orange-500 font-semibold px-8 py-3 rounded-full shadow hover:shadow-lg transition hover:-translate-y-1">Explore Restaurants</a>
+  <div class="relative z-10 text-white max-w-2xl px-6">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover Restaurants</h1>
+    <p class="text-lg opacity-90">Order from the best places near you</p>
   </div>
 </section>
 
-<!-- ================= SEARCH & FILTER ================= -->
-<section class="max-w-7xl mx-auto px-6 mb-8">
-  <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-    <input type="text" id="searchInput" placeholder="Search restaurants..." 
-           class="w-full md:w-1/2 px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
-    <div class="flex flex-wrap gap-2" id="categoryFilter">
-      <button data-category="All" class="px-4 py-2 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition">All</button>
-      <button data-category="Pizza" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Pizza</button>
-      <button data-category="Burger" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Burger</button>
-      <button data-category="Noodles" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Noodles</button>
-      <button data-category="Japanese" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Japanese</button>
-      <button data-category="Mexican" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Mexican</button>
-      <button data-category="Healthy" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Healthy</button>
-      <button data-category="Dessert" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Dessert</button>
-      <button data-category="BBQ" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">BBQ</button>
-      <button data-category="Indian" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Indian</button>
-      <button data-category="Italian" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Italian</button>
+<!-- ================= FILTERS ================= -->
+<section class="max-w-7xl mx-auto px-6 mb-10">
+  <div class="flex flex-col md:flex-row gap-4 justify-between">
+    <input
+      id="searchInput"
+      placeholder="Search restaurants..."
+      class="w-full md:w-1/2 px-4 py-3 rounded-xl border focus:ring-2 focus:ring-orange-500 outline-none">
+
+    <div id="categoryFilter" class="flex flex-wrap gap-2">
+      <button data-category="All" class="filter-btn active">All</button>
+      <button data-category="Pizza" class="filter-btn">Pizza</button>
+      <button data-category="Burger" class="filter-btn">Burger</button>
+      <button data-category="Indian" class="filter-btn">Indian</button>
+      <button data-category="Japanese" class="filter-btn">Japanese</button>
+      <button data-category="Dessert" class="filter-btn">Dessert</button>
     </div>
   </div>
 </section>
 
-<!-- ================= RESTAURANT GRID ================= -->
-<section class="max-w-7xl mx-auto px-6 py-6">
-  <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="restaurantGrid">
-    <!-- Restaurant cards injected here -->
+<!-- ================= GRID ================= -->
+<section class="max-w-7xl mx-auto px-6 pb-16">
+  <div id="emptyState" class="hidden text-center py-20 text-gray-500">
+    No restaurants found 🍽️
   </div>
+
+  <div id="restaurantGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
 </section>
 
-<!-- ================= JS ================= -->
 <script>
+/* ================= STYLES ================= */
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.className =
+   "filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 font-medium hover:bg-orange-500 hover:text-white transition";
+});
+document.querySelector(".filter-btn").classList.add("bg-orange-500","text-white");
+
+/* ================= DATA ================= */
 const restaurants = [
-  {name: "Italiano Pizza", category: "Pizza", rating: 4.5, img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
-  {name: "Pizza Paradise", category: "Pizza", rating: 4.6, img: "https://images.unsplash.com/photo-1603070307481-2c64e30c9fc1"},
-  {name: "Burger Hub", category: "Burger", rating: 4.3, img: "https://images.unsplash.com/photo-1550547660-d9450f859349"},
-  {name: "Burger Bistro", category: "Burger", rating: 4.5, img: "https://images.unsplash.com/photo-1600891964416-1f4b6de83c8f"},
-  {name: "Noodle House", category: "Noodles", rating: 4.4, img: "https://images.unsplash.com/photo-1603070307481-2c64e30c9fc1"},
-  {name: "Noodle Nirvana", category: "Noodles", rating: 4.6, img: "https://images.unsplash.com/photo-1603698709340-8940fbb3fc95"},
-  {name: "Sushi Point", category: "Japanese", rating: 4.6, img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
-  {name: "Ramen Realm", category: "Japanese", rating: 4.7, img: "https://images.unsplash.com/photo-1606107557192-89ef37e6e3bb"},
-  {name: "Taco Fiesta", category: "Mexican", rating: 4.2, img: "https://images.unsplash.com/photo-1601924638867-3d0f0b7ed5d1"},
-  {name: "Taco Town", category: "Mexican", rating: 4.4, img: "https://images.unsplash.com/photo-1601132359873-32f5c5a18709"},
-  {name: "Veggie Delight", category: "Healthy", rating: 4.7, img: "https://images.unsplash.com/photo-1598514982447-02f0e1712dfb"},
-  {name: "Green Garden", category: "Healthy", rating: 4.5, img: "https://images.unsplash.com/photo-1603698709340-8940fbb3fc95"},
-  {name: "Sweet Tooth", category: "Dessert", rating: 4.8, img: "https://images.unsplash.com/photo-1599785209707-9f3d0f95c8e5"},
-  {name: "Dessert Dreams", category: "Dessert", rating: 4.7, img: "https://images.unsplash.com/photo-1600712219331-0c2b3f47e7ea"},
-  {name: "Grill House", category: "BBQ", rating: 4.4, img: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90"},
-  {name: "BBQ Barn", category: "BBQ", rating: 4.6, img: "https://images.unsplash.com/photo-1604754742627-c4f07f5a7f6c"},
-  {name: "Curry Corner", category: "Indian", rating: 4.6, img: "https://images.unsplash.com/photo-1604908177521-7b0319c826c7"},
-  {name: "Curry Palace", category: "Indian", rating: 4.7, img: "https://images.unsplash.com/photo-1604908177521-7b0319c826c7"},
-  {name: "Pasta Palace", category: "Italian", rating: 4.3, img: "https://images.unsplash.com/photo-1603133872873-066fc7d4f5d7"},
-  {name: "Pasta Point", category: "Italian", rating: 4.5, img: "https://images.unsplash.com/photo-1603133872873-066fc7d4f5d7"},
-  // Add more unique restaurants here up to 52–60
+  {name:"Italiano Pizza", category:"Pizza", rating:4.6, img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
+  {name:"Pizza Paradise", category:"Pizza", rating:4.5, img:"https://images.unsplash.com/photo-1603070307481-2c64e30c9fc1"},
+  {name:"Burger Hub", category:"Burger", rating:4.4, img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
+  {name:"Curry Palace", category:"Indian", rating:4.7, img:"https://images.unsplash.com/photo-1604908177521-7b0319c826c7"},
+  {name:"Ramen Realm", category:"Japanese", rating:4.8, img:"https://images.unsplash.com/photo-1606107557192-89ef37e6e3bb"},
+  {name:"Dessert Dreams", category:"Dessert", rating:4.9, img:"https://images.unsplash.com/photo-1600712219331-0c2b3f47e7ea"}
 ];
 
-// Render function with animation
-function renderRestaurants(category = "All", search = "") {
+/* ================= RENDER ================= */
+function render(category="All", search="") {
   const grid = document.getElementById("restaurantGrid");
+  const empty = document.getElementById("emptyState");
   grid.innerHTML = "";
-  let filtered = restaurants.filter(r =>
-    (category === "All" || r.category === category) &&
+
+  const data = restaurants.filter(r =>
+    (category==="All" || r.category===category) &&
     r.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  filtered.forEach(r => {
-    const card = document.createElement("a");
-    card.href = "restaurant.html";
-    card.className = "bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col card-hover fade-slide";
+  empty.classList.toggle("hidden", data.length);
+
+  data.forEach((r,i)=>{
+    const card = document.createElement("div");
+    card.className = "fade-slide bg-white rounded-xl shadow hover:shadow-xl transition overflow-hidden";
+
     card.innerHTML = `
-      <div class="relative">
-        <img src="${r.img}" class="h-48 w-full object-cover rounded-t-xl">
-        <span class="absolute top-2 left-2 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">${r.category}</span>
-      </div>
-      <div class="p-4 flex flex-col flex-1">
-        <h3 class="font-bold text-lg text-gray-800 mb-1">${r.name}</h3>
+      <img src="${r.img}" loading="lazy"
+        onerror="this.src='https://via.placeholder.com/400x300?text=FoodieX'"
+        class="h-48 w-full object-cover">
+
+      <div class="p-5 flex flex-col">
+        <span class="text-sm text-orange-500 font-semibold mb-1">${r.category}</span>
+        <h3 class="text-lg font-bold mb-2">${r.name}</h3>
+
         <div class="flex justify-between items-center mb-4">
-          <span class="text-sm text-gray-500">Fast Food</span>
-          <span class="text-green-600 font-semibold">⭐ ${r.rating}</span>
+          <span class="text-sm text-gray-500">Fast Delivery</span>
+          <span class="text-emerald-600 font-semibold">⭐ ${r.rating}</span>
         </div>
-        <a href="restaurant.html" class="mt-auto bg-orange-500 text-white py-2 rounded-lg text-center font-semibold hover:bg-orange-600 transition">Order Now</a>
+
+        <a href="restaurant.html?name=${encodeURIComponent(r.name)}"
+           class="mt-auto bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg text-center font-semibold">
+          View Menu
+        </a>
       </div>
     `;
+
     grid.appendChild(card);
-    setTimeout(() => card.classList.add("show"), 50); // fade in animation
+    setTimeout(()=>card.classList.add("show"), i*80);
   });
 }
 
-// Initial render
-renderRestaurants();
+/* ================= EVENTS ================= */
+render();
 
-// Category filter
-document.querySelectorAll("#categoryFilter button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll("#categoryFilter button").forEach(b => b.classList.remove("bg-orange-500","text-white"));
+document.querySelectorAll("#categoryFilter button").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll("#categoryFilter button")
+      .forEach(b=>b.classList.remove("bg-orange-500","text-white"));
     btn.classList.add("bg-orange-500","text-white");
-    renderRestaurants(btn.dataset.category, document.getElementById("searchInput").value);
-  });
+    render(btn.dataset.category, searchInput.value);
+  };
 });
 
-// Search filter
-document.getElementById("searchInput").addEventListener("input", e => {
-  const activeCategory = document.querySelector("#categoryFilter button.bg-orange-500")?.dataset.category || "All";
-  renderRestaurants(activeCategory, e.target.value);
-});
+searchInput.oninput = e => {
+  const active = document.querySelector("#categoryFilter .bg-orange-500")?.dataset.category || "All";
+  render(active, e.target.value);
+};
 </script>
 
 </body>

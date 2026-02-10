@@ -1,175 +1,461 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FoodieX | Food Delivery</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-  <style>
-    /* Smooth horizontal scroll */
-    #restaurantGrid {
-      scroll-behavior: smooth;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoodieX | Enterprise Food Delivery</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary: '#F97316',
+        darkBg: '#020617',
+        darkCard: '#020617',
+        borderDark: '#1e293b',
+      },
+      boxShadow: {
+        soft: '0 10px 30px rgba(0,0,0,0.35)'
+      }
     }
-    .card-hover:hover {
-      transform: translateY(-5px);
-    }
-  </style>
+  }
+}
+</script>
+
+<style>
+.card-hover {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0,0,0,.45);
+}
+</style>
 </head>
-<body class="bg-gray-50 font-sans">
+
+<body class="bg-darkBg text-gray-200 font-sans antialiased">
+
+  <!-- LOGIN MODAL -->
+<div id="loginModal"
+  class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+
+  <div class="bg-white p-6 rounded-xl w-full max-w-md relative">
+    <button id="closeLogin"
+      class="absolute right-4 top-4 text-xl">&times;</button>
+
+    <h2 class="text-2xl font-bold mb-6 text-center">
+      Login to <span class="text-orange-500">FoodieX</span>
+    </h2>
+
+    <p id="loginError"
+      class="hidden text-sm text-red-600 mb-4 text-center"></p>
+
+    <form id="loginForm" class="space-y-4">
+
+      <input id="email" type="email" required
+        placeholder="Email"
+        class="w-full border px-4 py-2 rounded" />
+
+      <input id="password" type="password" required minlength="6"
+        placeholder="Password"
+        class="w-full border px-4 py-2 rounded" />
+
+      <button id="loginBtn"
+        class="w-full bg-orange-500 text-white py-2 rounded font-semibold">
+        Login
+      </button>
+    </form>
+  </div>
+</div>
 
 <!-- ================= NAVBAR ================= -->
-<nav class="bg-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-3xl font-bold text-orange-500">FoodieX</h1>
-    <div class="hidden md:flex gap-6 font-medium">
-      <a href="index.html" class="hover:text-orange-500 transition">Home</a>
-      <a href="restaurants.html" class="hover:text-orange-500 transition">Restaurants</a>
-      <a href="cart.html" class="hover:text-orange-500 transition">Cart</a>
-      <a href="auth.html" class="hover:text-orange-500 transition">Login</a>
+<!-- ================= ENTERPRISE NAVBAR ================= -->
+<header class="sticky top-0 z-50 bg-darkBg/80 backdrop-blur-xl border-b border-borderDark">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+
+    <!-- Brand -->
+    <div class="flex items-center gap-2">
+      <span class="text-2xl font-extrabold text-primary tracking-wide">FoodieX</span>
     </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+      <a href="index.html" class="hover:text-primary transition">Home</a>
+      <a href="restaurants.html" class="hover:text-primary transition">Restaurants</a>
+      <a href="restaurant.html" class="hover:text-primary transition">Orders</a>
+
+      <!-- Cart -->
+      <button class="relative hover:text-primary transition" aria-label="Cart">
+        <i class="fas fa-shopping-cart text-lg"></i>
+        <span
+          class="absolute -top-2 -right-2 bg-primary text-black text-[10px] px-1.5 rounded-full">
+          10
+        </span>
+      </button>
+
+      <!-- Auth -->
+     <button id="openLogin"
+  class="ml-2 px-4 py-2 rounded-full bg-primary text-black font-semibold hover:opacity-90 transition">
+  Login
+</button>
+    </nav>
+
+    <!-- Mobile Toggle -->
+    <button id="menuBtn"
+      class="md:hidden text-xl text-gray-200 focus:outline-none"
+      aria-label="Open Menu">
+      <i class="fas fa-bars"></i>
+    </button>
   </div>
-</nav>
+
+  <!-- ================= MOBILE MENU ================= -->
+  <div id="mobileMenu"
+    class="md:hidden overflow-hidden max-h-0 transition-all duration-300 ease-in-out bg-darkBg border-t border-borderDark">
+
+    <nav class="flex flex-col px-6 py-4 space-y-4 text-sm font-medium text-gray-300">
+      <a class="hover:text-primary transition">Home</a>
+      <a class="hover:text-primary transition">Restaurants</a>
+      <a class="hover:text-primary transition">Orders</a>
+
+      <div class="flex items-center justify-between pt-3 border-t border-borderDark">
+        <button class="flex items-center gap-2 hover:text-primary transition">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Cart</span>
+        </button>
+
+        <button
+          class="px-4 py-2 rounded-full bg-primary text-black font-semibold">
+          Login
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
 
 <!-- ================= HERO ================= -->
-<section class="relative bg-orange-500 h-[500px] flex items-center justify-center text-center text-white">
-  <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1400&q=80"
-       class="absolute inset-0 w-full h-full object-cover brightness-50">
-  <div class="relative z-10 space-y-6">
-    <h2 class="text-5xl font-bold drop-shadow-lg">Order Food Anytime</h2>
-    <p class="text-lg drop-shadow-md">Fast delivery from nearby restaurants</p>
+<section class="relative h-[460px] flex items-center justify-center text-center">
+  <img
+    src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1600&q=80"
+    class="absolute inset-0 w-full h-full object-cover brightness-[0.35]"
+    loading="lazy"
+  />
+
+  <div class="relative z-10 max-w-2xl px-4 space-y-6">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+      Food Delivered <span class="text-primary">Fast & Fresh</span>
+    </h2>
+    <p class="text-gray-300 text-lg">
+      Discover the best restaurants near you and order in seconds.
+    </p>
     <a href="#restaurantGrid"
-       class="bg-white text-orange-500 px-8 py-3 rounded-full font-semibold shadow hover:shadow-lg transition mt-6 inline-block">
-       Explore Restaurants
+      class="inline-block bg-primary text-black px-8 py-3 rounded-full font-semibold shadow-soft">
+      Explore Restaurants
     </a>
   </div>
 </section>
 
 <!-- ================= SEARCH ================= -->
-<section class="max-w-7xl mx-auto px-6 py-8">
-  <input type="text" id="searchInput"
-         placeholder="Search restaurants..."
-         class="w-full md:w-1/2 p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <input id="searchInput"
+    placeholder="Search restaurants..."
+    class="w-full md:w-1/2 p-4 rounded-full bg-darkCard border border-borderDark focus:ring-2 focus:ring-primary outline-none">
 </section>
 
 <!-- ================= CATEGORIES ================= -->
-<section class="max-w-7xl mx-auto px-6 py-6">
-  <h3 class="text-3xl font-bold mb-6 text-center">Popular Categories</h3>
-  <div class="flex flex-wrap justify-center gap-3" id="categoryFilter">
-    <button data-category="All" class="px-4 py-2 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition">All</button>
-    <button data-category="Pizza" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Pizza</button>
-    <button data-category="Burger" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Burger</button>
-    <button data-category="Noodles" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Noodles</button>
-    <button data-category="Healthy" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Healthy</button>
-    <button data-category="Dessert" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Dessert</button>
-    <button data-category="Mexican" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Mexican</button>
-    <button data-category="Chicken" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Chicken</button>
-    <button data-category="Salads" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Salads</button>
-    <button data-category="Italian" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Italian</button>
-    <button data-category="Indian" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Indian</button>
-    <button data-category="Chinese" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Chinese</button>
-    <button data-category="Japanese" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Japanese</button>
-    <button data-category="BBQ" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">BBQ</button>
-    <button data-category="Bakery" class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-orange-500 hover:text-white transition">Bakery</button>
+<section class="max-w-7xl mx-auto px-4">
+  <h3 class="text-2xl font-bold text-center mb-6">Popular Categories</h3>
+
+  <div id="categoryFilter" class="flex flex-wrap justify-center gap-3">
+    <button data-category="All" class="filter-btn bg-primary text-black">All</button>
+    <button data-category="Pizza" class="filter-btn">Pizza</button>
+    <button data-category="Burger" class="filter-btn">Burger</button>
+    <button data-category="Indian" class="filter-btn">Indian</button>
+    <button data-category="Chinese" class="filter-btn">Chinese</button>
+    <button data-category="Dessert" class="filter-btn">Dessert</button>
   </div>
 </section>
 
 <!-- ================= RESTAURANTS ================= -->
-<section class="max-w-7xl mx-auto px-6 py-10">
-  <h3 class="text-3xl font-bold mb-10 text-center">Top Restaurants Near You</h3>
-  <div id="restaurantGrid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-x-auto pb-4"></div>
-</section>
+<section class="max-w-7xl mx-auto px-4 py-14">
+  <h3 class="text-2xl font-bold text-center mb-10">
+    Top Restaurants Near You
+  </h3>
 
-<!-- ================= OUR ELEMENTS ================= -->
-<section class="bg-gray-50 py-16">
-  <div class="max-w-7xl mx-auto px-6">
-    <h3 class="text-3xl font-bold mb-10 text-center">Why Choose Us</h3>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition duration-300">
-        <div class="text-orange-500 text-5xl mb-4">🚀</div>
-        <h4 class="font-semibold text-xl mb-2">Fast Delivery</h4>
-        <p class="text-gray-500">Get your food delivered in less than 30 minutes anywhere in your city.</p>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition duration-300">
-        <div class="text-orange-500 text-5xl mb-4">🍽️</div>
-        <h4 class="font-semibold text-xl mb-2">Quality Food</h4>
-        <p class="text-gray-500">We partner only with verified restaurants to ensure high quality and hygiene.</p>
-      </div>
-      <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition duration-300">
-        <div class="text-orange-500 text-5xl mb-4">💳</div>
-        <h4 class="font-semibold text-xl mb-2">Secure Payment</h4>
-        <p class="text-gray-500">Multiple payment options including card, UPI, and cash on delivery.</p>
-      </div>
-    </div>
+  <div id="restaurantGrid"
+    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
   </div>
+
+  <p id="emptyState" class="hidden text-center text-gray-400 mt-12">
+    No restaurants found.
+  </p>
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer class="bg-gray-900 text-gray-400 py-10">
-  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-    <h1 class="text-orange-500 text-2xl font-bold mb-4 md:mb-0">FoodieX</h1>
-    <div class="flex gap-6 mb-4 md:mb-0">
-      <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+<!-- ================= ENTERPRISE FOOTER ================= -->
+<footer class="border-t border-borderDark bg-darkBg">
+  <div class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+
+    <!-- Brand -->
+    <div class="lg:col-span-2 space-y-4">
+      <h2 class="text-2xl font-bold text-primary tracking-wide">FoodieX</h2>
+      <p class="text-sm text-gray-400 leading-relaxed max-w-md">
+        FoodieX is a modern food-delivery platform built for speed, reliability,
+        and seamless customer experience. Discover restaurants, order instantly,
+        and enjoy fresh food delivered fast.
+      </p>
+
+      <!-- Social -->
+      <div class="flex gap-4 text-lg">
+        <a href="#" aria-label="Facebook" class="hover:text-primary transition">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" aria-label="Instagram" class="hover:text-primary transition">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" aria-label="Twitter" class="hover:text-primary transition">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn" class="hover:text-primary transition">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
     </div>
-    <p class="text-sm text-gray-400">© 2026 FoodieX. All rights reserved.</p>
+
+    <!-- Product -->
+    <div>
+      <h3 class="font-semibold text-white mb-4">Product</h3>
+      <ul class="space-y-3 text-sm text-gray-400">
+        <li><a class="hover:text-primary">Restaurants</a></li>
+        <li><a class="hover:text-primary">Pricing</a></li>
+        <li><a class="hover:text-primary">Offers</a></li>
+        <li><a class="hover:text-primary">Mobile App</a></li>
+      </ul>
+    </div>
+
+    <!-- Company -->
+    <div>
+      <h3 class="font-semibold text-white mb-4">Company</h3>
+      <ul class="space-y-3 text-sm text-gray-400">
+        <li><a class="hover:text-primary">About Us</a></li>
+        <li><a class="hover:text-primary">Careers</a></li>
+        <li><a class="hover:text-primary">Press</a></li>
+        <li><a class="hover:text-primary">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Legal -->
+    <div>
+      <h3 class="font-semibold text-white mb-4">Legal</h3>
+      <ul class="space-y-3 text-sm text-gray-400">
+        <li><a class="hover:text-primary">Privacy Policy</a></li>
+        <li><a class="hover:text-primary">Terms of Service</a></li>
+        <li><a class="hover:text-primary">Refund Policy</a></li>
+        <li><a class="hover:text-primary">Security</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-borderDark">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-gray-500">
+        © 2026 FoodieX Technologies Pvt. Ltd. All rights reserved.
+      </p>
+
+      <p class="text-xs text-gray-500">
+        Built with performance, scalability & security in mind.
+      </p>
+    </div>
   </div>
 </footer>
 
 <!-- ================= JS ================= -->
 <script>
-const restaurants = [
-  {name: "Italiano Pizza", category: "Pizza", rating: 4.5, img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
-  {name: "Burger Hub", category: "Burger", rating: 4.3, img: "https://images.unsplash.com/photo-1550547660-d9450f859349"},
-  {name: "Noodle House", category: "Noodles", rating: 4.4, img: "https://images.unsplash.com/photo-1603070307481-2c64e30c9fc1"},
-  {name: "Sushi Point", category: "Japanese", rating: 4.6, img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
-  {name: "Taco Fiesta", category: "Mexican", rating: 4.2, img: "https://images.unsplash.com/photo-1601924638867-3d0f0b7ed5d1"},
-  {name: "Veggie Delight", category: "Healthy", rating: 4.7, img: "https://images.unsplash.com/photo-1598514982447-02f0e1712dfb"},
-  {name: "Grill House", category: "BBQ", rating: 4.4, img: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90"},
-  {name: "Sweet Tooth", category: "Dessert", rating: 4.8, img: "https://images.unsplash.com/photo-1599785209707-9f3d0f95c8e5"},
-  // Add more unique restaurants as needed for 8+ cards per category
-];
+/* =====================================================
+   MOBILE NAVBAR
+===================================================== */
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+let menuOpen = false;
 
-// Render restaurants
-function renderRestaurants(category = "All", search = "") {
-  const grid = document.getElementById("restaurantGrid");
-  grid.innerHTML = "";
-  let filtered = restaurants.filter(r => (category === "All" || r.category === category) &&
-                                        r.name.toLowerCase().includes(search.toLowerCase()));
-  filtered.slice(0, 60).forEach(r => {
-    const div = document.createElement("div");
-    div.className = "bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col card-hover";
-    div.innerHTML = `
-      <img src="${r.img}" class="w-full h-48 object-cover">
-      <div class="p-6 flex flex-col flex-1">
-        <h4 class="font-semibold text-lg mb-1 text-gray-800">${r.name}</h4>
-        <p class="text-sm text-gray-500 mb-2">${r.category}</p>
-        <span class="text-green-600 font-semibold mb-4">⭐ ${r.rating}</span>
-        <a href="restaurant.html" class="mt-auto bg-orange-500 text-white py-2 rounded-lg text-center font-semibold hover:bg-orange-600 transition">Order Now</a>
-      </div>
-    `;
-    grid.appendChild(div);
+menuBtn.addEventListener("click", () => {
+  menuOpen = !menuOpen;
+  if (menuOpen) {
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+    menuBtn.innerHTML = '<i class="fas fa-xmark"></i>';
+  } else {
+    mobileMenu.style.maxHeight = "0px";
+    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    setTimeout(() => mobileMenu.classList.add("hidden"), 300);
+  }
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth >= 768) {
+    mobileMenu.classList.add("hidden");
+    mobileMenu.style.maxHeight = "0px";
+    menuOpen = false;
+    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  }
+});
+
+/* =====================================================
+   DATA GENERATION
+===================================================== */
+const imagePool = {
+  Pizza: [
+    "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+    "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  ],
+  Burger: [
+    "https://images.unsplash.com/photo-1550547660-d9450f859349",
+    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  ],
+  Indian: [
+    "https://images.unsplash.com/photo-1601050690597-df0568f70950",
+    "https://images.unsplash.com/photo-1589302168068-964664d93dc0"
+  ],
+  Chinese: [
+    "https://images.unsplash.com/photo-1544025162-d76694265947",
+    "https://images.unsplash.com/photo-1603133872878-684f208fb84b"
+  ],
+  Dessert: [
+    "https://images.unsplash.com/photo-1551024601-bec78aea704b",
+    "https://images.unsplash.com/photo-1514516870926-2065f1f6d6d4"
+  ]
+};
+
+const namePool = {
+  Pizza: ["Italiano", "Napoli", "Urban Slice"],
+  Burger: ["Burger Hub", "Smash House"],
+  Indian: ["Delhi Tadka", "Punjabi Dhaba"],
+  Chinese: ["Dragon Wok", "Red Bowl"],
+  Dessert: ["Sugar Rush", "Sweet Treats"]
+};
+
+const randomRating = () =>
+  (Math.random() * (4.9 - 4.1) + 4.1).toFixed(1);
+
+function generateRestaurants(count = 20) {
+  const list = [];
+  Object.keys(imagePool).forEach(cat => {
+    for (let i = 1; i <= count; i++) {
+      list.push({
+        id: `${cat}-${i}`,
+        name: `${namePool[cat][i % namePool[cat].length]} ${i}`,
+        category: cat,
+        rating: randomRating(),
+        img: imagePool[cat][i % imagePool[cat].length]
+      });
+    }
   });
+  return list;
 }
 
-// Initial render
-renderRestaurants();
+/* =====================================================
+   STATE
+===================================================== */
+const state = {
+  all: generateRestaurants(20), // 100 items
+  category: "All",
+  search: ""
+};
 
-// Filter buttons
-document.querySelectorAll("#categoryFilter button").forEach(btn => {
+/* =====================================================
+   ELEMENTS
+===================================================== */
+const grid = document.getElementById("restaurantGrid");
+const emptyState = document.getElementById("emptyState");
+const searchInput = document.getElementById("searchInput");
+const filterBtns = document.querySelectorAll(".filter-btn");
+
+/* =====================================================
+   RENDER
+===================================================== */
+function render() {
+  grid.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+
+  const filtered = state.all.filter(r =>
+    (state.category === "All" || r.category === state.category) &&
+    r.name.toLowerCase().includes(state.search)
+  );
+
+  emptyState.classList.toggle("hidden", filtered.length !== 0);
+
+  filtered.forEach(r => {
+    const card = document.createElement("article");
+    card.className =
+      "bg-darkCard border border-borderDark rounded-xl overflow-hidden card-hover";
+
+    card.innerHTML = `
+      <img loading="lazy" src="${r.img}" class="w-full h-36 object-cover" />
+      <div class="p-4 space-y-2">
+        <h4 class="font-semibold text-white">${r.name}</h4>
+        <p class="text-xs text-gray-400">${r.category}</p>
+        <span class="text-green-400 text-sm">⭐ ${r.rating}</span>
+        <button
+          onclick="openRestaurant('${r.name}')"
+          class="w-full mt-3 bg-primary text-black py-2 rounded-lg font-semibold hover:opacity-90 transition">
+          Order Now
+        </button>
+      </div>
+    `;
+    fragment.appendChild(card);
+  });
+
+  grid.appendChild(fragment);
+}
+
+/* =====================================================
+   FILTERS
+===================================================== */
+filterBtns.forEach(btn => {
+  btn.classList.add(
+    "px-4","py-2","rounded-full",
+    "bg-darkCard","hover:bg-primary",
+    "hover:text-black","transition"
+  );
+
   btn.addEventListener("click", () => {
-    document.querySelectorAll("#categoryFilter button").forEach(b => b.classList.remove("bg-orange-500","text-white"));
-    btn.classList.add("bg-orange-500","text-white");
-    renderRestaurants(btn.dataset.category, document.getElementById("searchInput").value);
+    filterBtns.forEach(b => b.classList.remove("bg-primary","text-black"));
+    btn.classList.add("bg-primary","text-black");
+    state.category = btn.dataset.category;
+    render();
   });
 });
 
-// Search input
-document.getElementById("searchInput").addEventListener("input", (e) => {
-  const activeCategoryBtn = document.querySelector("#categoryFilter button.bg-orange-500")?.dataset.category || "All";
-  renderRestaurants(activeCategoryBtn, e.target.value);
+/* =====================================================
+   SEARCH
+===================================================== */
+let searchTimer;
+searchInput.addEventListener("input", e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    state.search = e.target.value.toLowerCase();
+    render();
+  }, 250);
 });
+
+/* =====================================================
+   NAV
+===================================================== */
+function openRestaurant(name) {
+  localStorage.setItem("selectedRestaurant", name);
+  window.location.href = "restaurant.html";
+}
+
+/* =====================================================
+   INIT
+===================================================== */
+render();
+console.log("FoodieX loaded:", state.all.length, "restaurants");
 </script>
 
 </body>

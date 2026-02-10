@@ -4,9 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FoodieX | Restaurant Menu</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #16a34a;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    animation: fadeInOut 3s forwards;
+  }
+  @keyframes fadeInOut {
+    0% {opacity: 0; transform: translateY(10px);}
+    10% {opacity: 1; transform: translateY(0);}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
+  }
+</style>
 </head>
+
 <body class="bg-gray-50 font-sans">
 
 <!-- ================= NAVBAR ================= -->
@@ -14,10 +35,10 @@
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <h1 class="text-3xl font-bold text-orange-500">FoodieX</h1>
     <div class="hidden md:flex gap-6 font-medium">
-      <a href="index.html" class="hover:text-orange-500 transition">Home</a>
-      <a href="restaurants.html" class="hover:text-orange-500 transition">Restaurants</a>
-      <a href="cart.html" class="hover:text-orange-500 transition">Cart</a>
-      <a href="auth.html" class="hover:text-orange-500 transition">Login</a>
+      <a href="index.html" class="hover:text-orange-500">Home</a>
+      <a href="restaurants.html" class="hover:text-orange-500">Restaurants</a>
+      <a href="cart.html" class="hover:text-orange-500">Cart</a>
+      <a href="auth.html" class="hover:text-orange-500">Login</a>
     </div>
   </div>
 </nav>
@@ -25,80 +46,128 @@
 <!-- ================= HERO ================= -->
 <section class="bg-orange-500 h-64 flex items-center justify-center text-center text-white">
   <div>
-    <h2 id="restaurantName" class="text-4xl font-bold">Restaurant Name</h2>
-    <p id="restaurantCategory" class="text-lg mt-2">Category • Rating</p>
+    <h2 id="restaurantName" class="text-4xl font-bold">Restaurant</h2>
+    <p id="restaurantCategory" class="text-lg mt-2 opacity-90"></p>
   </div>
 </section>
 
 <!-- ================= MENU ================= -->
 <section class="max-w-7xl mx-auto px-6 py-16">
   <h3 class="text-3xl font-bold mb-10 text-center">Menu</h3>
+
   <div id="menuGrid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-    <!-- Food items injected by JS -->
+    <!-- injected -->
   </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
 <footer class="bg-gray-900 text-gray-400 py-10">
   <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-    <h1 class="text-orange-500 text-2xl font-bold mb-4 md:mb-0">FoodieX</h1>
-    <div class="flex gap-6 mb-4 md:mb-0">
-      <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-    </div>
-    <p class="text-sm text-gray-400">© 2026 FoodieX. All rights reserved.</p>
+    <h1 class="text-orange-500 text-2xl font-bold">FoodieX</h1>
+    <p class="text-sm">© 2026 FoodieX. All rights reserved.</p>
   </div>
 </footer>
 
 <script>
-// Sample menu for demonstration
-const menus = {
-  "Italiano Pizza": [
-    {name: "Cheese Pizza", desc: "Classic mozzarella", price: 299, img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
-    {name: "Veg Pizza", desc: "Loaded with veggies", price: 249, img: "https://images.unsplash.com/photo-1603070307481-2c64e30c9fc1"},
-    {name: "Pepperoni Pizza", desc: "Spicy pepperoni", price: 349, img: "https://images.unsplash.com/photo-1601924638867-3d0f0b7ed5d1"},
-    {name: "Margherita", desc: "Fresh tomato & basil", price: 279, img: "https://images.unsplash.com/photo-1598514982447-02f0e1712dfb"}
-  ],
-  "Burger Hub": [
-    {name: "Classic Burger", desc: "Beef patty with cheese", price: 199, img: "https://images.unsplash.com/photo-1550547660-d9450f859349"},
-    {name: "Veggie Burger", desc: "Loaded with veggies", price: 179, img: "https://images.unsplash.com/photo-1603070307481-2c64e30c9fc1"},
-    {name: "Cheese Burger", desc: "Double cheese", price: 229, img: "https://images.unsplash.com/photo-1601924638867-3d0f0b7ed5d1"}
-  ]
+/* ================= CONFIG ================= */
+const CART_KEY = "fx_cart";
+const USER_KEY = "fx_user";
+
+/* ================= DATA ================= */
+const restaurants = {
+  "Italiano Pizza": {
+    category: "Italian • ⭐ 4.6",
+    menu: [
+      {id:1, name:"Cheese Pizza", desc:"Classic mozzarella", price:299, img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
+      {id:2, name:"Veg Pizza", desc:"Loaded with veggies", price:249, img:"https://images.unsplash.com/photo-1548365328-9f547f8c4c3d"},
+      {id:3, name:"Pepperoni Pizza", desc:"Spicy pepperoni", price:349, img:"https://images.unsplash.com/photo-1601924638867-3d0f0b7ed5d1"},
+      {id:4, name:"Margherita", desc:"Tomato & basil", price:279, img:"https://images.unsplash.com/photo-1598514982447-02f0e1712dfb"}
+    ]
+  },
+  "Burger Hub": {
+    category: "Fast Food • ⭐ 4.4",
+    menu: [
+      {id:5, name:"Classic Burger", desc:"Juicy beef patty", price:199, img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
+      {id:6, name:"Veg Burger", desc:"Crispy veggie patty", price:179, img:"https://images.unsplash.com/photo-1603064752734-4c48eff53d05"},
+      {id:7, name:"Cheese Burger", desc:"Extra cheese", price:229, img:"https://images.unsplash.com/photo-1601924638867-3d0f0b7ed5d1"}
+    ]
+  }
 };
 
-// Get restaurant from query param (or default)
+/* ================= HELPERS ================= */
+function getUser() {
+  return JSON.parse(localStorage.getItem(USER_KEY));
+}
+
+function getCart() {
+  return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function toast(msg) {
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.innerText = msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
+}
+
+/* ================= LOAD RESTAURANT ================= */
 const params = new URLSearchParams(window.location.search);
-const restaurantName = params.get("name") || "Italiano Pizza";
-const menu = menus[restaurantName] || [];
+const name = params.get("name") || "Italiano Pizza";
+const restaurant = restaurants[name];
 
-// Set restaurant info
-document.getElementById("restaurantName").textContent = restaurantName;
-document.getElementById("restaurantCategory").textContent = menu.length ? menu[0].desc : "";
+document.getElementById("restaurantName").innerText = name;
+document.getElementById("restaurantCategory").innerText = restaurant.category;
 
-// Render menu
-const menuGrid = document.getElementById("menuGrid");
-menu.forEach(item => {
-  const div = document.createElement("div");
-  div.className = "bg-white rounded-xl shadow hover:shadow-lg transition flex flex-col overflow-hidden";
-  div.innerHTML = `
-    <img src="${item.img}" class="w-full h-48 object-cover">
+/* ================= RENDER MENU ================= */
+const grid = document.getElementById("menuGrid");
+
+restaurant.menu.forEach(item => {
+  const card = document.createElement("div");
+  card.className = "bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col";
+
+  card.innerHTML = `
+    <img src="${item.img}" loading="lazy"
+      onerror="this.src='https://via.placeholder.com/400x300?text=FoodieX'"
+      class="h-48 w-full object-cover">
+
     <div class="p-6 flex flex-col flex-1">
-      <h4 class="font-semibold text-lg mb-1">${item.name}</h4>
+      <h4 class="font-semibold text-lg">${item.name}</h4>
       <p class="text-sm text-gray-500 mb-2">${item.desc}</p>
-      <span class="font-bold mb-4">₹${item.price}</span>
-      <button onclick="addToCart('${item.name}', ${item.price})" class="mt-auto bg-orange-500 text-white py-2 rounded-lg font-semibold hover:bg-orange-600 transition">Add to Cart</button>
+      <span class="font-bold text-lg mb-4">₹${item.price}</span>
+
+      <button onclick="addToCart(${item.id})"
+        class="mt-auto bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg font-semibold">
+        Add to Cart
+      </button>
     </div>
   `;
-  menuGrid.appendChild(div);
+  grid.appendChild(card);
 });
 
-// Simple Add to Cart (store in localStorage)
-function addToCart(name, price) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push({name, price, quantity: 1});
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert(`${name} added to cart`);
+/* ================= CART ================= */
+function addToCart(id) {
+  if (!getUser()) {
+    window.location.href = "auth.html";
+    return;
+  }
+
+  const cart = getCart();
+  const item = restaurant.menu.find(i => i.id === id);
+  const existing = cart.find(c => c.id === id);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({...item, qty: 1});
+  }
+
+  saveCart(cart);
+  toast("Item added to cart");
 }
 </script>
 
