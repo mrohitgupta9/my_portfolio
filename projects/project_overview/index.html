@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Screenshots</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#2563EB',
+            bgDark: '#0F172A',
+            cardDark: '#1E293B',
+          },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="bg-bgDark text-gray-200 min-h-screen flex items-center justify-center p-4">
+
+  <!-- Project Card -->
+  <div class="bg-cardDark rounded-2xl shadow-xl max-w-4xl w-full p-6 space-y-6">
+
+    <h1 class="text-3xl font-bold text-center">My Awesome Project</h1>
+    <p class="text-gray-300 text-center">
+      Click the button below to view screenshots of this project.
+    </p>
+
+    <!-- Button -->
+    <div class="text-center">
+      <button id="showCarouselBtn"
+        class="px-6 py-3 bg-primary text-bgDark font-semibold rounded-lg shadow hover:bg-secondary transition">
+        View Project Screenshots
+      </button>
+    </div>
+
+    <!-- Carousel (FIXED HEIGHT) -->
+    <div id="carouselContainer"
+      class="hidden relative w-full aspect-video overflow-hidden rounded-xl bg-black">
+
+      <div id="carousel"
+        class="flex h-full transition-transform duration-500">
+
+        <img src="assets/project (1).png"
+          class="w-full h-full flex-shrink-0 object-contain"
+          alt="Screenshot 1">
+
+        <img src="assets/project (2).png"
+          class="w-full h-full flex-shrink-0 object-contain"
+          alt="Screenshot 2">
+
+        <img src="assets/project (3).png"
+          class="w-full h-full flex-shrink-0 object-contain"
+          alt="Screenshot 3">
+        <img src="assets/project (4).png"
+          class="w-full h-full flex-shrink-0 object-contain"
+          alt="Screenshot 3">
+        <img src="assets/project (5).png"
+          class="w-full h-full flex-shrink-0 object-contain"
+          alt="Screenshot 3">
+        <img src="assets/project (6).png"
+          class="w-full h-full flex-shrink-0 object-contain"
+          alt="Screenshot 3">
+        <img src="assets/project (7).png"
+          class="w-full h-full flex-shrink-0 object-contain"
+          alt="Screenshot 3">
+      </div>
+
+      <!-- Controls -->
+      <button id="prev"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black text-white p-3 rounded-full">
+        &#10094;
+      </button>
+
+      <button id="next"
+        class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black text-white p-3 rounded-full">
+        &#10095;
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    const showBtn = document.getElementById('showCarouselBtn');
+    const carouselContainer = document.getElementById('carouselContainer');
+    const carousel = document.getElementById('carousel');
+    const slides = carousel.children;
+
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+
+    let index = 0;
+
+    // Show carousel (NO HEIGHT JUMP)
+    showBtn.addEventListener('click', () => {
+      carouselContainer.classList.remove('hidden');
+      showBtn.classList.add('hidden');
+    });
+
+    function showSlide(i) {
+      if (i < 0) index = slides.length - 1;
+      else if (i >= slides.length) index = 0;
+      else index = i;
+
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    prev.addEventListener('click', () => showSlide(index - 1));
+    next.addEventListener('click', () => showSlide(index + 1));
+  </script>
+
+</body>
+</html>
