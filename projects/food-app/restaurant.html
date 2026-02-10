@@ -1,174 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FoodieX | Restaurant Menu</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Menu | FoodieX (order)</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#F97316",
+        darkBg: "#020617",
+        darkCard: "#020617",
+        borderDark: "#1e293b",
+      }
+    }
+  }
+}
+</script>
+
 <style>
-  .toast {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #16a34a;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 8px;
-    animation: fadeInOut 3s forwards;
-  }
-  @keyframes fadeInOut {
-    0% {opacity: 0; transform: translateY(10px);}
-    10% {opacity: 1; transform: translateY(0);}
-    90% {opacity: 1;}
-    100% {opacity: 0;}
-  }
+.card-hover {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.45);
+}
 </style>
 </head>
 
-<body class="bg-gray-50 font-sans">
+<body class="bg-darkBg text-gray-200 font-sans">
 
 <!-- ================= NAVBAR ================= -->
-<nav class="bg-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-3xl font-bold text-orange-500">FoodieX</h1>
-    <div class="hidden md:flex gap-6 font-medium">
-      <a href="index.html" class="hover:text-orange-500">Home</a>
-      <a href="restaurants.html" class="hover:text-orange-500">Restaurants</a>
-      <a href="cart.html" class="hover:text-orange-500">Cart</a>
-      <a href="auth.html" class="hover:text-orange-500">Login</a>
+<header class="sticky top-0 z-50 bg-darkBg/80 backdrop-blur-xl border-b border-borderDark">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
+
+    <a href="restaurants.html" class="flex items-center gap-2 text-gray-300 hover:text-primary">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back</span>
+    </a>
+
+    <span class="text-xl font-extrabold text-primary">FoodieX</span>
+
+    <button onclick="openCart()" class="relative hover:text-primary">
+      <i class="fas fa-shopping-cart text-lg"></i>
+      <span id="cartCount"
+        class="absolute -top-2 -right-2 bg-primary text-black text-[10px] px-1.5 rounded-full">
+        0
+      </span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= HEADER ================= -->
+<section class="max-w-6xl mx-auto px-4 py-10">
+  <h2 id="restaurantName"
+    class="text-3xl md:text-4xl font-extrabold text-white mb-2">
+  </h2>
+  <p class="text-gray-400">
+    Choose your favorite dishes and add to cart
+  </p>
+</section>
+
+<!-- ================= MENU LIST ================= -->
+<section class="max-w-6xl mx-auto px-4 pb-16">
+  <div id="menuList"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+  </div>
+</section>
+
+<!-- ================= CART MODAL ================= -->
+<div id="cartModal"
+  class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center">
+
+  <div class="bg-darkCard border border-borderDark p-6 rounded-xl w-full max-w-md">
+    <h3 class="text-xl font-bold mb-4 text-white">Your Cart</h3>
+
+    <div id="cartItems" class="space-y-3 text-sm"></div>
+
+    <div class="flex justify-between mt-4 font-semibold border-t border-borderDark pt-3">
+      <span>Total</span>
+      <span class="text-primary">₹<span id="cartTotal">0</span></span>
     </div>
-  </div>
-</nav>
 
-<!-- ================= HERO ================= -->
-<section class="bg-orange-500 h-64 flex items-center justify-center text-center text-white">
-  <div>
-    <h2 id="restaurantName" class="text-4xl font-bold">Restaurant</h2>
-    <p id="restaurantCategory" class="text-lg mt-2 opacity-90"></p>
-  </div>
-</section>
-
-<!-- ================= MENU ================= -->
-<section class="max-w-7xl mx-auto px-6 py-16">
-  <h3 class="text-3xl font-bold mb-10 text-center">Menu</h3>
-
-  <div id="menuGrid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-    <!-- injected -->
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer class="bg-gray-900 text-gray-400 py-10">
-  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-    <h1 class="text-orange-500 text-2xl font-bold">FoodieX</h1>
-    <p class="text-sm">© 2026 FoodieX. All rights reserved.</p>
-  </div>
-</footer>
-
-<script>
-/* ================= CONFIG ================= */
-const CART_KEY = "fx_cart";
-const USER_KEY = "fx_user";
-
-/* ================= DATA ================= */
-const restaurants = {
-  "Italiano Pizza": {
-    category: "Italian • ⭐ 4.6",
-    menu: [
-      {id:1, name:"Cheese Pizza", desc:"Classic mozzarella", price:299, img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
-      {id:2, name:"Veg Pizza", desc:"Loaded with veggies", price:249, img:"https://images.unsplash.com/photo-1548365328-9f547f8c4c3d"},
-      {id:3, name:"Pepperoni Pizza", desc:"Spicy pepperoni", price:349, img:"https://images.unsplash.com/photo-1601924638867-3d0f0b7ed5d1"},
-      {id:4, name:"Margherita", desc:"Tomato & basil", price:279, img:"https://images.unsplash.com/photo-1598514982447-02f0e1712dfb"}
-    ]
-  },
-  "Burger Hub": {
-    category: "Fast Food • ⭐ 4.4",
-    menu: [
-      {id:5, name:"Classic Burger", desc:"Juicy beef patty", price:199, img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
-      {id:6, name:"Veg Burger", desc:"Crispy veggie patty", price:179, img:"https://images.unsplash.com/photo-1603064752734-4c48eff53d05"},
-      {id:7, name:"Cheese Burger", desc:"Extra cheese", price:229, img:"https://images.unsplash.com/photo-1601924638867-3d0f0b7ed5d1"}
-    ]
-  }
-};
-
-/* ================= HELPERS ================= */
-function getUser() {
-  return JSON.parse(localStorage.getItem(USER_KEY));
-}
-
-function getCart() {
-  return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-}
-
-function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-}
-
-function toast(msg) {
-  const t = document.createElement("div");
-  t.className = "toast";
-  t.innerText = msg;
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),3000);
-}
-
-/* ================= LOAD RESTAURANT ================= */
-const params = new URLSearchParams(window.location.search);
-const name = params.get("name") || "Italiano Pizza";
-const restaurant = restaurants[name];
-
-document.getElementById("restaurantName").innerText = name;
-document.getElementById("restaurantCategory").innerText = restaurant.category;
-
-/* ================= RENDER MENU ================= */
-const grid = document.getElementById("menuGrid");
-
-restaurant.menu.forEach(item => {
-  const card = document.createElement("div");
-  card.className = "bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col";
-
-  card.innerHTML = `
-    <img src="${item.img}" loading="lazy"
-      onerror="this.src='https://via.placeholder.com/400x300?text=FoodieX'"
-      class="h-48 w-full object-cover">
-
-    <div class="p-6 flex flex-col flex-1">
-      <h4 class="font-semibold text-lg">${item.name}</h4>
-      <p class="text-sm text-gray-500 mb-2">${item.desc}</p>
-      <span class="font-bold text-lg mb-4">₹${item.price}</span>
-
-      <button onclick="addToCart(${item.id})"
-        class="mt-auto bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg font-semibold">
-        Add to Cart
+    <div class="flex gap-3 mt-5">
+      <button onclick="closeCart()"
+        class="w-1/2 border border-borderDark py-2 rounded-lg hover:bg-borderDark">
+        Cancel
+      </button>
+      <button onclick="placeOrder()"
+        class="w-1/2 bg-primary text-black py-2 rounded-lg font-semibold">
+        Place Order
       </button>
     </div>
+  </div>
+</div>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="js/storage.js"></script>
+<script src="js/seed.js"></script>
+<script src="js/cart.js"></script>
+
+<script>
+/* ================= LOAD RESTAURANT ================= */
+const params = new URLSearchParams(window.location.search);
+const restaurantId = params.get("id");
+
+const restaurants = Storage.get("restaurants");
+const restaurant = restaurants.find(r => r.id === restaurantId);
+
+document.getElementById("restaurantName").innerText = restaurant.name;
+
+const menuList = document.getElementById("menuList");
+
+/* ================= RENDER MENU ================= */
+restaurant.menu.forEach(item => {
+  const div = document.createElement("div");
+  div.className = "bg-darkCard border border-borderDark rounded-xl p-4 card-hover flex justify-between items-center";
+
+  div.innerHTML = `
+    <div>
+      <h4 class="font-semibold text-white">${item.name}</h4>
+      <p class="text-sm text-gray-400">₹${item.price}</p>
+    </div>
+    <button onclick="addToCart('${restaurant.id}','${item.id}')"
+      class="bg-primary text-black px-4 py-2 rounded-lg text-sm font-semibold">
+      Add
+    </button>
   `;
-  grid.appendChild(card);
+  menuList.appendChild(div);
 });
 
-/* ================= CART ================= */
-function addToCart(id) {
-  if (!getUser()) {
-    window.location.href = "auth.html";
-    return;
-  }
-
-  const cart = getCart();
-  const item = restaurant.menu.find(i => i.id === id);
-  const existing = cart.find(c => c.id === id);
-
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({...item, qty: 1});
-  }
-
-  saveCart(cart);
-  toast("Item added to cart");
-}
+/* ================= INIT CART COUNT ================= */
+updateCartCount();
 </script>
 
 </body>

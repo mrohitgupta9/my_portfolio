@@ -1,84 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cart | FoodieX</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Your Cart | FoodieX</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 font-sans">
-
-<!-- NAVBAR -->
-<nav class="bg-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-3xl font-bold text-orange-500">FoodieX</h1>
-    <div class="hidden md:flex gap-6 font-medium">
-      <a href="index.html" class="hover:text-orange-500 transition">Home</a>
-      <a href="restaurants.html" class="hover:text-orange-500 transition">Restaurants</a>
-      <a href="cart.html" class="hover:text-orange-500 transition">Cart</a>
-      <a href="auth.html" class="hover:text-orange-500 transition">Login</a>
-    </div>
-  </div>
-</nav>
-
-<section class="max-w-7xl mx-auto px-6 py-12">
-  <h2 class="text-3xl font-bold mb-6 text-center">Your Cart</h2>
-
-  <div id="cartItems" class="space-y-4"></div>
-
-  <div id="totalSection" class="mt-6 text-right text-xl font-bold"></div>
-</section>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
 <script>
-  const cartItemsDiv = document.getElementById('cartItems');
-  const totalSection = document.getElementById('totalSection');
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#F97316",
+        darkBg: "#020617",
+        darkCard: "#020617",
+        borderDark: "#1e293b",
+      }
+    }
+  }
+}
+</script>
+</head>
 
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+<body class="bg-darkBg text-gray-200 font-sans">
 
-  function renderCart() {
-    cartItemsDiv.innerHTML = '';
-    let total = 0;
+<!-- ================= NAVBAR ================= -->
+<header class="sticky top-0 z-50 bg-darkBg/80 backdrop-blur-xl border-b border-borderDark">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
 
-    cart.forEach((item, index) => {
-      total += item.price * item.qty;
+    <a href="restaurants.html" class="flex items-center gap-2 hover:text-primary">
+      <i class="fas fa-arrow-left"></i>
+      <span>Continue Shopping</span>
+    </a>
 
-      const div = document.createElement('div');
-      div.className = 'bg-white p-4 rounded shadow flex justify-between items-center';
-      div.innerHTML = `
-        <div>
-          <h4 class="font-semibold">${item.name}</h4>
-          <p class="text-gray-500">₹${item.price} x ${item.qty}</p>
-        </div>
-        <div class="flex gap-2 items-center">
-          <button class="bg-red-500 text-white px-2 py-1 rounded remove-item">-</button>
-          <span>${item.qty}</span>
-          <button class="bg-green-500 text-white px-2 py-1 rounded add-item">+</button>
-        </div>
-      `;
-      cartItemsDiv.appendChild(div);
+    <span class="text-xl font-extrabold text-primary">FoodieX</span>
 
-      // Add event listeners
-      div.querySelector('.remove-item').addEventListener('click', () => {
-        if (item.qty > 1) {
-          item.qty -= 1;
-        } else {
-          cart.splice(index, 1);
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        renderCart();
-      });
+    <span class="text-sm text-gray-400">Cart</span>
+  </div>
+</header>
 
-      div.querySelector('.add-item').addEventListener('click', () => {
-        item.qty += 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        renderCart();
-      });
-    });
+<!-- ================= CART PAGE ================= -->
+<section class="max-w-5xl mx-auto px-4 py-10">
 
-    totalSection.textContent = `Total: ₹${total}`;
+  <h1 class="text-3xl font-extrabold mb-6">Your Cart</h1>
+
+  <div id="emptyCart"
+    class="hidden text-center text-gray-400 py-20">
+    Your cart is empty 🍽️
+  </div>
+
+  <div id="cartContainer"
+    class="grid md:grid-cols-3 gap-6">
+
+    <!-- CART ITEMS -->
+    <div class="md:col-span-2 space-y-4" id="cartItems"></div>
+
+    <!-- SUMMARY -->
+    <div class="bg-darkCard border border-borderDark rounded-xl p-5 h-fit">
+      <h3 class="font-semibold text-lg mb-4">Order Summary</h3>
+
+      <div class="flex justify-between text-sm mb-2">
+        <span>Items Total</span>
+        <span>₹<span id="cartTotal">0</span></span>
+      </div>
+
+      <div class="flex justify-between text-sm mb-2">
+        <span>Delivery</span>
+        <span class="text-green-400">FREE</span>
+      </div>
+
+      <div class="border-t border-borderDark my-3"></div>
+
+      <div class="flex justify-between font-bold text-lg">
+        <span>Payable</span>
+        <span class="text-primary">₹<span id="cartPayable">0</span></span>
+      </div>
+
+      <button onclick="placeOrder()"
+        class="w-full mt-5 bg-primary text-black py-3 rounded-lg font-semibold">
+        Place Order
+      </button>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="js/storage.js"></script>
+<script src="js/cart.js"></script>
+
+<script>
+/* ================= RENDER CART ================= */
+function renderCartPage() {
+  const cart = Storage.get("cart") || [];
+  const itemsDiv = document.getElementById("cartItems");
+  const empty = document.getElementById("emptyCart");
+  const container = document.getElementById("cartContainer");
+
+  itemsDiv.innerHTML = "";
+
+  if (cart.length === 0) {
+    empty.classList.remove("hidden");
+    container.classList.add("hidden");
+    return;
   }
 
-  renderCart();
+  empty.classList.add("hidden");
+  container.classList.remove("hidden");
+
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.qty;
+
+    itemsDiv.innerHTML += `
+      <div class="bg-darkCard border border-borderDark rounded-xl p-4 flex justify-between items-center">
+        <div>
+          <h4 class="font-semibold text-white">${item.name}</h4>
+          <p class="text-sm text-gray-400">₹${item.price}</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="updateQty('${item.id}', -1)"
+            class="px-3 py-1 border border-borderDark rounded">−</button>
+
+          <span>${item.qty}</span>
+
+          <button onclick="updateQty('${item.id}', 1)"
+            class="px-3 py-1 border border-borderDark rounded">+</button>
+
+          <button onclick="removeItem('${item.id}')"
+            class="ml-3 text-red-400 hover:text-red-500">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById("cartTotal").innerText = total;
+  document.getElementById("cartPayable").innerText = total;
+}
+
+/* ================= QTY HANDLERS ================= */
+function updateQty(id, change) {
+  const cart = Storage.get("cart");
+  const item = cart.find(i => i.id === id);
+
+  item.qty += change;
+  if (item.qty <= 0) {
+    removeItem(id);
+    return;
+  }
+
+  Storage.set("cart", cart);
+  renderCartPage();
+}
+
+function removeItem(id) {
+  let cart = Storage.get("cart");
+  cart = cart.filter(i => i.id !== id);
+  Storage.set("cart", cart);
+  renderCartPage();
+}
+
+/* ================= PLACE ORDER ================= */
+function placeOrder() {
+  const cart = Storage.get("cart") || [];
+  if (cart.length === 0) return;
+
+  // Get restaurant name (from first item)
+  const restaurantName = cart[0].restaurant;
+
+  // Get old orders
+  const orders = Storage.get("orders") || [];
+
+  // Create new order
+  const newOrder = {
+    id: "ORD" + Date.now(),
+    restaurant: restaurantName,
+    items: cart,
+    status: "Delivered",
+    date: new Date().toLocaleString()
+  };
+
+  // Save order
+  orders.push(newOrder);
+  Storage.set("orders", orders);
+
+  // Clear cart
+  Storage.set("cart", []);
+
+  // Redirect
+  window.location.href = "orders.html";
+}
+function addToCart(restaurantId, itemId) {
+  const restaurants = Storage.get("restaurants");
+  const restaurant = restaurants.find(r => r.id === restaurantId);
+  const item = restaurant.menu.find(i => i.id === itemId);
+
+  let cart = Storage.get("cart") || [];
+
+  const existing = cart.find(c => c.id === itemId);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      qty: 1,
+      restaurant: restaurant.name
+    });
+  }
+
+  Storage.set("cart", cart);
+  updateCartCount();
+}
+renderCartPage();
 </script>
 
 </body>

@@ -1,143 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Restaurants | FoodieX</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#F97316",
+        darkBg: "#020617",
+        darkCard: "#020617",
+        borderDark: "#1e293b",
+      },
+      boxShadow: {
+        soft: "0 10px 30px rgba(0,0,0,0.35)",
+      },
+    },
+  },
+};
+</script>
+
 <style>
-  .fade-slide {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all .5s ease;
-  }
-  .fade-slide.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.45);
+}
 </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-darkBg text-gray-200 font-sans antialiased">
 
-<!-- ================= HERO ================= -->
-<section class="relative h-[320px] flex items-center justify-center text-center mb-14">
-  <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-       class="absolute inset-0 w-full h-full object-cover brightness-50">
-  <div class="relative z-10 text-white max-w-2xl px-6">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover Restaurants</h1>
-    <p class="text-lg opacity-90">Order from the best places near you</p>
+<!-- ================= NAVBAR ================= -->
+<header class="sticky top-0 z-50 bg-darkBg/80 backdrop-blur-xl border-b border-borderDark">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+    <span class="text-2xl font-extrabold text-primary">FoodieX</span>
+
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+      <a href="index.html" class="hover:text-primary">Home</a>
+      <a href="restaurants.html" class="text-primary">Restaurants</a>
+      <a href="orders.html" class="hover:text-primary">Orders</a>
+
+      <button class="relative">
+        <i class="fas fa-shopping-cart text-lg"></i>
+        <span class="absolute -top-2 -right-2 bg-primary text-black text-[10px] px-1.5 rounded-full">3</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= PAGE HEADER ================= -->
+<section class="relative h-[460px] flex items-center justify-center text-center">
+  <img
+    src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1600&q=80"
+    class="absolute inset-0 w-full h-full object-cover brightness-[0.35]"
+    loading="lazy"
+  />
+
+  <div class="relative z-10 max-w-2xl px-4 space-y-6">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+      Food Delivered <span class="text-primary">Fast & Fresh</span>
+    </h2>
+    <p class="text-gray-300 text-lg">
+      Discover the best restaurants near you and order in seconds.
+    </p>
+    <a href="#restaurantGrid"
+      class="inline-block bg-primary text-black px-8 py-3 rounded-full font-semibold shadow-soft">
+      Explore Restaurants
+    </a>
   </div>
 </section>
 
-<!-- ================= FILTERS ================= -->
-<section class="max-w-7xl mx-auto px-6 mb-10">
-  <div class="flex flex-col md:flex-row gap-4 justify-between">
-    <input
-      id="searchInput"
-      placeholder="Search restaurants..."
-      class="w-full md:w-1/2 px-4 py-3 rounded-xl border focus:ring-2 focus:ring-orange-500 outline-none">
+<!-- ================= SEARCH ================= -->
+<section class="max-w-7xl mx-auto px-4 pb-8">
+  <input
+    id="searchInput"
+    placeholder="Search restaurant name..."
+    class="w-full md:w-1/2 p-4 rounded-full bg-darkCard border border-borderDark focus:ring-2 focus:ring-primary outline-none"
+  />
+</section>
 
-    <div id="categoryFilter" class="flex flex-wrap gap-2">
-      <button data-category="All" class="filter-btn active">All</button>
-      <button data-category="Pizza" class="filter-btn">Pizza</button>
-      <button data-category="Burger" class="filter-btn">Burger</button>
-      <button data-category="Indian" class="filter-btn">Indian</button>
-      <button data-category="Japanese" class="filter-btn">Japanese</button>
-      <button data-category="Dessert" class="filter-btn">Dessert</button>
-    </div>
+<!-- ================= CATEGORY FILTER ================= -->
+<section class="max-w-7xl mx-auto px-4 pb-10">
+  <div id="categoryFilter" class="flex flex-wrap justify-center gap-3">
+    <button data-category="All" class="filter-btn bg-primary text-black">All</button>
+    <button data-category="Pizza" class="filter-btn">Pizza</button>
+    <button data-category="Burger" class="filter-btn">Burger</button>
+    <button data-category="Indian" class="filter-btn">Indian</button>
+    <button data-category="Chinese" class="filter-btn">Chinese</button>
+    <button data-category="Dessert" class="filter-btn">Dessert</button>
   </div>
 </section>
 
-<!-- ================= GRID ================= -->
-<section class="max-w-7xl mx-auto px-6 pb-16">
-  <div id="emptyState" class="hidden text-center py-20 text-gray-500">
-    No restaurants found 🍽️
+<!-- ================= RESTAURANT GRID ================= -->
+<section class="max-w-7xl mx-auto px-4 pb-16">
+  <div id="restaurantGrid"
+    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
   </div>
 
-  <div id="restaurantGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  <p id="emptyState" class="hidden text-center text-gray-400 mt-12">
+    No restaurants found.
+  </p>
 </section>
 
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-borderDark bg-darkBg">
+  <div class="max-w-7xl mx-auto px-6 py-10 text-center text-sm text-gray-500">
+    © 2026 FoodieX Technologies Pvt. Ltd. All rights reserved.
+  </div>
+</footer>
+
+<!-- ================= JS ================= -->
 <script>
-/* ================= STYLES ================= */
-document.querySelectorAll(".filter-btn").forEach(btn=>{
-  btn.className =
-   "filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 font-medium hover:bg-orange-500 hover:text-white transition";
-});
-document.querySelector(".filter-btn").classList.add("bg-orange-500","text-white");
-
 /* ================= DATA ================= */
-const restaurants = [
-  {name:"Italiano Pizza", category:"Pizza", rating:4.6, img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
-  {name:"Pizza Paradise", category:"Pizza", rating:4.5, img:"https://images.unsplash.com/photo-1603070307481-2c64e30c9fc1"},
-  {name:"Burger Hub", category:"Burger", rating:4.4, img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
-  {name:"Curry Palace", category:"Indian", rating:4.7, img:"https://images.unsplash.com/photo-1604908177521-7b0319c826c7"},
-  {name:"Ramen Realm", category:"Japanese", rating:4.8, img:"https://images.unsplash.com/photo-1606107557192-89ef37e6e3bb"},
-  {name:"Dessert Dreams", category:"Dessert", rating:4.9, img:"https://images.unsplash.com/photo-1600712219331-0c2b3f47e7ea"}
+const data = [
+  { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+  { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+  { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+  { name: "Smash House", category: "Burger", rating: "4.3", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+  { name: "Delhi Tadka", category: "Indian", rating: "4.7", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" },
+  { name: "Punjabi Dhaba", category: "Indian", rating: "4.6", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0" },
+  { name: "Dragon Wok", category: "Chinese", rating: "4.4", img: "https://images.unsplash.com/photo-1544025162-d76694265947" },
+  { name: "Sweet Treats", category: "Dessert", rating: "4.8", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
 ];
 
+const state = { category: "All", search: "" };
+
+const grid = document.getElementById("restaurantGrid");
+const emptyState = document.getElementById("emptyState");
+const searchInput = document.getElementById("searchInput");
+
 /* ================= RENDER ================= */
-function render(category="All", search="") {
-  const grid = document.getElementById("restaurantGrid");
-  const empty = document.getElementById("emptyState");
+function render() {
   grid.innerHTML = "";
 
-  const data = restaurants.filter(r =>
-    (category==="All" || r.category===category) &&
-    r.name.toLowerCase().includes(search.toLowerCase())
+  const filtered = data.filter(r =>
+    (state.category === "All" || r.category === state.category) &&
+    r.name.toLowerCase().includes(state.search)
   );
 
-  empty.classList.toggle("hidden", data.length);
+  emptyState.classList.toggle("hidden", filtered.length !== 0);
 
-  data.forEach((r,i)=>{
-    const card = document.createElement("div");
-    card.className = "fade-slide bg-white rounded-xl shadow hover:shadow-xl transition overflow-hidden";
-
-    card.innerHTML = `
-      <img src="${r.img}" loading="lazy"
-        onerror="this.src='https://via.placeholder.com/400x300?text=FoodieX'"
-        class="h-48 w-full object-cover">
-
-      <div class="p-5 flex flex-col">
-        <span class="text-sm text-orange-500 font-semibold mb-1">${r.category}</span>
-        <h3 class="text-lg font-bold mb-2">${r.name}</h3>
-
-        <div class="flex justify-between items-center mb-4">
-          <span class="text-sm text-gray-500">Fast Delivery</span>
-          <span class="text-emerald-600 font-semibold">⭐ ${r.rating}</span>
+  filtered.forEach(r => {
+    grid.innerHTML += `
+      <article class="bg-darkCard border border-borderDark rounded-xl overflow-hidden card-hover">
+        <img src="${r.img}" class="w-full h-36 object-cover" />
+        <div class="p-4 space-y-2">
+          <h4 class="font-semibold text-white">${r.name}</h4>
+          <p class="text-xs text-gray-400">${r.category}</p>
+          <span class="text-green-400 text-sm">⭐ ${r.rating}</span>
+          <button onclick="openRestaurant('${r.name}')"
+            class="w-full mt-3 bg-primary text-black py-2 rounded-lg font-semibold">
+            Order Now
+          </button>
         </div>
-
-        <a href="restaurant.html?name=${encodeURIComponent(r.name)}"
-           class="mt-auto bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg text-center font-semibold">
-          View Menu
-        </a>
-      </div>
+      </article>
     `;
-
-    grid.appendChild(card);
-    setTimeout(()=>card.classList.add("show"), i*80);
   });
 }
 
-/* ================= EVENTS ================= */
-render();
-
-document.querySelectorAll("#categoryFilter button").forEach(btn=>{
-  btn.onclick=()=>{
-    document.querySelectorAll("#categoryFilter button")
-      .forEach(b=>b.classList.remove("bg-orange-500","text-white"));
-    btn.classList.add("bg-orange-500","text-white");
-    render(btn.dataset.category, searchInput.value);
-  };
+/* ================= FILTER ================= */
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.classList.add("px-4","py-2","rounded-full","bg-darkCard","hover:bg-primary","hover:text-black");
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("bg-primary","text-black"));
+    btn.classList.add("bg-primary","text-black");
+    state.category = btn.dataset.category;
+    render();
+  });
 });
 
-searchInput.oninput = e => {
-  const active = document.querySelector("#categoryFilter .bg-orange-500")?.dataset.category || "All";
-  render(active, e.target.value);
-};
+/* ================= SEARCH ================= */
+searchInput.addEventListener("input", e => {
+  state.search = e.target.value.toLowerCase();
+  render();
+});
+
+/* ================= NAV ================= */
+function openRestaurant(name) {
+  localStorage.setItem("selectedRestaurant", name);
+  window.location.href = "restaurant.html";
+}
+
+render();
 </script>
 
 </body>
