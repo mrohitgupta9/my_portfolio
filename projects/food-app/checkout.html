@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | FoodApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  </head>
+
+  <body class="bg-black text-white">
+    <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-10">
+      <!-- LEFT SIDE: FORM -->
+      <div class="md:col-span-2 space-y-10">
+        <!-- ADDRESS -->
+        <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
+          <h2 class="text-xl font-semibold mb-5">Delivery Details</h2>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <input
+              id="name"
+              type="text"
+              placeholder="Full Name"
+              class="p-3 bg-black border border-zinc-700 rounded-lg w-full"
+              required />
+
+            <input
+              id="phone"
+              type="tel"
+              placeholder="Phone Number"
+              class="p-3 bg-black border border-zinc-700 rounded-lg w-full"
+              required />
+
+            <input
+              id="address"
+              type="text"
+              placeholder="Address"
+              class="p-3 bg-black border border-zinc-700 rounded-lg w-full md:col-span-2"
+              required />
+
+            <input
+              id="city"
+              type="text"
+              placeholder="City"
+              class="p-3 bg-black border border-zinc-700 rounded-lg w-full"
+              required />
+
+            <input
+              id="pincode"
+              type="text"
+              placeholder="Pincode"
+              class="p-3 bg-black border border-zinc-700 rounded-lg w-full"
+              required />
+          </div>
+        </div>
+
+        <!-- PAYMENT METHOD -->
+        <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
+          <h2 class="text-xl font-semibold mb-5">Payment Method</h2>
+
+          <div class="space-y-3">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="radio" name="payment" value="upi" checked />
+              <span>UPI</span>
+            </label>
+
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="radio" name="payment" value="card" />
+              <span>Credit / Debit Card</span>
+            </label>
+
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="radio" name="payment" value="cod" />
+              <span>Cash on Delivery</span>
+            </label>
+          </div>
+
+          <!-- CARD FORM -->
+          <div id="cardForm" class="hidden mt-6 space-y-4">
+            <input
+              id="cardNumber"
+              type="text"
+              placeholder="Card Number"
+              class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
+
+            <div class="grid grid-cols-2 gap-4">
+              <input
+                id="expiry"
+                type="text"
+                placeholder="MM/YY"
+                class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
+              <input
+                id="cvv"
+                type="text"
+                placeholder="CVV"
+                class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: SUMMARY -->
+      <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 h-fit">
+        <h2 class="text-xl font-semibold mb-5">Order Summary</h2>
+
+        <div id="orderItems" class="space-y-3 mb-5"></div>
+
+        <div class="border-t border-zinc-700 pt-4 space-y-2 text-sm">
+          <div class="flex justify-between">
+            <span>Subtotal</span>
+            <span id="subtotal"></span>
+          </div>
+          <div class="flex justify-between">
+            <span>GST (5%)</span>
+            <span id="gst"></span>
+          </div>
+          <div class="flex justify-between">
+            <span>Delivery</span>
+            <span>₹40</span>
+          </div>
+          <div
+            class="flex justify-between font-semibold text-lg text-green-400">
+            <span>Total</span>
+            <span id="total"></span>
+          </div>
+        </div>
+
+        <button
+          onclick="placeOrder()"
+          class="mt-6 w-full bg-green-500 text-black py-3 rounded-lg font-semibold hover:bg-green-400">
+          Place Order
+        </button>
+      </div>
+    </div>
+
+<script>
+/* ================= STATE ================= */
+let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+const DELIVERY = 40;
+const GST = 0.05;
+
+/* ================= CALCULATE TOTAL ================= */
+function calculateTotal() {
+
+  let subtotal = 0;
+
+  cart.forEach(item => {
+    subtotal += item.price * item.qty;
+  });
+
+  const gst = Math.round(subtotal * GST);
+  const delivery = subtotal > 0 ? DELIVERY : 0;
+  const total = subtotal + gst + delivery;
+
+  return { subtotal, gst, delivery, total };
+}
+
+/* ================= RENDER SUMMARY ================= */
+function renderSummary() {
+
+  const container = document.getElementById("orderItems");
+  container.innerHTML = "";
+
+  const { subtotal, gst, total } = calculateTotal();
+
+  cart.forEach(item => {
+
+    const itemTotal = item.price * item.qty;
+
+    container.innerHTML += `
+      <div class="flex justify-between text-sm">
+        <span>${item.name} x${item.qty}</span>
+        <span>₹${itemTotal}</span>
+      </div>
+    `;
+  });
+
+  document.getElementById("subtotal").textContent = "₹" + subtotal;
+  document.getElementById("gst").textContent = "₹" + gst;
+  document.getElementById("total").textContent = "₹" + total;
+}
+
+/* ================= VALIDATION ================= */
+function validateForm() {
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const address = document.getElementById("address").value.trim();
+
+  if (!name || !phone || !address) {
+    alert("Please fill all required fields.");
+    return false;
+  }
+
+  return true;
+}
+
+/* ================= PLACE ORDER ================= */
+function placeOrder() {
+
+  if (!cart.length) {
+    alert("Cart is empty.");
+    return;
+  }
+
+  if (!validateForm()) return;
+
+  const { subtotal, gst, delivery, total } = calculateTotal();
+
+  const btn = document.querySelector("button[onclick='placeOrder()']");
+  btn.disabled = true;
+  btn.innerText = "Processing Payment...";
+
+  setTimeout(() => {
+
+    const fakePaymentId = "PAY" + Math.floor(Math.random() * 1000000000);
+
+    const orderData = {
+      orderId: "ORD" + Date.now(),
+      paymentId: fakePaymentId,
+      items: cart,
+      subtotal: subtotal,
+      gst: gst,
+      delivery: delivery,
+      total: total,
+      date: new Date().toLocaleString()
+    };
+
+    localStorage.setItem("lastOrder", JSON.stringify(orderData));
+    localStorage.removeItem("cart");
+
+    window.location.href = "success.html";
+
+  }, 2000);
+}
+
+/* ================= INIT ================= */
+renderSummary();
+</script>
+  </body>
+</html>

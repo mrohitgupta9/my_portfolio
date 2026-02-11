@@ -157,464 +157,339 @@ tailwind.config = {
 </footer>
 
 <script>
+
 /* ================= RESTAURANT NAME ================= */
 const restaurant = localStorage.getItem("selectedRestaurant") || "Restaurant";
 document.getElementById("restaurantName").textContent = restaurant;
 
-/* ================= MENU DATA (UPGRADED STRUCTURE) ================= */
+/* ================= MENU DATA ================= */
 const menuData = [
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: 249,
-    popular: true,
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
     description: "Classic cheese pizza with fresh basil.",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-  },
-  {
-    id: 2,
-    name: "Farmhouse Pizza",
-    category: "Pizza",
-    price: 349,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
     description: "Loaded with veggies and extra cheese.",
-    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
-  },
-  {
-    id: 3,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 199,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
     description: "Juicy grilled patty with melted cheese.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-  },
-  {
-    id: 4,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: 229,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
     description: "Crispy chicken fillet burger.",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
-  },
-  {
-    id: 5,
-    name: "Chocolate Cake",
-    category: "Dessert",
-    price: 149,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
     description: "Rich and moist chocolate delight.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
-  },
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: 249,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
     description: "Classic cheese pizza with fresh basil.",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-  },
-  {
-    id: 2,
-    name: "Farmhouse Pizza",
-    category: "Pizza",
-    price: 349,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
     description: "Loaded with veggies and extra cheese.",
-    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
-  },
-  {
-    id: 3,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 199,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
     description: "Juicy grilled patty with melted cheese.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-  },
-  {
-    id: 4,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: 229,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
     description: "Crispy chicken fillet burger.",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
-  },
-  {
-    id: 5,
-    name: "Chocolate Cake",
-    category: "Dessert",
-    price: 149,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
     description: "Rich and moist chocolate delight.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
-  },
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: 249,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
     description: "Classic cheese pizza with fresh basil.",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-  },
-  {
-    id: 2,
-    name: "Farmhouse Pizza",
-    category: "Pizza",
-    price: 349,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
     description: "Loaded with veggies and extra cheese.",
-    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
-  },
-  {
-    id: 3,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 199,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
     description: "Juicy grilled patty with melted cheese.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-  },
-  {
-    id: 4,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: 229,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
     description: "Crispy chicken fillet burger.",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
-  },
-  {
-    id: 5,
-    name: "Chocolate Cake",
-    category: "Dessert",
-    price: 149,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
     description: "Rich and moist chocolate delight.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
-  },
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: 249,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
     description: "Classic cheese pizza with fresh basil.",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-  },
-  {
-    id: 2,
-    name: "Farmhouse Pizza",
-    category: "Pizza",
-    price: 349,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
     description: "Loaded with veggies and extra cheese.",
-    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
-  },
-  {
-    id: 3,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 199,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
     description: "Juicy grilled patty with melted cheese.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-  },
-  {
-    id: 4,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: 229,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
     description: "Crispy chicken fillet burger.",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
-  },
-  {
-    id: 5,
-    name: "Chocolate Cake",
-    category: "Dessert",
-    price: 149,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
     description: "Rich and moist chocolate delight.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
-  },
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: 249,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
     description: "Classic cheese pizza with fresh basil.",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-  },
-  {
-    id: 2,
-    name: "Farmhouse Pizza",
-    category: "Pizza",
-    price: 349,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
     description: "Loaded with veggies and extra cheese.",
-    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
-  },
-  {
-    id: 3,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 199,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
     description: "Juicy grilled patty with melted cheese.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-  },
-  {
-    id: 4,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: 229,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
     description: "Crispy chicken fillet burger.",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
-  },
-  {
-    id: 5,
-    name: "Chocolate Cake",
-    category: "Dessert",
-    price: 149,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
     description: "Rich and moist chocolate delight.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
-  },
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: 249,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
     description: "Classic cheese pizza with fresh basil.",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-  },
-  {
-    id: 2,
-    name: "Farmhouse Pizza",
-    category: "Pizza",
-    price: 349,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
     description: "Loaded with veggies and extra cheese.",
-    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
-  },
-  {
-    id: 3,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 199,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
     description: "Juicy grilled patty with melted cheese.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-  },
-  {
-    id: 4,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: 229,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
     description: "Crispy chicken fillet burger.",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
-  },
-  {
-    id: 5,
-    name: "Chocolate Cake",
-    category: "Dessert",
-    price: 149,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
     description: "Rich and moist chocolate delight.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
-  },
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: 249,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
     description: "Classic cheese pizza with fresh basil.",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-  },
-  {
-    id: 2,
-    name: "Farmhouse Pizza",
-    category: "Pizza",
-    price: 349,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
     description: "Loaded with veggies and extra cheese.",
-    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
-  },
-  {
-    id: 3,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 199,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
     description: "Juicy grilled patty with melted cheese.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-  },
-  {
-    id: 4,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: 229,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
     description: "Crispy chicken fillet burger.",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
-  },
-  {
-    id: 5,
-    name: "Chocolate Cake",
-    category: "Dessert",
-    price: 149,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
     description: "Rich and moist chocolate delight.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
-  },
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: 249,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
     description: "Classic cheese pizza with fresh basil.",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-  },
-  {
-    id: 2,
-    name: "Farmhouse Pizza",
-    category: "Pizza",
-    price: 349,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
     description: "Loaded with veggies and extra cheese.",
-    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
-  },
-  {
-    id: 3,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 199,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
     description: "Juicy grilled patty with melted cheese.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-  },
-  {
-    id: 4,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: 229,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
     description: "Crispy chicken fillet burger.",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
-  },
-  {
-    id: 5,
-    name: "Chocolate Cake",
-    category: "Dessert",
-    price: 149,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
     description: "Rich and moist chocolate delight.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
-  },
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: 249,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
     description: "Classic cheese pizza with fresh basil.",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-  },
-  {
-    id: 2,
-    name: "Farmhouse Pizza",
-    category: "Pizza",
-    price: 349,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
     description: "Loaded with veggies and extra cheese.",
-    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
-  },
-  {
-    id: 3,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 199,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
     description: "Juicy grilled patty with melted cheese.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-  },
-  {
-    id: 4,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: 229,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
     description: "Crispy chicken fillet burger.",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
-  },
-  {
-    id: 5,
-    name: "Chocolate Cake",
-    category: "Dessert",
-    price: 149,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
     description: "Rich and moist chocolate delight.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
-  },
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: 249,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
     description: "Classic cheese pizza with fresh basil.",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-  },
-  {
-    id: 2,
-    name: "Farmhouse Pizza",
-    category: "Pizza",
-    price: 349,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
     description: "Loaded with veggies and extra cheese.",
-    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
-  },
-  {
-    id: 3,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 199,
-    popular: true,
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
     description: "Juicy grilled patty with melted cheese.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-  },
-  {
-    id: 4,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: 229,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
     description: "Crispy chicken fillet burger.",
-    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
-  },
-  {
-    id: 5,
-    name: "Chocolate Cake",
-    category: "Dessert",
-    price: 149,
-    popular: false,
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
     description: "Rich and moist chocolate delight.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
-  }
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { id: 1, name: "Margherita Pizza", category: "Pizza", price: 249, popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
+
+  { id: 2, name: "Farmhouse Pizza", category: "Pizza", price: 349, popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
+
+  { id: 3, name: "Cheese Burger", category: "Burger", price: 199, popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
+
+  { id: 4, name: "Chicken Burger", category: "Burger", price: 229, popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
+
+  { id: 5, name: "Chocolate Cake", category: "Dessert", price: 149, popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
 ];
 
+/* ================= STATE ================= */
 let state = { category: "All" };
 let cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
@@ -630,10 +505,6 @@ function renderMenu() {
   });
 
   filtered.forEach(item => {
-
-    const existing = cart.find(c => c.id === item.id);
-    const qty = existing ? existing.qty : 0;
-
     grid.innerHTML += `
       <div class="bg-darkCard border border-borderDark rounded-xl overflow-hidden">
         <img src="${item.img}" class="w-full h-40 object-cover" />
@@ -644,23 +515,10 @@ function renderMenu() {
           <div class="flex justify-between items-center mt-2">
             <span class="text-primary font-semibold">₹${item.price}</span>
 
-            ${
-              qty === 0
-                ? `<button onclick="addToCart(${item.id})"
-                   class="bg-primary text-black px-4 py-1 rounded-full text-sm font-semibold">
-                   Add
-                   </button>`
-                : `
-                  <div class="flex items-center gap-2">
-                    <button onclick="decreaseQty(${item.id})"
-                      class="px-2 bg-gray-700 rounded">-</button>
-                    <span>${qty}</span>
-                    <button onclick="increaseQty(${item.id})"
-                      class="px-2 bg-gray-700 rounded">+</button>
-                  </div>
-                  `
-            }
-
+            <button onclick="addToCart(${item.id})"
+              class="bg-primary text-black px-4 py-1 rounded-full text-sm font-semibold hover:opacity-90 transition">
+              Add
+            </button>
           </div>
         </div>
       </div>
@@ -668,7 +526,7 @@ function renderMenu() {
   });
 }
 
-/* ================= CART FUNCTIONS ================= */
+/* ================= ADD TO CART ================= */
 function addToCart(id) {
   const item = menuData.find(m => m.id === id);
   const existing = cart.find(c => c.id === id);
@@ -676,32 +534,21 @@ function addToCart(id) {
   if (existing) {
     existing.qty += 1;
   } else {
-    cart.push({ id: item.id, name: item.name, price: item.price, qty: 1 });
+    cart.push({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      qty: 1
+    });
   }
 
   updateCart();
 }
 
-function increaseQty(id) {
-  const item = cart.find(c => c.id === id);
-  if (item) item.qty += 1;
-  updateCart();
-}
-
-function decreaseQty(id) {
-  const itemIndex = cart.findIndex(c => c.id === id);
-  if (cart[itemIndex].qty > 1) {
-    cart[itemIndex].qty -= 1;
-  } else {
-    cart.splice(itemIndex, 1);
-  }
-  updateCart();
-}
-
+/* ================= UPDATE CART ================= */
 function updateCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartUI();
-  renderMenu();
 }
 
 /* ================= UPDATE CART UI ================= */
@@ -714,13 +561,13 @@ function updateCartUI() {
   if (count > 0) {
     document.getElementById("cartBar").classList.remove("hidden");
     document.getElementById("cartSummary").textContent =
-      count + " items | ₹" + total;
+      `${count} items | ₹${total}`;
   } else {
     document.getElementById("cartBar").classList.add("hidden");
   }
 }
 
-/* ================= TABS ================= */
+/* ================= CATEGORY TABS ================= */
 document.querySelectorAll(".tab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".tab-btn")
@@ -741,9 +588,9 @@ function goToCart(){
   window.location.href = "cart.html";
 }
 
+/* ================= INIT ================= */
 renderMenu();
 updateCartUI();
-
 
 </script>
 
