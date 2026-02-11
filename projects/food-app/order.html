@@ -1,205 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="dark">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>My Orders | FoodieX</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Orders | FoodieX</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-<script>
-tailwind.config = {
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        primary: "#F97316",
-        darkBg: "#020617",
-        darkCard: "#020617",
-        borderDark: "#1e293b",
-      }
-    }
-  }
-}
-</script>
-</head>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#F97316",
+              darkBg: "#020617",
+              darkCard: "#0f172a",
+              borderDark: "#1e293b",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
 
-<body class="bg-darkBg text-gray-200 font-sans">
+  <body class="bg-darkBg text-gray-200 font-sans">
+    <!-- ================= NAVBAR ================= -->
+    <header
+      class="sticky top-0 z-50 bg-darkBg/80 backdrop-blur-xl border-b border-borderDark">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <a
+            href="index.html"
+            class="text-xl font-extrabold text-primary tracking-wide">
+            FoodieX
+          </a>
 
-<!-- ================= NAVBAR ================= -->
-<header class="sticky top-0 z-50 bg-darkBg/80 backdrop-blur-xl border-b border-borderDark">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
+          <!-- Desktop Menu -->
+          <nav class="hidden md:flex items-center gap-8 text-sm">
+            <a href="restaurants.html" class="hover:text-primary transition"
+              >Restaurants</a
+            >
+            <a href="orders.html" class="text-primary font-semibold">Orders</a>
+            <a href="cart.html" class="relative hover:text-primary transition">
+              <i class="fas fa-shopping-cart"></i>
+              <span
+                id="cartBadge"
+                class="absolute -top-2 -right-3 bg-primary text-black text-xs px-2 rounded-full">
+                0
+              </span>
+            </a>
+          </nav>
 
-    <a href="restaurants.html" class="flex items-center gap-2 hover:text-primary">
-      <i class="fas fa-arrow-left"></i>
-      <span>Back</span>
-    </a>
+          <!-- Mobile Toggle -->
+          <button id="menuToggle" class="md:hidden text-xl">
+            <i id="menuIcon" class="fas fa-bars"></i>
+          </button>
+        </div>
 
-    <span class="text-xl font-extrabold text-primary">FoodieX</span>
+        <!-- Mobile Menu -->
+        <div
+          id="mobileMenu"
+          class="md:hidden overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+          <div class="py-4 space-y-4 text-sm border-t border-borderDark">
+            <a href="restaurants.html" class="block hover:text-primary"
+              >Restaurants</a
+            >
+            <a href="orders.html" class="block text-primary font-semibold"
+              >Orders</a
+            >
+            <a href="cart.html" class="block hover:text-primary">Cart</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <a href="cart.html" class="hover:text-primary">
-      <i class="fas fa-shopping-cart"></i>
-    </a>
-  </div>
-</header>
+    <!-- ================= PAGE ================= -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+      <h1 class="text-3xl font-extrabold mb-10">My Orders</h1>
 
-<!-- ================= PAGE ================= -->
-<section class="max-w-6xl mx-auto px-4 py-10">
+      <!-- EMPTY STATE -->
+      <div id="emptyOrders" class="hidden text-center text-gray-400 py-24">
+        <i class="fas fa-box-open text-5xl mb-6 opacity-40"></i>
+        <p class="text-lg">No orders yet</p>
 
-  <h1 class="text-3xl font-extrabold mb-8">My Orders</h1>
-  <!-- EMPTY STATE -->
-  <div id="emptyOrders"
-    class="hidden text-center text-gray-400 py-24">
-    <p class="text-lg">No orders yet 🍽️</p>
-    <a href="restaurants.html"
-      class="inline-block mt-4 bg-primary text-black px-6 py-2 rounded-lg font-semibold">
-      Order Food
-    </a>
-  </div>
-
-  <!-- ORDERS LIST -->
-  <div id="ordersList" class="space-y-6"></div>
-
-</section>
-<!-- ================= ENTERPRISE FOOTER ================= -->
-<footer class="border-t border-borderDark bg-darkBg">
-  <div class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-
-    <!-- Brand -->
-    <div class="lg:col-span-2 space-y-4">
-      <h2 class="text-2xl font-bold text-primary tracking-wide">FoodieX</h2>
-      <p class="text-sm text-gray-400 leading-relaxed max-w-md">
-        FoodieX is a modern food-delivery platform built for speed, reliability,
-        and seamless customer experience. Discover restaurants, order instantly,
-        and enjoy fresh food delivered fast.
-      </p>
-
-      <!-- Social -->
-      <div class="flex gap-4 text-lg">
-        <a href="#" aria-label="Facebook" class="hover:text-primary transition">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" aria-label="Instagram" class="hover:text-primary transition">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="#" aria-label="Twitter" class="hover:text-primary transition">
-          <i class="fab fa-x-twitter"></i>
-        </a>
-        <a href="#" aria-label="LinkedIn" class="hover:text-primary transition">
-          <i class="fab fa-linkedin-in"></i>
+        <a
+          href="restaurants.html"
+          class="inline-block mt-6 bg-primary text-black px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition">
+          Browse Restaurants
         </a>
       </div>
-    </div>
 
-    <!-- Product -->
-    <div>
-      <h3 class="font-semibold text-white mb-4">Product</h3>
-      <ul class="space-y-3 text-sm text-gray-400">
-        <li><a class="hover:text-primary">Restaurants</a></li>
-        <li><a class="hover:text-primary">Pricing</a></li>
-        <li><a class="hover:text-primary">Offers</a></li>
-        <li><a class="hover:text-primary">Mobile App</a></li>
-      </ul>
-    </div>
+      <!-- ORDERS LIST -->
+      <div id="ordersList" class="space-y-8"></div>
+    </section>
 
-    <!-- Company -->
-    <div>
-      <h3 class="font-semibold text-white mb-4">Company</h3>
-      <ul class="space-y-3 text-sm text-gray-400">
-        <li><a class="hover:text-primary">About Us</a></li>
-        <li><a class="hover:text-primary">Careers</a></li>
-        <li><a class="hover:text-primary">Press</a></li>
-        <li><a class="hover:text-primary">Contact</a></li>
-      </ul>
-    </div>
-
-    <!-- Legal -->
-    <div>
-      <h3 class="font-semibold text-white mb-4">Legal</h3>
-      <ul class="space-y-3 text-sm text-gray-400">
-        <li><a class="hover:text-primary">Privacy Policy</a></li>
-        <li><a class="hover:text-primary">Terms of Service</a></li>
-        <li><a class="hover:text-primary">Refund Policy</a></li>
-        <li><a class="hover:text-primary">Security</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Bottom Bar -->
-  <div class="border-t border-borderDark">
-    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-xs text-gray-500">
+    <!-- ================= FOOTER ================= -->
+    <footer class="border-t border-borderDark bg-darkBg mt-20">
+      <div
+        class="max-w-7xl mx-auto px-6 py-10 text-center text-xs text-gray-500">
         © 2026 FoodieX Technologies Pvt. Ltd. All rights reserved.
-      </p>
+      </div>
+    </footer>
 
-      <p class="text-xs text-gray-500">
-        Built with performance, scalability & security in mind.
-      </p>
-    </div>
-  </div>
-</footer>
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+      /* ================= NAVBAR TOGGLE ================= */
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const menuIcon = document.getElementById("menuIcon");
 
-<!-- ================= SCRIPTS ================= -->
-<script>
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+      let menuOpen = false;
 
-const ordersList = document.getElementById("ordersList");
-const emptyOrders = document.getElementById("emptyOrders");
+      menuToggle.addEventListener("click", () => {
+        menuOpen = !menuOpen;
 
-function renderOrders() {
+        if (menuOpen) {
+          mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+          menuIcon.classList.remove("fa-bars");
+          menuIcon.classList.add("fa-times");
+        } else {
+          mobileMenu.style.maxHeight = "0px";
+          menuIcon.classList.remove("fa-times");
+          menuIcon.classList.add("fa-bars");
+        }
+      });
 
-  ordersList.innerHTML = "";
+      /* ================= CART BADGE ================= */
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      function updateCartBadge() {
+        let count = 0;
+        cart.forEach((item) => (count += item.qty));
+        document.getElementById("cartBadge").innerText = count;
+      }
+      updateCartBadge();
 
-  if (!orders.length) {
-    emptyOrders.classList.remove("hidden");
-    return;
-  }
+      /* ================= ORDERS ================= */
+      const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-  emptyOrders.classList.add("hidden");
+      const ordersList = document.getElementById("ordersList");
+      const emptyOrders = document.getElementById("emptyOrders");
 
-  [...orders].reverse().forEach(order => {
+      function renderOrders() {
+        ordersList.innerHTML = "";
 
-    let itemsHtml = "";
+        if (!orders.length) {
+          emptyOrders.classList.remove("hidden");
+          return;
+        }
 
-    if (!order.items || !Array.isArray(order.items)) return;
+        emptyOrders.classList.add("hidden");
 
-    order.items.forEach(i => {
-      itemsHtml += `
+        [...orders].reverse().forEach((order) => {
+          if (!order.items || !Array.isArray(order.items)) return;
+
+          let itemsHtml = "";
+
+          order.items.forEach((i) => {
+            itemsHtml += `
         <div class="flex justify-between text-sm text-gray-300">
           <span>${i.name} × ${i.qty}</span>
           <span>₹${i.price * i.qty}</span>
         </div>
       `;
-    });
+          });
 
-    ordersList.innerHTML += `
-      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
-        <div class="flex justify-between mb-4">
+          ordersList.innerHTML += `
+      <div class="bg-darkCard border border-borderDark rounded-xl p-6 shadow-lg">
+
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
+
           <div>
-            <h3 class="text-lg font-semibold">${order.restaurant}</h3>
+            <h3 class="text-lg font-semibold">${order.restaurant || "FoodieX Restaurant"}</h3>
             <p class="text-xs text-gray-400">Order ID: ${order.id}</p>
             <p class="text-xs text-gray-500">${new Date(order.date).toLocaleString()}</p>
           </div>
-          <span class="text-sm px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400">
+
+          <span class="text-sm px-4 py-1 rounded-full bg-yellow-500/20 text-yellow-400 w-fit">
             ${order.status}
           </span>
+
         </div>
 
-        <div class="space-y-2 mb-4">
+        <div class="space-y-2 mb-6">
           ${itemsHtml}
         </div>
 
-        <div class="flex justify-between font-semibold border-t border-zinc-700 pt-3">
+        <div class="flex justify-between font-semibold border-t border-borderDark pt-4">
           <span>Total</span>
-          <span class="text-green-400">₹${order.total}</span>
+          <span class="text-green-400 text-lg">₹${order.total}</span>
         </div>
+
       </div>
     `;
-  });
-}
+        });
+      }
 
-renderOrders();
-</script>
-</body>
+      renderOrders();
+    </script>
+  </body>
 </html>

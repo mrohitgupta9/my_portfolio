@@ -41,19 +41,44 @@ tailwind.config = {
 <body class="bg-darkBg text-gray-200 font-sans antialiased">
 
 <!-- ================= NAVBAR ================= -->
+<!-- ================= NAVBAR ================= -->
 <header class="sticky top-0 z-50 bg-darkBg/80 backdrop-blur-xl border-b border-borderDark">
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
     <span class="text-2xl font-extrabold text-primary">FoodieX</span>
 
+    <!-- Desktop Menu -->
     <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
       <a href="index.html" class="hover:text-primary">Home</a>
       <a href="restaurants.html" class="text-primary">Restaurants</a>
-       <!-- Auth -->
-     <button id="openLogin"
-  class="ml-2 px-4 py-2 rounded-full bg-primary text-black font-semibold hover:opacity-90 transition">
-  Login
-</button>
+      <a href="order.html" class="hover:text-primary transition">Order</a>
+
+      <button id="openLogin"
+        class="ml-2 px-4 py-2 rounded-full bg-primary text-black font-semibold hover:opacity-90 transition">
+        Login
+      </button>
     </nav>
+
+    <!-- Hamburger Button (Mobile Only) -->
+    <button id="menuBtn"
+      class="md:hidden text-gray-300 text-xl focus:outline-none">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+    class="hidden md:hidden bg-darkCard border-t border-borderDark px-5 py-4 space-y-4 text-gray-300">
+
+    <a href="index.html" class="block hover:text-primary">Home</a>
+    <a href="restaurants.html" class="block text-primary">Restaurants</a>
+    <a href="order.html" class="hover:text-primary transition">Order</a>
+
+    <button
+      class="w-full mt-2 px-4 py-2 rounded-full bg-primary text-black font-semibold hover:opacity-90 transition">
+      Login
+    </button>
   </div>
 </header>
 
@@ -103,7 +128,7 @@ tailwind.config = {
 <!-- ================= RESTAURANT GRID ================= -->
 <section class="max-w-7xl mx-auto px-4 pb-16">
   <div id="restaurantGrid"
-    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
   </div>
 
   <p id="emptyState" class="hidden text-center text-gray-400 mt-12">
@@ -112,7 +137,6 @@ tailwind.config = {
 </section>
 
 <!-- ================= FOOTER ================= -->
-<!-- ================= ENTERPRISE FOOTER ================= -->
 <footer class="border-t border-borderDark bg-darkBg">
   <div class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
 
@@ -633,7 +657,7 @@ function render() {
           <i class="fa-regular fa-heart"></i>
         </button>
 
-        <img src="${r.img}" class="w-full h-40 object-cover" />
+        <img src="${r.img}" class="w-full h-48 sm:h-40 object-cover" />
 
         <div class="p-4 space-y-2">
           <h4 class="font-semibold text-white text-lg">${r.name}</h4>
@@ -696,6 +720,20 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
     state.category = btn.dataset.category;
     render();
   });
+});
+
+
+/* ================= MOBILE MENU ================= */
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("hidden");
+
+  // Toggle icon between bars and close
+  const icon = menuBtn.querySelector("i");
+  icon.classList.toggle("fa-bars");
+  icon.classList.toggle("fa-xmark");
 });
 
 /* ================= SEARCH ================= */

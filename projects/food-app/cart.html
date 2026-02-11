@@ -31,12 +31,10 @@ tailwind.config = {
 <header class="sticky top-0 z-50 bg-darkBg border-b border-borderDark">
   <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
 
-    <!-- Logo -->
     <a href="index.html" class="text-2xl font-bold text-primary">
       FoodieX
     </a>
 
-    <!-- Desktop Menu -->
     <nav class="hidden md:flex gap-8 text-sm font-medium">
       <a href="index.html" class="hover:text-primary">Home</a>
       <a href="restaurants.html" class="hover:text-primary">Restaurants</a>
@@ -44,17 +42,16 @@ tailwind.config = {
       <a href="contact.html" class="hover:text-primary">Contact</a>
     </nav>
 
-    <!-- Right Section -->
     <div class="flex items-center gap-6">
 
       <!-- Cart -->
-      <div class="relative cursor-pointer">
+      <a href="cart.html" class="relative cursor-pointer">
         <i class="fas fa-shopping-cart text-lg"></i>
         <span id="cartCount"
           class="absolute -top-2 -right-3 bg-primary text-black text-xs px-1.5 rounded-full">
           0
         </span>
-      </div>
+      </a>
 
       <!-- Mobile Toggle -->
       <button id="menuToggle" class="md:hidden text-xl">
@@ -66,11 +63,13 @@ tailwind.config = {
 
   <!-- Mobile Menu -->
   <div id="mobileMenu"
-    class="hidden md:hidden bg-darkCard border-t border-borderDark px-6 py-4 space-y-3 text-sm">
-    <a href="index.html" class="block">Home</a>
-    <a href="restaurants.html" class="block">Restaurants</a>
-    <a href="offers.html" class="block">Offers</a>
-    <a href="contact.html" class="block">Contact</a>
+    class="md:hidden overflow-hidden max-h-0 transition-all duration-300 ease-in-out bg-darkCard border-t border-borderDark">
+    <div class="px-6 py-4 space-y-3 text-sm">
+      <a href="index.html" class="block">Home</a>
+      <a href="restaurants.html" class="block">Restaurants</a>
+      <a href="offers.html" class="block">Offers</a>
+      <a href="contact.html" class="block">Contact</a>
+    </div>
   </div>
 </header>
 
@@ -124,51 +123,7 @@ tailwind.config = {
 
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="bg-darkCard border-t border-borderDark mt-20">
-  <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8 text-sm">
-
-    <div>
-      <h3 class="text-primary font-bold text-lg mb-3">FoodieX</h3>
-      <p class="text-gray-400">
-        Order food from your favorite restaurants quickly and easily.
-      </p>
-    </div>
-
-    <div>
-      <h4 class="font-semibold mb-3">Company</h4>
-      <ul class="space-y-2 text-gray-400">
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Blog</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="font-semibold mb-3">Support</h4>
-      <ul class="space-y-2 text-gray-400">
-        <li><a href="#">Help Center</a></li>
-        <li><a href="#">Terms</a></li>
-        <li><a href="#">Privacy</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="font-semibold mb-3">Follow Us</h4>
-      <div class="flex gap-4 text-lg">
-        <i class="fab fa-facebook"></i>
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-twitter"></i>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="text-center text-gray-500 text-xs py-4 border-t border-borderDark">
-    © 2026 FoodieX. All rights reserved.
-  </div>
-</footer>
-
+<!-- ================= JS ================= -->
 <script>
 
 /* ================= STATE ================= */
@@ -176,12 +131,50 @@ let cart = JSON.parse(localStorage.getItem("cart") || "[]");
 const DELIVERY_FEE = 40;
 const GST_RATE = 0.05;
 
-/* ================= MOBILE MENU ================= */
-document.getElementById("menuToggle").addEventListener("click", () => {
-  document.getElementById("mobileMenu").classList.toggle("hidden");
+/**************** MOBILE NAVBAR ****************/
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+let menuOpen = false;
+
+menuToggle.addEventListener("click", () => {
+  menuOpen = !menuOpen;
+
+  if (menuOpen) {
+    mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+    menuToggle.innerHTML = '<i class="fas fa-xmark"></i>';
+  } else {
+    mobileMenu.style.maxHeight = "0px";
+    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+  }
 });
 
-/* ================= RENDER CART ================= */
+window.addEventListener("resize", () => {
+  if (window.innerWidth >= 768) {
+    mobileMenu.style.maxHeight = "0px";
+    menuOpen = false;
+    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+  }
+});
+
+/**************** ADD TO CART (GLOBAL) ****************/
+function addToCart(name, price, img) {
+  let existing = cart.find(item => item.name === name);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({
+      name: name,
+      price: price,
+      img: img || "",
+      qty: 1
+    });
+  }
+
+  updateCart();
+}
+
+/**************** RENDER CART ****************/
 function renderCart() {
   const container = document.getElementById("cartContainer");
   const summaryBox = document.getElementById("summaryBox");
@@ -209,7 +202,6 @@ function renderCart() {
     const itemTotal = item.price * item.qty;
     subtotal += itemTotal;
 
-    // fallback image (if old cart items don't have img)
     const imageSrc = item.img 
       ? item.img 
       : "https://via.placeholder.com/100x100?text=Food";
@@ -217,11 +209,9 @@ function renderCart() {
     container.innerHTML += `
       <div class="bg-darkCard p-5 rounded-xl border border-borderDark flex gap-6 items-center">
 
-        <!-- IMAGE -->
         <img src="${imageSrc}" 
              class="w-24 h-24 object-cover rounded-lg border border-borderDark" />
 
-        <!-- DETAILS -->
         <div class="flex-1">
           <h3 class="font-semibold text-lg">${item.name}</h3>
           <p class="text-sm text-gray-400">₹${item.price} each</p>
@@ -235,7 +225,6 @@ function renderCart() {
           </div>
         </div>
 
-        <!-- PRICE + REMOVE -->
         <div class="text-right">
           <p class="font-semibold text-primary text-lg">₹${itemTotal}</p>
           <button onclick="removeItem(${index})"
@@ -243,7 +232,6 @@ function renderCart() {
             Remove
           </button>
         </div>
-
       </div>
     `;
   });
@@ -253,7 +241,7 @@ function renderCart() {
   updateCartCount();
 }
 
-/* ================= SUMMARY ================= */
+/**************** SUMMARY ****************/
 function updateSummary(subtotal) {
   const gst = Math.round(subtotal * GST_RATE);
   const total = subtotal + DELIVERY_FEE + gst;
@@ -263,45 +251,39 @@ function updateSummary(subtotal) {
   document.getElementById("grandTotal").textContent = "₹" + total;
 }
 
-/* ================= BADGE ================= */
+/**************** BADGE ****************/
 function updateCartCount() {
   const count = cart.reduce((sum, item) => sum + item.qty, 0);
   document.getElementById("cartCount").textContent = count;
 }
 
-/* ================= CONTROLS ================= */
+/**************** CONTROLS ****************/
 function increaseQty(index) {
-  if (!cart[index]) return;
   cart[index].qty++;
   updateCart();
 }
 
 function decreaseQty(index) {
-  if (!cart[index]) return;
-
   if (cart[index].qty > 1) {
     cart[index].qty--;
   } else {
     cart.splice(index, 1);
   }
-
   updateCart();
 }
 
 function removeItem(index) {
-  if (!cart[index]) return;
   cart.splice(index, 1);
   updateCart();
 }
 
-/* ================= UPDATE CART ================= */
+/**************** UPDATE CART ****************/
 function updateCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartCount();
   renderCart();
 }
 
-/* ================= CLEAR CART ================= */
+/**************** CLEAR CART ****************/
 function clearCart() {
   if (confirm("Clear entire cart?")) {
     cart = [];
@@ -309,18 +291,16 @@ function clearCart() {
   }
 }
 
-/* ================= CHECKOUT ================= */
+/**************** CHECKOUT ****************/
 function checkout() {
-
   if (!cart.length) {
     alert("Your cart is empty.");
     return;
   }
-
   window.location.href = "checkout.html";
 }
 
-/* ================= INIT ================= */
+/**************** INIT ****************/
 renderCart();
 updateCartCount();
 

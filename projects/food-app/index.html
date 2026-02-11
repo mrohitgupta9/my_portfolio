@@ -111,6 +111,7 @@ tailwind.config = {
     <nav class="flex flex-col px-6 py-4 space-y-4 text-sm font-medium text-gray-300">
       <a href="index.html" class="hover:text-primary transition">Home</a>
       <a href="restaurants.html" class="hover:text-primary transition">Restaurants</a>
+      <a href="order.html" class="hover:text-primary transition">Order</a>
         <button
           class="px-4 py-2 rounded-full bg-primary text-black font-semibold">
           Login
@@ -170,8 +171,8 @@ tailwind.config = {
   </h3>
 
   <div id="restaurantGrid"
-    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-  </div>
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+</div>
 
   <p id="emptyState" class="hidden text-center text-gray-400 mt-12">
     No restaurants found.
@@ -378,7 +379,7 @@ function render() {
       "bg-darkCard border border-borderDark rounded-xl overflow-hidden card-hover";
 
     card.innerHTML = `
-      <img loading="lazy" src="${r.img}" class="w-full h-36 object-cover" />
+      <img loading="lazy" src="${r.img}" class="w-full h-48 sm:h-36 object-cover" />
       <div class="p-4 space-y-2">
         <h4 class="font-semibold text-white">${r.name}</h4>
         <p class="text-xs text-gray-400">${r.category}</p>
