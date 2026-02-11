@@ -48,12 +48,11 @@ tailwind.config = {
     <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
       <a href="index.html" class="hover:text-primary">Home</a>
       <a href="restaurants.html" class="text-primary">Restaurants</a>
-      <a href="orders.html" class="hover:text-primary">Orders</a>
-
-      <button class="relative">
-        <i class="fas fa-shopping-cart text-lg"></i>
-        <span class="absolute -top-2 -right-2 bg-primary text-black text-[10px] px-1.5 rounded-full">3</span>
-      </button>
+       <!-- Auth -->
+     <button id="openLogin"
+  class="ml-2 px-4 py-2 rounded-full bg-primary text-black font-semibold hover:opacity-90 transition">
+  Login
+</button>
     </nav>
   </div>
 </header>
@@ -195,46 +194,411 @@ tailwind.config = {
 <script>
 /* ================= DATA ================= */
 const data = [
-  { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
-  { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
-  { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
-  { name: "Smash House", category: "Burger", rating: "4.3", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
-  { name: "Delhi Tadka", category: "Indian", rating: "4.7", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" },
-  { name: "Punjabi Dhaba", category: "Indian", rating: "4.6", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0" },
-  { name: "Dragon Wok", category: "Chinese", rating: "4.4", img: "https://images.unsplash.com/photo-1544025162-d76694265947" },
-  { name: "Sweet Treats", category: "Dessert", rating: "4.8", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
-  { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
-  { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
-  { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
-  { name: "Smash House", category: "Burger", rating: "4.3", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
-  { name: "Delhi Tadka", category: "Indian", rating: "4.7", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" },
-  { name: "Punjabi Dhaba", category: "Indian", rating: "4.6", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0" },
-  { name: "Dragon Wok", category: "Chinese", rating: "4.4", img: "https://images.unsplash.com/photo-1544025162-d76694265947" },
-  { name: "Sweet Treats", category: "Dessert", rating: "4.8", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
-  { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
-  { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
-  { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
-  { name: "Smash House", category: "Burger", rating: "4.3", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
-  { name: "Delhi Tadka", category: "Indian", rating: "4.7", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" },
-  { name: "Punjabi Dhaba", category: "Indian", rating: "4.6", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0" },
-  { name: "Dragon Wok", category: "Chinese", rating: "4.4", img: "https://images.unsplash.com/photo-1544025162-d76694265947" },
-  { name: "Sweet Treats", category: "Dessert", rating: "4.8", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
-  { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
-  { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
-  { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
-  { name: "Smash House", category: "Burger", rating: "4.3", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
-  { name: "Delhi Tadka", category: "Indian", rating: "4.7", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" },
-  { name: "Punjabi Dhaba", category: "Indian", rating: "4.6", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0" },
-  { name: "Dragon Wok", category: "Chinese", rating: "4.4", img: "https://images.unsplash.com/photo-1544025162-d76694265947" },
-  { name: "Sweet Treats", category: "Dessert", rating: "4.8", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
-  { name: "Italiano Pizza", category: "Pizza", rating: "4.6", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" },
-  { name: "Urban Slice", category: "Pizza", rating: "4.5", img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092" },
-  { name: "Burger Hub", category: "Burger", rating: "4.4", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" },
-  { name: "Smash House", category: "Burger", rating: "4.3", img: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
-  { name: "Delhi Tadka", category: "Indian", rating: "4.7", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" },
-  { name: "Punjabi Dhaba", category: "Indian", rating: "4.6", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0" },
-  { name: "Dragon Wok", category: "Chinese", rating: "4.4", img: "https://images.unsplash.com/photo-1544025162-d76694265947" },
-  { name: "Sweet Treats", category: "Dessert", rating: "4.8", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" },
+  { 
+    name: "Italiano Pizza", 
+    category: "Pizza", 
+    rating: "4.6", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹40",
+    offer: "20% OFF",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+  },
+  { 
+    name: "Burger Hub", 
+    category: "Burger", 
+    rating: "4.4", 
+    deliveryTime: "20-25 min",
+    deliveryFee: "₹30",
+    offer: "Free Delivery",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" 
+  },
+  { 
+    name: "Delhi Tadka", 
+    category: "Indian", 
+    rating: "4.7", 
+    deliveryTime: "30-35 min",
+    deliveryFee: "₹50",
+    offer: "15% OFF",
+    img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" 
+  },
+  { 
+    name: "Dragon Wok", 
+    category: "Chinese", 
+    rating: "4.5", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹35",
+    offer: "10% OFF",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947" 
+  },
+  { 
+    name: "Sweet Treats", 
+    category: "Dessert", 
+    rating: "4.8", 
+    deliveryTime: "15-20 min",
+    deliveryFee: "₹25",
+    offer: "Buy 1 Get 1",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" 
+  },
+  { 
+    name: "Italiano Pizza", 
+    category: "Pizza", 
+    rating: "4.6", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹40",
+    offer: "20% OFF",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+  },
+  { 
+    name: "Burger Hub", 
+    category: "Burger", 
+    rating: "4.4", 
+    deliveryTime: "20-25 min",
+    deliveryFee: "₹30",
+    offer: "Free Delivery",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" 
+  },
+  { 
+    name: "Delhi Tadka", 
+    category: "Indian", 
+    rating: "4.7", 
+    deliveryTime: "30-35 min",
+    deliveryFee: "₹50",
+    offer: "15% OFF",
+    img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" 
+  },
+  { 
+    name: "Dragon Wok", 
+    category: "Chinese", 
+    rating: "4.5", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹35",
+    offer: "10% OFF",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947" 
+  },
+  { 
+    name: "Sweet Treats", 
+    category: "Dessert", 
+    rating: "4.8", 
+    deliveryTime: "15-20 min",
+    deliveryFee: "₹25",
+    offer: "Buy 1 Get 1",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" 
+  },
+  { 
+    name: "Italiano Pizza", 
+    category: "Pizza", 
+    rating: "4.6", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹40",
+    offer: "20% OFF",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+  },
+  { 
+    name: "Burger Hub", 
+    category: "Burger", 
+    rating: "4.4", 
+    deliveryTime: "20-25 min",
+    deliveryFee: "₹30",
+    offer: "Free Delivery",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" 
+  },
+  { 
+    name: "Delhi Tadka", 
+    category: "Indian", 
+    rating: "4.7", 
+    deliveryTime: "30-35 min",
+    deliveryFee: "₹50",
+    offer: "15% OFF",
+    img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" 
+  },
+  { 
+    name: "Dragon Wok", 
+    category: "Chinese", 
+    rating: "4.5", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹35",
+    offer: "10% OFF",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947" 
+  },
+  { 
+    name: "Sweet Treats", 
+    category: "Dessert", 
+    rating: "4.8", 
+    deliveryTime: "15-20 min",
+    deliveryFee: "₹25",
+    offer: "Buy 1 Get 1",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" 
+  },
+  { 
+    name: "Italiano Pizza", 
+    category: "Pizza", 
+    rating: "4.6", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹40",
+    offer: "20% OFF",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+  },
+  { 
+    name: "Burger Hub", 
+    category: "Burger", 
+    rating: "4.4", 
+    deliveryTime: "20-25 min",
+    deliveryFee: "₹30",
+    offer: "Free Delivery",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" 
+  },
+  { 
+    name: "Delhi Tadka", 
+    category: "Indian", 
+    rating: "4.7", 
+    deliveryTime: "30-35 min",
+    deliveryFee: "₹50",
+    offer: "15% OFF",
+    img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" 
+  },
+  { 
+    name: "Dragon Wok", 
+    category: "Chinese", 
+    rating: "4.5", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹35",
+    offer: "10% OFF",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947" 
+  },
+  { 
+    name: "Sweet Treats", 
+    category: "Dessert", 
+    rating: "4.8", 
+    deliveryTime: "15-20 min",
+    deliveryFee: "₹25",
+    offer: "Buy 1 Get 1",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" 
+  },
+  { 
+    name: "Italiano Pizza", 
+    category: "Pizza", 
+    rating: "4.6", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹40",
+    offer: "20% OFF",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+  },
+  { 
+    name: "Burger Hub", 
+    category: "Burger", 
+    rating: "4.4", 
+    deliveryTime: "20-25 min",
+    deliveryFee: "₹30",
+    offer: "Free Delivery",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" 
+  },
+  { 
+    name: "Delhi Tadka", 
+    category: "Indian", 
+    rating: "4.7", 
+    deliveryTime: "30-35 min",
+    deliveryFee: "₹50",
+    offer: "15% OFF",
+    img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" 
+  },
+  { 
+    name: "Dragon Wok", 
+    category: "Chinese", 
+    rating: "4.5", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹35",
+    offer: "10% OFF",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947" 
+  },
+  { 
+    name: "Sweet Treats", 
+    category: "Dessert", 
+    rating: "4.8", 
+    deliveryTime: "15-20 min",
+    deliveryFee: "₹25",
+    offer: "Buy 1 Get 1",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" 
+  },
+  { 
+    name: "Italiano Pizza", 
+    category: "Pizza", 
+    rating: "4.6", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹40",
+    offer: "20% OFF",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+  },
+  { 
+    name: "Burger Hub", 
+    category: "Burger", 
+    rating: "4.4", 
+    deliveryTime: "20-25 min",
+    deliveryFee: "₹30",
+    offer: "Free Delivery",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" 
+  },
+  { 
+    name: "Delhi Tadka", 
+    category: "Indian", 
+    rating: "4.7", 
+    deliveryTime: "30-35 min",
+    deliveryFee: "₹50",
+    offer: "15% OFF",
+    img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" 
+  },
+  { 
+    name: "Dragon Wok", 
+    category: "Chinese", 
+    rating: "4.5", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹35",
+    offer: "10% OFF",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947" 
+  },
+  { 
+    name: "Sweet Treats", 
+    category: "Dessert", 
+    rating: "4.8", 
+    deliveryTime: "15-20 min",
+    deliveryFee: "₹25",
+    offer: "Buy 1 Get 1",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" 
+  },
+  { 
+    name: "Italiano Pizza", 
+    category: "Pizza", 
+    rating: "4.6", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹40",
+    offer: "20% OFF",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+  },
+  { 
+    name: "Burger Hub", 
+    category: "Burger", 
+    rating: "4.4", 
+    deliveryTime: "20-25 min",
+    deliveryFee: "₹30",
+    offer: "Free Delivery",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" 
+  },
+  { 
+    name: "Delhi Tadka", 
+    category: "Indian", 
+    rating: "4.7", 
+    deliveryTime: "30-35 min",
+    deliveryFee: "₹50",
+    offer: "15% OFF",
+    img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" 
+  },
+  { 
+    name: "Dragon Wok", 
+    category: "Chinese", 
+    rating: "4.5", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹35",
+    offer: "10% OFF",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947" 
+  },
+  { 
+    name: "Sweet Treats", 
+    category: "Dessert", 
+    rating: "4.8", 
+    deliveryTime: "15-20 min",
+    deliveryFee: "₹25",
+    offer: "Buy 1 Get 1",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" 
+  },
+  { 
+    name: "Italiano Pizza", 
+    category: "Pizza", 
+    rating: "4.6", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹40",
+    offer: "20% OFF",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+  },
+  { 
+    name: "Burger Hub", 
+    category: "Burger", 
+    rating: "4.4", 
+    deliveryTime: "20-25 min",
+    deliveryFee: "₹30",
+    offer: "Free Delivery",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" 
+  },
+  { 
+    name: "Delhi Tadka", 
+    category: "Indian", 
+    rating: "4.7", 
+    deliveryTime: "30-35 min",
+    deliveryFee: "₹50",
+    offer: "15% OFF",
+    img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" 
+  },
+  { 
+    name: "Dragon Wok", 
+    category: "Chinese", 
+    rating: "4.5", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹35",
+    offer: "10% OFF",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947" 
+  },
+  { 
+    name: "Sweet Treats", 
+    category: "Dessert", 
+    rating: "4.8", 
+    deliveryTime: "15-20 min",
+    deliveryFee: "₹25",
+    offer: "Buy 1 Get 1",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" 
+  },
+  { 
+    name: "Italiano Pizza", 
+    category: "Pizza", 
+    rating: "4.6", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹40",
+    offer: "20% OFF",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591" 
+  },
+  { 
+    name: "Burger Hub", 
+    category: "Burger", 
+    rating: "4.4", 
+    deliveryTime: "20-25 min",
+    deliveryFee: "₹30",
+    offer: "Free Delivery",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd" 
+  },
+  { 
+    name: "Delhi Tadka", 
+    category: "Indian", 
+    rating: "4.7", 
+    deliveryTime: "30-35 min",
+    deliveryFee: "₹50",
+    offer: "15% OFF",
+    img: "https://images.unsplash.com/photo-1601050690597-df0568f70950" 
+  },
+  { 
+    name: "Dragon Wok", 
+    category: "Chinese", 
+    rating: "4.5", 
+    deliveryTime: "25-30 min",
+    deliveryFee: "₹35",
+    offer: "10% OFF",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947" 
+  },
+  { 
+    name: "Sweet Treats", 
+    category: "Dessert", 
+    rating: "4.8", 
+    deliveryTime: "15-20 min",
+    deliveryFee: "₹25",
+    offer: "Buy 1 Get 1",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b" 
+  },
 ];
 
 const state = { category: "All", search: "" };
@@ -256,15 +620,38 @@ function render() {
 
   filtered.forEach(r => {
     grid.innerHTML += `
-      <article class="bg-darkCard border border-borderDark rounded-xl overflow-hidden card-hover">
-        <img src="${r.img}" class="w-full h-36 object-cover" />
+      <article class="bg-darkCard border border-borderDark rounded-xl overflow-hidden card-hover relative">
+
+        <!-- Offer Badge -->
+        <span class="absolute top-3 left-3 bg-primary text-black text-xs px-2 py-1 rounded">
+          ${r.offer}
+        </span>
+
+        <!-- Favorite Icon -->
+        <button onclick="toggleFavorite(this)" 
+          class="absolute top-3 right-3 bg-black/60 text-white w-8 h-8 rounded-full flex items-center justify-center hover:text-primary transition">
+          <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <img src="${r.img}" class="w-full h-40 object-cover" />
+
         <div class="p-4 space-y-2">
-          <h4 class="font-semibold text-white">${r.name}</h4>
-          <p class="text-xs text-gray-400">${r.category}</p>
-          <span class="text-green-400 text-sm">⭐ ${r.rating}</span>
-          <button onclick="openRestaurant('${r.name}')"
-            class="w-full mt-3 bg-primary text-black py-2 rounded-lg font-semibold">
-            Order Now
+          <h4 class="font-semibold text-white text-lg">${r.name}</h4>
+
+          <div class="flex items-center justify-between text-sm text-gray-400">
+            <span>${r.category}</span>
+            <span class="text-green-400">⭐ ${r.rating}</span>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-gray-400 pt-2">
+            <span>⏱ ${r.deliveryTime}</span>
+            <span>🚚 ${r.deliveryFee}</span>
+          </div>
+
+          <!-- CTA -->
+          <button onclick="viewMenu('${r.name}')"
+            class="w-full mt-3 bg-primary text-black py-2 rounded-lg font-semibold hover:opacity-90 transition">
+            View Menu
           </button>
         </div>
       </article>
@@ -272,11 +659,39 @@ function render() {
   });
 }
 
+/* ================= FAVORITE ================= */
+function toggleFavorite(btn) {
+  const icon = btn.querySelector("i");
+  icon.classList.toggle("fa-regular");
+  icon.classList.toggle("fa-solid");
+  icon.classList.toggle("text-red-500");
+}
+
+/* ================= VIEW MENU ================= */
+function viewMenu(name) {
+  if (!name || typeof name !== "string") {
+    console.error("Invalid restaurant name");
+    return;
+  }
+
+  // Save selected restaurant
+  localStorage.setItem("selectedRestaurant", name.trim());
+
+  // Optional: store timestamp (useful later)
+  localStorage.setItem("menuOpenedAt", Date.now());
+
+  // Redirect to menu page
+  window.location.assign("menu.html");
+}
+
 /* ================= FILTER ================= */
 document.querySelectorAll(".filter-btn").forEach(btn => {
-  btn.classList.add("px-4","py-2","rounded-full","bg-darkCard","hover:bg-primary","hover:text-black");
+  btn.classList.add("px-4","py-2","rounded-full","bg-darkCard","hover:bg-primary","hover:text-black","transition");
+
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("bg-primary","text-black"));
+    document.querySelectorAll(".filter-btn")
+      .forEach(b => b.classList.remove("bg-primary","text-black"));
+
     btn.classList.add("bg-primary","text-black");
     state.category = btn.dataset.category;
     render();
@@ -288,12 +703,6 @@ searchInput.addEventListener("input", e => {
   state.search = e.target.value.toLowerCase();
   render();
 });
-
-/* ================= NAV ================= */
-function openRestaurant(name) {
-  localStorage.setItem("selectedRestaurant", name);
-  window.location.href = "restaurant.html";
-}
 
 render();
 </script>

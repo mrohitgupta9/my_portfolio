@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Menu | FoodieX</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#F97316",
+        darkBg: "#020617",
+        darkCard: "#0f172a",
+        borderDark: "#1e293b",
+      }
+    }
+  }
+}
+</script>
+</head>
+
+<body class="bg-darkBg text-gray-200 font-sans">
+
+<!-- ================= NAVBAR ================= -->
+<header class="sticky top-0 z-50 bg-darkBg border-b border-borderDark">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="index.html" class="text-2xl font-bold text-primary">
+      FoodieX
+    </a>
+
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex gap-8 text-sm font-medium">
+      <a href="index.html" class="hover:text-primary">Home</a>
+      <a href="restaurants.html" class="hover:text-primary">Restaurants</a>
+      <a href="offers.html" class="hover:text-primary">Offers</a>
+      <a href="contact.html" class="hover:text-primary">Contact</a>
+    </nav>
+
+    <!-- Right Section -->
+    <div class="flex items-center gap-6">
+
+      <!-- Cart -->
+      <div class="relative cursor-pointer" onclick="goToCart()">
+        <i class="fas fa-shopping-cart text-lg"></i>
+        <span id="cartCount"
+          class="absolute -top-2 -right-3 bg-primary text-black text-xs px-1.5 rounded-full">
+          0
+        </span>
+      </div>
+
+      <!-- Mobile Button -->
+      <button id="menuToggle" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+    class="hidden md:hidden bg-darkCard border-t border-borderDark px-6 py-4 space-y-3 text-sm">
+    <a href="index.html" class="block">Home</a>
+    <a href="restaurants.html" class="block">Restaurants</a>
+    <a href="offers.html" class="block">Offers</a>
+    <a href="contact.html" class="block">Contact</a>
+  </div>
+</header>
+
+<!-- ================= RESTAURANT HEADER ================= -->
+<section class="max-w-7xl mx-auto px-6 py-8">
+  <h1 id="restaurantName" class="text-3xl font-bold text-white"></h1>
+  <div class="flex gap-6 text-sm text-gray-400 mt-3">
+    <span class="text-green-400">⭐ 4.6</span>
+    <span>⏱ 25-30 min</span>
+    <span>🚚 ₹40 delivery</span>
+  </div>
+</section>
+
+<!-- ================= CATEGORY TABS ================= -->
+<section class="max-w-7xl mx-auto px-6 pb-6">
+  <div id="menuTabs" class="flex gap-3 overflow-x-auto">
+    <button data-category="All" class="tab-btn bg-primary text-black px-4 py-2 rounded-full text-sm">All</button>
+    <button data-category="Popular" class="tab-btn px-4 py-2 rounded-full bg-darkCard">Popular</button>
+    <button data-category="Pizza" class="tab-btn px-4 py-2 rounded-full bg-darkCard">Pizza</button>
+    <button data-category="Burger" class="tab-btn px-4 py-2 rounded-full bg-darkCard">Burger</button>
+    <button data-category="Dessert" class="tab-btn px-4 py-2 rounded-full bg-darkCard">Dessert</button>
+  </div>
+</section>
+
+<!-- ================= MENU GRID ================= -->
+<section class="max-w-7xl mx-auto px-6 pb-32">
+  <div id="menuGrid"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  </div>
+</section>
+
+<!-- ================= STICKY CART BAR ================= -->
+<div id="cartBar"
+  class="hidden fixed bottom-0 left-0 right-0 bg-primary text-black p-4 flex justify-between items-center font-semibold">
+
+  <span id="cartSummary">0 items | ₹0</span>
+  <button onclick="goToCart()" class="bg-black text-white px-6 py-2 rounded-lg">
+    View Cart
+  </button>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-darkCard border-t border-borderDark mt-20">
+  <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8 text-sm">
+
+    <div>
+      <h3 class="text-primary font-bold text-lg mb-3">FoodieX</h3>
+      <p class="text-gray-400">
+        Order food from your favorite restaurants quickly and easily.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="font-semibold mb-3">Company</h4>
+      <ul class="space-y-2 text-gray-400">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-semibold mb-3">Support</h4>
+      <ul class="space-y-2 text-gray-400">
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-semibold mb-3">Follow Us</h4>
+      <div class="flex gap-4 text-lg">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="text-center text-gray-500 text-xs py-4 border-t border-borderDark">
+    © 2026 FoodieX. All rights reserved.
+  </div>
+</footer>
+
+<script>
+/* ================= RESTAURANT NAME ================= */
+const restaurant = localStorage.getItem("selectedRestaurant") || "Restaurant";
+document.getElementById("restaurantName").textContent = restaurant;
+
+/* ================= MENU DATA (UPGRADED STRUCTURE) ================= */
+const menuData = [
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "Pizza",
+    price: 249,
+    popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+  },
+  {
+    id: 2,
+    name: "Farmhouse Pizza",
+    category: "Pizza",
+    price: 349,
+    popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  },
+  {
+    id: 3,
+    name: "Cheese Burger",
+    category: "Burger",
+    price: 199,
+    popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  },
+  {
+    id: 4,
+    name: "Chicken Burger",
+    category: "Burger",
+    price: 229,
+    popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+  },
+  {
+    id: 5,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    price: 149,
+    popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  },
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "Pizza",
+    price: 249,
+    popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+  },
+  {
+    id: 2,
+    name: "Farmhouse Pizza",
+    category: "Pizza",
+    price: 349,
+    popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  },
+  {
+    id: 3,
+    name: "Cheese Burger",
+    category: "Burger",
+    price: 199,
+    popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  },
+  {
+    id: 4,
+    name: "Chicken Burger",
+    category: "Burger",
+    price: 229,
+    popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+  },
+  {
+    id: 5,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    price: 149,
+    popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  },
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "Pizza",
+    price: 249,
+    popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+  },
+  {
+    id: 2,
+    name: "Farmhouse Pizza",
+    category: "Pizza",
+    price: 349,
+    popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  },
+  {
+    id: 3,
+    name: "Cheese Burger",
+    category: "Burger",
+    price: 199,
+    popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  },
+  {
+    id: 4,
+    name: "Chicken Burger",
+    category: "Burger",
+    price: 229,
+    popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+  },
+  {
+    id: 5,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    price: 149,
+    popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  },
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "Pizza",
+    price: 249,
+    popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+  },
+  {
+    id: 2,
+    name: "Farmhouse Pizza",
+    category: "Pizza",
+    price: 349,
+    popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  },
+  {
+    id: 3,
+    name: "Cheese Burger",
+    category: "Burger",
+    price: 199,
+    popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  },
+  {
+    id: 4,
+    name: "Chicken Burger",
+    category: "Burger",
+    price: 229,
+    popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+  },
+  {
+    id: 5,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    price: 149,
+    popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  },
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "Pizza",
+    price: 249,
+    popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+  },
+  {
+    id: 2,
+    name: "Farmhouse Pizza",
+    category: "Pizza",
+    price: 349,
+    popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  },
+  {
+    id: 3,
+    name: "Cheese Burger",
+    category: "Burger",
+    price: 199,
+    popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  },
+  {
+    id: 4,
+    name: "Chicken Burger",
+    category: "Burger",
+    price: 229,
+    popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+  },
+  {
+    id: 5,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    price: 149,
+    popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  },
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "Pizza",
+    price: 249,
+    popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+  },
+  {
+    id: 2,
+    name: "Farmhouse Pizza",
+    category: "Pizza",
+    price: 349,
+    popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  },
+  {
+    id: 3,
+    name: "Cheese Burger",
+    category: "Burger",
+    price: 199,
+    popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  },
+  {
+    id: 4,
+    name: "Chicken Burger",
+    category: "Burger",
+    price: 229,
+    popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+  },
+  {
+    id: 5,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    price: 149,
+    popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  },
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "Pizza",
+    price: 249,
+    popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+  },
+  {
+    id: 2,
+    name: "Farmhouse Pizza",
+    category: "Pizza",
+    price: 349,
+    popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  },
+  {
+    id: 3,
+    name: "Cheese Burger",
+    category: "Burger",
+    price: 199,
+    popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  },
+  {
+    id: 4,
+    name: "Chicken Burger",
+    category: "Burger",
+    price: 229,
+    popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+  },
+  {
+    id: 5,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    price: 149,
+    popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  },
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "Pizza",
+    price: 249,
+    popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+  },
+  {
+    id: 2,
+    name: "Farmhouse Pizza",
+    category: "Pizza",
+    price: 349,
+    popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  },
+  {
+    id: 3,
+    name: "Cheese Burger",
+    category: "Burger",
+    price: 199,
+    popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  },
+  {
+    id: 4,
+    name: "Chicken Burger",
+    category: "Burger",
+    price: 229,
+    popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+  },
+  {
+    id: 5,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    price: 149,
+    popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  },
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "Pizza",
+    price: 249,
+    popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+  },
+  {
+    id: 2,
+    name: "Farmhouse Pizza",
+    category: "Pizza",
+    price: 349,
+    popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  },
+  {
+    id: 3,
+    name: "Cheese Burger",
+    category: "Burger",
+    price: 199,
+    popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  },
+  {
+    id: 4,
+    name: "Chicken Burger",
+    category: "Burger",
+    price: 229,
+    popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+  },
+  {
+    id: 5,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    price: 149,
+    popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  },
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    category: "Pizza",
+    price: 249,
+    popular: true,
+    description: "Classic cheese pizza with fresh basil.",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+  },
+  {
+    id: 2,
+    name: "Farmhouse Pizza",
+    category: "Pizza",
+    price: 349,
+    popular: true,
+    description: "Loaded with veggies and extra cheese.",
+    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+  },
+  {
+    id: 3,
+    name: "Cheese Burger",
+    category: "Burger",
+    price: 199,
+    popular: true,
+    description: "Juicy grilled patty with melted cheese.",
+    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+  },
+  {
+    id: 4,
+    name: "Chicken Burger",
+    category: "Burger",
+    price: 229,
+    popular: false,
+    description: "Crispy chicken fillet burger.",
+    img: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+  },
+  {
+    id: 5,
+    name: "Chocolate Cake",
+    category: "Dessert",
+    price: 149,
+    popular: false,
+    description: "Rich and moist chocolate delight.",
+    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  }
+];
+
+let state = { category: "All" };
+let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+/* ================= RENDER MENU ================= */
+function renderMenu() {
+  const grid = document.getElementById("menuGrid");
+  grid.innerHTML = "";
+
+  const filtered = menuData.filter(item => {
+    if (state.category === "All") return true;
+    if (state.category === "Popular") return item.popular;
+    return item.category === state.category;
+  });
+
+  filtered.forEach(item => {
+
+    const existing = cart.find(c => c.id === item.id);
+    const qty = existing ? existing.qty : 0;
+
+    grid.innerHTML += `
+      <div class="bg-darkCard border border-borderDark rounded-xl overflow-hidden">
+        <img src="${item.img}" class="w-full h-40 object-cover" />
+        <div class="p-4 space-y-2">
+          <h4 class="font-semibold text-white">${item.name}</h4>
+          <p class="text-xs text-gray-400">${item.description}</p>
+
+          <div class="flex justify-between items-center mt-2">
+            <span class="text-primary font-semibold">₹${item.price}</span>
+
+            ${
+              qty === 0
+                ? `<button onclick="addToCart(${item.id})"
+                   class="bg-primary text-black px-4 py-1 rounded-full text-sm font-semibold">
+                   Add
+                   </button>`
+                : `
+                  <div class="flex items-center gap-2">
+                    <button onclick="decreaseQty(${item.id})"
+                      class="px-2 bg-gray-700 rounded">-</button>
+                    <span>${qty}</span>
+                    <button onclick="increaseQty(${item.id})"
+                      class="px-2 bg-gray-700 rounded">+</button>
+                  </div>
+                  `
+            }
+
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+/* ================= CART FUNCTIONS ================= */
+function addToCart(id) {
+  const item = menuData.find(m => m.id === id);
+  const existing = cart.find(c => c.id === id);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ id: item.id, name: item.name, price: item.price, qty: 1 });
+  }
+
+  updateCart();
+}
+
+function increaseQty(id) {
+  const item = cart.find(c => c.id === id);
+  if (item) item.qty += 1;
+  updateCart();
+}
+
+function decreaseQty(id) {
+  const itemIndex = cart.findIndex(c => c.id === id);
+  if (cart[itemIndex].qty > 1) {
+    cart[itemIndex].qty -= 1;
+  } else {
+    cart.splice(itemIndex, 1);
+  }
+  updateCart();
+}
+
+function updateCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartUI();
+  renderMenu();
+}
+
+/* ================= UPDATE CART UI ================= */
+function updateCartUI() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+  document.getElementById("cartCount").textContent = count;
+
+  if (count > 0) {
+    document.getElementById("cartBar").classList.remove("hidden");
+    document.getElementById("cartSummary").textContent =
+      count + " items | ₹" + total;
+  } else {
+    document.getElementById("cartBar").classList.add("hidden");
+  }
+}
+
+/* ================= TABS ================= */
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn")
+      .forEach(b => b.classList.remove("bg-primary","text-black"));
+
+    btn.classList.add("bg-primary","text-black");
+    state.category = btn.dataset.category;
+    renderMenu();
+  });
+});
+
+/* ================= MOBILE MENU ================= */
+document.getElementById("menuToggle").addEventListener("click", () => {
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+});
+
+function goToCart(){
+  window.location.href = "cart.html";
+}
+
+renderMenu();
+updateCartUI();
+
+
+</script>
+
+</body>
+</html>

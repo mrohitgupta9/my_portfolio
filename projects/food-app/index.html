@@ -87,16 +87,6 @@ tailwind.config = {
     <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
       <a href="index.html" class="hover:text-primary transition">Home</a>
       <a href="restaurants.html" class="hover:text-primary transition">Restaurants</a>
-      <a href="order.html" class="hover:text-primary transition">Orders</a>
-
-      <!-- Cart -->
-      <button class="relative hover:text-primary transition" aria-label="Cart">
-        <i class="fas fa-shopping-cart text-lg"></i>
-        <span
-          class="absolute -top-2 -right-2 bg-primary text-black text-[10px] px-1.5 rounded-full">
-          10
-        </span>
-      </button>
 
       <!-- Auth -->
      <button id="openLogin"
@@ -120,14 +110,6 @@ tailwind.config = {
     <nav class="flex flex-col px-6 py-4 space-y-4 text-sm font-medium text-gray-300">
       <a href="index.html" class="hover:text-primary transition">Home</a>
       <a href="restaurants.html" class="hover:text-primary transition">Restaurants</a>
-      <a href="order.html" class="hover:text-primary transition">Orders</a>
-
-      <div class="flex items-center justify-between pt-3 border-t border-borderDark">
-        <button class="flex items-center gap-2 hover:text-primary transition">
-          <i class="fas fa-shopping-cart"></i>
-          <span>Cart</span>
-        </button>
-
         <button
           class="px-4 py-2 rounded-full bg-primary text-black font-semibold">
           Login
@@ -188,7 +170,6 @@ tailwind.config = {
 
   <div id="restaurantGrid"
     class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-    <h2>Hello Developer</h2>
   </div>
 
   <p id="emptyState" class="hidden text-center text-gray-400 mt-12">
@@ -449,7 +430,7 @@ searchInput.addEventListener("input", e => {
 ===================================================== */
 function openRestaurant(name) {
   localStorage.setItem("selectedRestaurant", name);
-  window.location.href = "restaurant.html";
+  window.location.href = "restaurants.html";
 }
 
 /* =====================================================

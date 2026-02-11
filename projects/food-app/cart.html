@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Your Cart | FoodieX</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart | FoodieX</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
@@ -16,7 +16,7 @@ tailwind.config = {
       colors: {
         primary: "#F97316",
         darkBg: "#020617",
-        darkCard: "#020617",
+        darkCard: "#0f172a",
         borderDark: "#1e293b",
       }
     }
@@ -28,277 +28,268 @@ tailwind.config = {
 <body class="bg-darkBg text-gray-200 font-sans">
 
 <!-- ================= NAVBAR ================= -->
-<header class="sticky top-0 z-50 bg-darkBg/80 backdrop-blur-xl border-b border-borderDark">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
+<header class="sticky top-0 z-50 bg-darkBg border-b border-borderDark">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
 
-    <a href="restaurants.html" class="flex items-center gap-2 hover:text-primary">
-      <i class="fas fa-arrow-left"></i>
-      <span>Continue Shopping</span>
+    <!-- Logo -->
+    <a href="index.html" class="text-2xl font-bold text-primary">
+      FoodieX
     </a>
 
-    <span class="text-xl font-extrabold text-primary">FoodieX</span>
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex gap-8 text-sm font-medium">
+      <a href="index.html" class="hover:text-primary">Home</a>
+      <a href="restaurants.html" class="hover:text-primary">Restaurants</a>
+      <a href="offers.html" class="hover:text-primary">Offers</a>
+      <a href="contact.html" class="hover:text-primary">Contact</a>
+    </nav>
 
-    <span class="text-sm text-gray-400">Cart</span>
+    <!-- Right Section -->
+    <div class="flex items-center gap-6">
+
+      <!-- Cart -->
+      <div class="relative cursor-pointer">
+        <i class="fas fa-shopping-cart text-lg"></i>
+        <span id="cartCount"
+          class="absolute -top-2 -right-3 bg-primary text-black text-xs px-1.5 rounded-full">
+          0
+        </span>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button id="menuToggle" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+    class="hidden md:hidden bg-darkCard border-t border-borderDark px-6 py-4 space-y-3 text-sm">
+    <a href="index.html" class="block">Home</a>
+    <a href="restaurants.html" class="block">Restaurants</a>
+    <a href="offers.html" class="block">Offers</a>
+    <a href="contact.html" class="block">Contact</a>
   </div>
 </header>
 
-<!-- ================= CART PAGE ================= -->
-<section class="max-w-5xl mx-auto px-4 py-10">
+<!-- ================= MAIN ================= -->
+<section class="max-w-7xl mx-auto px-6 py-10 grid lg:grid-cols-3 gap-10">
 
-  <h1 class="text-3xl font-extrabold mb-6">Your Cart</h1>
-
-  <div id="emptyCart"
-    class="hidden text-center text-gray-400 py-20">
-    Your cart is empty 🍽️
+  <!-- CART ITEMS -->
+  <div class="lg:col-span-2">
+    <h1 class="text-3xl font-bold mb-8">Your Cart</h1>
+    <div id="cartContainer" class="space-y-4"></div>
   </div>
 
-  <div id="cartContainer"
-    class="grid md:grid-cols-3 gap-6">
+  <!-- ORDER SUMMARY -->
+  <div id="summaryBox"
+    class="hidden bg-darkCard p-6 rounded-xl border border-borderDark h-fit sticky top-24">
 
-    <!-- CART ITEMS -->
-    <div class="md:col-span-2 space-y-4" id="cartItems"></div>
+    <h2 class="text-lg font-semibold mb-6">Order Summary</h2>
 
-    <!-- SUMMARY -->
-    <div class="bg-darkCard border border-borderDark rounded-xl p-5 h-fit">
-      <h3 class="font-semibold text-lg mb-4">Order Summary</h3>
-
-      <div class="flex justify-between text-sm mb-2">
-        <span>Items Total</span>
-        <span>₹<span id="cartTotal">0</span></span>
+    <div class="space-y-3 text-sm">
+      <div class="flex justify-between">
+        <span>Subtotal</span>
+        <span id="subtotal">₹0</span>
       </div>
 
-      <div class="flex justify-between text-sm mb-2">
-        <span>Delivery</span>
-        <span class="text-green-400">FREE</span>
+      <div class="flex justify-between">
+        <span>Delivery Fee</span>
+        <span>₹40</span>
       </div>
 
-      <div class="border-t border-borderDark my-3"></div>
-
-      <div class="flex justify-between font-bold text-lg">
-        <span>Payable</span>
-        <span class="text-primary">₹<span id="cartPayable">0</span></span>
+      <div class="flex justify-between">
+        <span>GST (5%)</span>
+        <span id="gst">₹0</span>
       </div>
 
-      <button onclick="placeOrder()"
-        class="w-full mt-5 bg-primary text-black py-3 rounded-lg font-semibold">
-        Place Order
-      </button>
+      <div class="border-t border-borderDark pt-4 flex justify-between font-semibold text-lg">
+        <span>Total</span>
+        <span id="grandTotal">₹0</span>
+      </div>
     </div>
+
+    <button onclick="checkout()"
+      class="w-full mt-6 bg-primary text-black py-3 rounded-lg font-semibold hover:opacity-90 transition">
+      Proceed to Checkout
+    </button>
+
+    <button onclick="clearCart()"
+      class="w-full mt-3 border border-red-500 text-red-400 py-2 rounded-lg hover:bg-red-500 hover:text-white transition">
+      Clear Cart
+    </button>
   </div>
 
 </section>
 
-<!-- ================= ENTERPRISE FOOTER ================= -->
-<footer class="border-t border-borderDark bg-darkBg">
-  <div class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+<!-- ================= FOOTER ================= -->
+<footer class="bg-darkCard border-t border-borderDark mt-20">
+  <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8 text-sm">
 
-    <!-- Brand -->
-    <div class="lg:col-span-2 space-y-4">
-      <h2 class="text-2xl font-bold text-primary tracking-wide">FoodieX</h2>
-      <p class="text-sm text-gray-400 leading-relaxed max-w-md">
-        FoodieX is a modern food-delivery platform built for speed, reliability,
-        and seamless customer experience. Discover restaurants, order instantly,
-        and enjoy fresh food delivered fast.
+    <div>
+      <h3 class="text-primary font-bold text-lg mb-3">FoodieX</h3>
+      <p class="text-gray-400">
+        Order food from your favorite restaurants quickly and easily.
       </p>
+    </div>
 
-      <!-- Social -->
+    <div>
+      <h4 class="font-semibold mb-3">Company</h4>
+      <ul class="space-y-2 text-gray-400">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-semibold mb-3">Support</h4>
+      <ul class="space-y-2 text-gray-400">
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-semibold mb-3">Follow Us</h4>
       <div class="flex gap-4 text-lg">
-        <a href="#" aria-label="Facebook" class="hover:text-primary transition">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" aria-label="Instagram" class="hover:text-primary transition">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="#" aria-label="Twitter" class="hover:text-primary transition">
-          <i class="fab fa-x-twitter"></i>
-        </a>
-        <a href="#" aria-label="LinkedIn" class="hover:text-primary transition">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
       </div>
     </div>
 
-    <!-- Product -->
-    <div>
-      <h3 class="font-semibold text-white mb-4">Product</h3>
-      <ul class="space-y-3 text-sm text-gray-400">
-        <li><a class="hover:text-primary">Restaurants</a></li>
-        <li><a class="hover:text-primary">Pricing</a></li>
-        <li><a class="hover:text-primary">Offers</a></li>
-        <li><a class="hover:text-primary">Mobile App</a></li>
-      </ul>
-    </div>
-
-    <!-- Company -->
-    <div>
-      <h3 class="font-semibold text-white mb-4">Company</h3>
-      <ul class="space-y-3 text-sm text-gray-400">
-        <li><a class="hover:text-primary">About Us</a></li>
-        <li><a class="hover:text-primary">Careers</a></li>
-        <li><a class="hover:text-primary">Press</a></li>
-        <li><a class="hover:text-primary">Contact</a></li>
-      </ul>
-    </div>
-
-    <!-- Legal -->
-    <div>
-      <h3 class="font-semibold text-white mb-4">Legal</h3>
-      <ul class="space-y-3 text-sm text-gray-400">
-        <li><a class="hover:text-primary">Privacy Policy</a></li>
-        <li><a class="hover:text-primary">Terms of Service</a></li>
-        <li><a class="hover:text-primary">Refund Policy</a></li>
-        <li><a class="hover:text-primary">Security</a></li>
-      </ul>
-    </div>
   </div>
 
-  <!-- Bottom Bar -->
-  <div class="border-t border-borderDark">
-    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-xs text-gray-500">
-        © 2026 FoodieX Technologies Pvt. Ltd. All rights reserved.
-      </p>
-
-      <p class="text-xs text-gray-500">
-        Built with performance, scalability & security in mind.
-      </p>
-    </div>
+  <div class="text-center text-gray-500 text-xs py-4 border-t border-borderDark">
+    © 2026 FoodieX. All rights reserved.
   </div>
 </footer>
 
-<!-- ================= SCRIPTS ================= -->
-<script src="js/storage.js"></script>
-<script src="js/cart.js"></script>
-
 <script>
+
+/* ================= STATE ================= */
+let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+const DELIVERY_FEE = 40;
+const GST_RATE = 0.05;
+
+/* ================= MOBILE MENU ================= */
+document.getElementById("menuToggle").addEventListener("click", () => {
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+});
+
 /* ================= RENDER CART ================= */
-function renderCartPage() {
-  const cart = Storage.get("cart") || [];
-  const itemsDiv = document.getElementById("cartItems");
-  const empty = document.getElementById("emptyCart");
+function renderCart() {
   const container = document.getElementById("cartContainer");
+  const summaryBox = document.getElementById("summaryBox");
+  container.innerHTML = "";
 
-  itemsDiv.innerHTML = "";
-
-  if (cart.length === 0) {
-    empty.classList.remove("hidden");
-    container.classList.add("hidden");
+  if (!cart.length) {
+    container.innerHTML = `
+      <div class="text-center py-20">
+        <p class="text-gray-400 text-lg">Your cart is empty</p>
+        <a href="restaurants.html"
+           class="inline-block mt-6 bg-primary text-black px-6 py-2 rounded-lg font-semibold">
+          Browse Restaurants
+        </a>
+      </div>
+    `;
+    summaryBox.classList.add("hidden");
+    updateCartCount();
     return;
   }
 
-  empty.classList.add("hidden");
-  container.classList.remove("hidden");
+  let subtotal = 0;
 
-  let total = 0;
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.qty;
+    subtotal += itemTotal;
 
-  cart.forEach(item => {
-    total += item.price * item.qty;
-
-    itemsDiv.innerHTML += `
-      <div class="bg-darkCard border border-borderDark rounded-xl p-4 flex justify-between items-center">
+    container.innerHTML += `
+      <div class="bg-darkCard p-5 rounded-xl border border-borderDark flex justify-between items-center">
         <div>
-          <h4 class="font-semibold text-white">${item.name}</h4>
-          <p class="text-sm text-gray-400">₹${item.price}</p>
+          <h3 class="font-semibold text-lg">${item.name}</h3>
+          <p class="text-sm text-gray-400">₹${item.price} each</p>
         </div>
 
         <div class="flex items-center gap-3">
-          <button onclick="updateQty('${item.id}', -1)"
-            class="px-3 py-1 border border-borderDark rounded">−</button>
-
+          <button onclick="decreaseQty(${index})"
+            class="px-3 py-1 bg-gray-700 rounded hover:bg-gray-600">-</button>
           <span>${item.qty}</span>
+          <button onclick="increaseQty(${index})"
+            class="px-3 py-1 bg-gray-700 rounded hover:bg-gray-600">+</button>
+        </div>
 
-          <button onclick="updateQty('${item.id}', 1)"
-            class="px-3 py-1 border border-borderDark rounded">+</button>
-
-          <button onclick="removeItem('${item.id}')"
-            class="ml-3 text-red-400 hover:text-red-500">
-            <i class="fas fa-trash"></i>
+        <div class="text-right">
+          <p class="font-semibold text-primary">₹${itemTotal}</p>
+          <button onclick="removeItem(${index})"
+            class="text-xs text-red-400 mt-1 hover:underline">
+            Remove
           </button>
         </div>
       </div>
     `;
   });
 
-  document.getElementById("cartTotal").innerText = total;
-  document.getElementById("cartPayable").innerText = total;
-}
-
-/* ================= QTY HANDLERS ================= */
-function updateQty(id, change) {
-  const cart = Storage.get("cart");
-  const item = cart.find(i => i.id === id);
-
-  item.qty += change;
-  if (item.qty <= 0) {
-    removeItem(id);
-    return;
-  }
-
-  Storage.set("cart", cart);
-  renderCartPage();
-}
-
-function removeItem(id) {
-  let cart = Storage.get("cart");
-  cart = cart.filter(i => i.id !== id);
-  Storage.set("cart", cart);
-  renderCartPage();
-}
-
-/* ================= PLACE ORDER ================= */
-function placeOrder() {
-  const cart = Storage.get("cart") || [];
-  if (cart.length === 0) return;
-
-  // Get restaurant name (from first item)
-  const restaurantName = cart[0].restaurant;
-
-  // Get old orders
-  const orders = Storage.get("orders") || [];
-
-  // Create new order
-  const newOrder = {
-    id: "ORD" + Date.now(),
-    restaurant: restaurantName,
-    items: cart,
-    status: "Delivered",
-    date: new Date().toLocaleString()
-  };
-
-  // Save order
-  orders.push(newOrder);
-  Storage.set("orders", orders);
-
-  // Clear cart
-  Storage.set("cart", []);
-
-  // Redirect
-  window.location.href = "orders.html";
-}
-function addToCart(restaurantId, itemId) {
-  const restaurants = Storage.get("restaurants");
-  const restaurant = restaurants.find(r => r.id === restaurantId);
-  const item = restaurant.menu.find(i => i.id === itemId);
-
-  let cart = Storage.get("cart") || [];
-
-  const existing = cart.find(c => c.id === itemId);
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      qty: 1,
-      restaurant: restaurant.name
-    });
-  }
-
-  Storage.set("cart", cart);
+  updateSummary(subtotal);
+  summaryBox.classList.remove("hidden");
   updateCartCount();
 }
-renderCartPage();
+
+/* ================= SUMMARY ================= */
+function updateSummary(subtotal) {
+  const gst = Math.round(subtotal * GST_RATE);
+  const total = subtotal + DELIVERY_FEE + gst;
+
+  document.getElementById("subtotal").textContent = "₹" + subtotal;
+  document.getElementById("gst").textContent = "₹" + gst;
+  document.getElementById("grandTotal").textContent = "₹" + total;
+}
+
+/* ================= BADGE ================= */
+function updateCartCount() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById("cartCount").textContent = count;
+}
+
+/* ================= CONTROLS ================= */
+function increaseQty(index) {
+  cart[index].qty++;
+  updateCart();
+}
+
+function decreaseQty(index) {
+  if (cart[index].qty > 1) cart[index].qty--;
+  else cart.splice(index, 1);
+  updateCart();
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
+function updateCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+
+function clearCart() {
+  if (confirm("Clear entire cart?")) {
+    cart = [];
+    updateCart();
+  }
+}
+
+function checkout() {
+  alert("Payment integration comes next.");
+}
+
+renderCart();
+
 </script>
 
 </body>
