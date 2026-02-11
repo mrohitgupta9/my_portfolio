@@ -1,240 +1,295 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout | FoodApp</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  </head>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Checkout | FoodieX</title>
 
-  <body class="bg-black text-white">
-    <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-10">
-      <!-- LEFT SIDE: FORM -->
-      <div class="md:col-span-2 space-y-10">
-        <!-- ADDRESS -->
-        <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
-          <h2 class="text-xl font-semibold mb-5">Delivery Details</h2>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- <script src="https://checkout.razorpay.com/v1/checkout.js"></script> -->
 
-          <div class="grid md:grid-cols-2 gap-4">
-            <input
-              id="name"
-              type="text"
-              placeholder="Full Name"
-              class="p-3 bg-black border border-zinc-700 rounded-lg w-full"
-              required />
+</head>
 
-            <input
-              id="phone"
-              type="tel"
-              placeholder="Phone Number"
-              class="p-3 bg-black border border-zinc-700 rounded-lg w-full"
-              required />
+<body class="bg-black text-white">
 
-            <input
-              id="address"
-              type="text"
-              placeholder="Address"
-              class="p-3 bg-black border border-zinc-700 rounded-lg w-full md:col-span-2"
-              required />
+<div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-10">
 
-            <input
-              id="city"
-              type="text"
-              placeholder="City"
-              class="p-3 bg-black border border-zinc-700 rounded-lg w-full"
-              required />
+<!-- ================= LEFT SIDE ================= -->
+<div class="md:col-span-2 space-y-10">
 
-            <input
-              id="pincode"
-              type="text"
-              placeholder="Pincode"
-              class="p-3 bg-black border border-zinc-700 rounded-lg w-full"
-              required />
-          </div>
-        </div>
+<!-- DELIVERY DETAILS -->
+<div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
+<h2 class="text-xl font-semibold mb-5">Delivery Details</h2>
 
-        <!-- PAYMENT METHOD -->
-        <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
-          <h2 class="text-xl font-semibold mb-5">Payment Method</h2>
+<div class="grid md:grid-cols-2 gap-4">
 
-          <div class="space-y-3">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="radio" name="payment" value="upi" checked />
-              <span>UPI</span>
-            </label>
+<input id="name" type="text" placeholder="Full Name"
+class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
 
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="radio" name="payment" value="card" />
-              <span>Credit / Debit Card</span>
-            </label>
+<input id="phone" type="tel" placeholder="Phone Number"
+class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
 
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="radio" name="payment" value="cod" />
-              <span>Cash on Delivery</span>
-            </label>
-          </div>
+<input id="address" type="text" placeholder="Address"
+class="p-3 bg-black border border-zinc-700 rounded-lg w-full md:col-span-2" />
 
-          <!-- CARD FORM -->
-          <div id="cardForm" class="hidden mt-6 space-y-4">
-            <input
-              id="cardNumber"
-              type="text"
-              placeholder="Card Number"
-              class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
+<input id="city" type="text" placeholder="City"
+class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
 
-            <div class="grid grid-cols-2 gap-4">
-              <input
-                id="expiry"
-                type="text"
-                placeholder="MM/YY"
-                class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
-              <input
-                id="cvv"
-                type="text"
-                placeholder="CVV"
-                class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
-            </div>
-          </div>
-        </div>
-      </div>
+<input id="pincode" type="text" placeholder="Pincode"
+class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
 
-      <!-- RIGHT SIDE: SUMMARY -->
-      <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 h-fit">
-        <h2 class="text-xl font-semibold mb-5">Order Summary</h2>
+</div>
+</div>
 
-        <div id="orderItems" class="space-y-3 mb-5"></div>
+<!-- PAYMENT METHOD -->
+<div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
+<h2 class="text-xl font-semibold mb-5">Payment Method</h2>
 
-        <div class="border-t border-zinc-700 pt-4 space-y-2 text-sm">
-          <div class="flex justify-between">
-            <span>Subtotal</span>
-            <span id="subtotal"></span>
-          </div>
-          <div class="flex justify-between">
-            <span>GST (5%)</span>
-            <span id="gst"></span>
-          </div>
-          <div class="flex justify-between">
-            <span>Delivery</span>
-            <span>₹40</span>
-          </div>
-          <div
-            class="flex justify-between font-semibold text-lg text-green-400">
-            <span>Total</span>
-            <span id="total"></span>
-          </div>
-        </div>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer">
+<input type="radio" name="payment" value="upi" checked />
+<span>UPI</span>
+</label>
 
-        <button
-          onclick="placeOrder()"
-          class="mt-6 w-full bg-green-500 text-black py-3 rounded-lg font-semibold hover:bg-green-400">
-          Place Order
-        </button>
-      </div>
-    </div>
+<label class="flex items-center gap-3 cursor-pointer">
+<input type="radio" name="payment" value="card" />
+<span>Credit / Debit Card</span>
+</label>
 
+<label class="flex items-center gap-3 cursor-pointer">
+<input type="radio" name="payment" value="cod" />
+<span>Cash on Delivery</span>
+</label>
+</div>
+
+<!-- CARD FORM -->
+<div id="cardForm" class="hidden mt-6 space-y-4">
+<input id="cardNumber" type="text" placeholder="Card Number"
+class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
+
+<div class="grid grid-cols-2 gap-4">
+<input id="expiry" type="text" placeholder="MM/YY"
+class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
+<input id="cvv" type="text" placeholder="CVV"
+class="p-3 bg-black border border-zinc-700 rounded-lg w-full" />
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ================= RIGHT SIDE ================= -->
+<div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 h-fit">
+<h2 class="text-xl font-semibold mb-5">Order Summary</h2>
+
+<div id="orderItems" class="space-y-3 mb-5"></div>
+
+<div class="border-t border-zinc-700 pt-4 space-y-2 text-sm">
+
+<div class="flex justify-between">
+<span>Subtotal</span>
+<span id="subtotal"></span>
+</div>
+
+<div class="flex justify-between">
+<span>GST (5%)</span>
+<span id="gst"></span>
+</div>
+
+<div class="flex justify-between">
+<span>Delivery</span>
+<span id="delivery"></span>
+</div>
+
+<div class="flex justify-between font-semibold text-lg text-green-400">
+<span>Total</span>
+<span id="total"></span>
+</div>
+
+</div>
+
+<button id="placeBtn"
+onclick="placeOrder()"
+class="mt-6 w-full bg-green-500 text-black py-3 rounded-lg font-semibold hover:bg-green-400 transition">
+Place Order
+</button>
+
+</div>
+</div>
+
+<!-- ================= SCRIPT ================= -->
 <script>
+
 /* ================= STATE ================= */
 let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-const DELIVERY = 40;
-const GST = 0.05;
+const DELIVERY_CHARGE = 40;
+const GST_RATE = 0.05;
 
-/* ================= CALCULATE TOTAL ================= */
+/* ================= PAYMENT TOGGLE ================= */
+document.querySelectorAll("input[name='payment']").forEach(radio => {
+radio.addEventListener("change", () => {
+document.getElementById("cardForm").classList.toggle(
+"hidden",
+radio.value !== "card"
+);
+});
+});
+
+/* ================= CALCULATE ================= */
 function calculateTotal() {
 
-  let subtotal = 0;
+let subtotal = 0;
 
-  cart.forEach(item => {
-    subtotal += item.price * item.qty;
-  });
+cart.forEach(item => {
+subtotal += item.price * item.qty;
+});
 
-  const gst = Math.round(subtotal * GST);
-  const delivery = subtotal > 0 ? DELIVERY : 0;
-  const total = subtotal + gst + delivery;
+const gst = Math.round(subtotal * GST_RATE);
+const delivery = subtotal > 0 ? DELIVERY_CHARGE : 0;
+const total = subtotal + gst + delivery;
 
-  return { subtotal, gst, delivery, total };
+return { subtotal, gst, delivery, total };
 }
 
 /* ================= RENDER SUMMARY ================= */
 function renderSummary() {
 
-  const container = document.getElementById("orderItems");
-  container.innerHTML = "";
+const container = document.getElementById("orderItems");
+container.innerHTML = "";
 
-  const { subtotal, gst, total } = calculateTotal();
+if (!cart.length) {
+container.innerHTML = `<p class="text-gray-400 text-sm">Your cart is empty.</p>`;
+}
 
-  cart.forEach(item => {
+const { subtotal, gst, delivery, total } = calculateTotal();
 
-    const itemTotal = item.price * item.qty;
+cart.forEach(item => {
 
-    container.innerHTML += `
-      <div class="flex justify-between text-sm">
-        <span>${item.name} x${item.qty}</span>
-        <span>₹${itemTotal}</span>
-      </div>
-    `;
-  });
+const itemTotal = item.price * item.qty;
 
-  document.getElementById("subtotal").textContent = "₹" + subtotal;
-  document.getElementById("gst").textContent = "₹" + gst;
-  document.getElementById("total").textContent = "₹" + total;
+container.innerHTML += `
+<div class="flex justify-between text-sm text-gray-300">
+<span>${item.name} × ${item.qty}</span>
+<span>₹${itemTotal}</span>
+</div>
+`;
+});
+
+document.getElementById("subtotal").textContent = "₹" + subtotal;
+document.getElementById("gst").textContent = "₹" + gst;
+document.getElementById("delivery").textContent = "₹" + delivery;
+document.getElementById("total").textContent = "₹" + total;
 }
 
 /* ================= VALIDATION ================= */
 function validateForm() {
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const address = document.getElementById("address").value.trim();
 
-  if (!name || !phone || !address) {
-    alert("Please fill all required fields.");
-    return false;
-  }
+const name = document.getElementById("name").value.trim();
+const phone = document.getElementById("phone").value.trim();
+const address = document.getElementById("address").value.trim();
+const city = document.getElementById("city").value.trim();
+const pincode = document.getElementById("pincode").value.trim();
 
-  return true;
+if (!name || !phone || !address || !city || !pincode) {
+alert("Please fill all required fields.");
+return false;
+}
+
+if (!/^[0-9]{10}$/.test(phone)) {
+alert("Enter valid 10 digit phone number.");
+return false;
+}
+
+if (!/^[0-9]{6}$/.test(pincode)) {
+alert("Enter valid 6 digit pincode.");
+return false;
+}
+
+return true;
+}
+
+/* ================= SAVE ORDER ================= */
+function saveOrder(paymentId) {
+
+  const { subtotal, gst, delivery, total } = calculateTotal();
+
+  const newOrder = {
+    id: "FX" + Date.now(),
+    paymentId: paymentId,
+    restaurant: "FoodieX Restaurant",
+    items: cart || [],
+    subtotal,
+    gst,
+    delivery,
+    total,
+    status: "Preparing",
+    date: new Date().toISOString()
+  };
+
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  orders.push(newOrder);
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+  localStorage.setItem("lastOrder", JSON.stringify(newOrder));
+  localStorage.removeItem("cart");
+
+  console.log("Order Saved:", newOrder); // 🔥 DEBUG
+
+  window.location.href = "order.html"; // direct to orders page
 }
 
 /* ================= PLACE ORDER ================= */
 function placeOrder() {
 
-  if (!cart.length) {
-    alert("Cart is empty.");
-    return;
-  }
+if (!cart.length) {
+alert("Cart is empty.");
+return;
+}
 
-  if (!validateForm()) return;
+if (!validateForm()) return;
 
-  const { subtotal, gst, delivery, total } = calculateTotal();
+const btn = document.getElementById("placeBtn");
+btn.disabled = true;
+btn.innerText = "Processing...";
 
-  const btn = document.querySelector("button[onclick='placeOrder()']");
-  btn.disabled = true;
-  btn.innerText = "Processing Payment...";
+const selectedPayment = document.querySelector("input[name='payment']:checked").value;
 
-  setTimeout(() => {
+if (selectedPayment === "cod") {
+setTimeout(() => {
+saveOrder("COD_PAYMENT");
+}, 1000);
+return;
+}
 
-    const fakePaymentId = "PAY" + Math.floor(Math.random() * 1000000000);
+/* Razorpay */
+const { total } = calculateTotal();
 
-    const orderData = {
-      orderId: "ORD" + Date.now(),
-      paymentId: fakePaymentId,
-      items: cart,
-      subtotal: subtotal,
-      gst: gst,
-      delivery: delivery,
-      total: total,
-      date: new Date().toLocaleString()
-    };
+const options = {
+key: "rzp_test_1234567890", // replace with real key
+amount: total * 100,
+currency: "INR",
+name: "FoodieX",
+description: "Food Order Payment",
+handler: function (response) {
+saveOrder(response.razorpay_payment_id);
+},
+theme: {
+color: "#22c55e"
+}
+};
 
-    localStorage.setItem("lastOrder", JSON.stringify(orderData));
-    localStorage.removeItem("cart");
+const rzp = new Razorpay(options);
+rzp.open();
 
-    window.location.href = "success.html";
-
-  }, 2000);
+btn.disabled = false;
+btn.innerText = "Place Order";
 }
 
 /* ================= INIT ================= */
 renderSummary();
+
 </script>
-  </body>
+
+</body>
 </html>
